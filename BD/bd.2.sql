@@ -134,7 +134,7 @@ create table `usuario` (
     `u_nombre` varchar(25) not null,
     `u_tipo` varchar(25) not null,
     `u_username` varchar(25) not null,
-    `u_password` varchar(8) not null,
+    `u_password` varchar(60) not null,
     `u_status` char(1) not null,
     primary key(`u_cedula`)
 )

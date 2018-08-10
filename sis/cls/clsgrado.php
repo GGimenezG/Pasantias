@@ -1,0 +1,6 @@
+<?
+	class clsgrado
+{
+
+}//fin clsgrado
+?>	

@@ -1,8 +1,15 @@
+       
+  <div class="navbar-header fixed-brand">
+    <a id="logo-header" href="#">
+      
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"  id="menu-toggle">
           <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
         </button>
         <p class="top" ><i class="fa fa-user-secret"></i>Administrador</p>
-      </div><!-- navbar-header-->
+      
+      
+    </a> <!-- / #logo-header -->
+    </div><!-- navbar-header-->
       <div  class="collapse navbar-collapse" >
         <!-- Boton de despliegue de menu -->      
         <ul class="nav navbar-nav">
@@ -13,5 +20,10 @@
           </li>
         </ul>
       </div>
-      <div class="pull-right">
-        <button class="btn btn-danger" onclick="window.location.href='index.php'">Salir</button>
+    
+    <div class="pull-right">
+    
+      <a class="btn btn-danger" href="menu/desconectar.php">Salir</a></li>
+      
+    </div>  
+

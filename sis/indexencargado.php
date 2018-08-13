@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="css/style1.css" >
     <link rel="stylesheet" href="css/style2.css" >
 
-    <title>Administrador</title>
+    <title>Encargado</title>
 </head>
 
 <style media="screen">
@@ -27,7 +27,7 @@
     <!-- Cabecera Menu -->
       <div class="navbar-header fixed-brand">
             <?php
-              include("menu/cabeceraadmin.php");
+              include("menu/cabeceraencargado.php");
             ?>
       </div>
       <!--fin cabecera menu -->
@@ -39,7 +39,7 @@
             <!-- Lista Maestros del menu -->          
           <ul class="sidebar-nav nav-pills nav-stacked" id="menu">     
             <?php
-              include("menu/menuadmin.php");
+              include("menu/menuencargado.php");
             ?>
 
           </ul>
@@ -47,7 +47,7 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
           <!--inicio de la ventana modal  -->
-            <h1><b href="">Bienvenido <strong><?php echo $_SESSION['user'];?></strong> </b></h1>
+            <h1><b href="">Bienvenido <strong><?php echo $_SESSION['nombre'];?></strong> </b></h1>
         </div>
         <!-- /#page-content-wrapper -->
     </div>

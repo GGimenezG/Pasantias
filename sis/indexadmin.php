@@ -1,4 +1,12 @@
 <!DOCTYPE html>
+<?php
+session_start();
+if (@!$_SESSION['username']) {
+  header("Location:index.php");}
+// }elseif ($_SESSION['tipo']=="administrador") {
+//   header("Location:indexadmin.php");
+// }
+?>
 <html lang="es">
 
 <head>
@@ -25,7 +33,7 @@
   
    <nav id="collapse-2" class="navbar navbar-default no-margin">
     <!-- Cabecera Menu -->
-      <div class="navbar-header fixed-brand">
+      <div>
             <?php
               include("menu/cabeceraadmin.php");
             ?>
@@ -47,7 +55,7 @@
         <!-- Page Content -->
         <div id="page-content-wrapper">
           <!--inicio de la ventana modal  -->
-            <h1><b href="">Bienvenido <strong><?php echo $_SESSION['user'];?></strong> </b></h1>
+            <h1><b href="">Bienvenido <strong><?php echo $_SESSION['nombre'];?></strong> </b></h1>
         </div>
         <!-- /#page-content-wrapper -->
     </div>

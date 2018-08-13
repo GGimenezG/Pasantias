@@ -7,10 +7,10 @@ class HomeModel extends Model
 {
 	// var $u_username = "";
  // 	var $u_password = "";
- // 	var $u_cedula = "";
- // 	var $u_nombre = "";
- // 	var $u_tipo = "";
- 	
+ 	var $u_cedula = "";
+  	var $u_nombre = "";
+  	var $u_tipo = "";
+
 
 	function __construct()
 	{
@@ -28,7 +28,9 @@ class HomeModel extends Model
  		{
  			if(password_verify($u_password,$row['u_password']))
  				{
- 					return $consulta;
+ 					 $this->u_cedula;
+ 					 $this->u_nombre;
+ 					 $this->u_tipo;
  				} 
  			else 
  				{

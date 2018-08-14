@@ -18,52 +18,44 @@ class Model
     $this->conectar();
   }
 
-  /**
-  * Finaliza conexion
-  */
-  public function __destruct()
-  {
-    $this->db->close();
-  }
-
-   function conectar()
+ function conectar()
   {   
                   
-      $this->db = new MySQLi(HOST,USER,PASSWORD,DB_NAME);
+      $db = new MySQLi(HOST,USER,PASSWORD,DB_NAME);
 
-    if ($this->db -> connect_errno) {
-      die( "Fallo la conexión a MySQL: (" . $this->db -> mysqli_connect_errno() 
-        . ") " . $this->db -> mysqli_connect_error());
+    if ($db -> connect_errno) {
+      die( "Fallo la conexión a MySQL: (" . $db -> mysqli_connect_errno() 
+        . ") " . $db -> mysqli_connect_error());
     }
-    // else{
-    //   return $db;
-    // }
+    else{
+      $this->db = $db;
+    }
       
   }
   //--------------------------------------------------------
-  public function select($sql)
+  protected function select($sql)
   {
     $tb= mysqli_query($this->db,$sql);
     return $tb;
   }
   //--------------------------------------------------------
-  public function hay_registro($tb)
+  protected function hay_registro($tb)
   {
     $row= mysqli_fetch_array($tb);
     return $row;
   }
   //--------------------------------------------------------
-  public function cerrarselect($tb)
+  protected function cerrarselect($tb)
   {
     mysqli_free_result($tb);
   }
   //--------------------------------------------------------
-  public function ejecutar($sql)
+  protected function ejecutar($sql)
   {
-    mysqli_query($sql,$this->db);
+    mysqli_query($this->db,$sql);
   }
   //--------------------------------------------------------
-  public function getcodigonuevo($tabla,$cod_tabla)
+ protected function getcodigonuevo($tabla,$cod_tabla)
   {
     
     
@@ -79,6 +71,15 @@ class Model
     return 0;
   }
 
+  /**
+  * Finaliza conexion
+  */
+  // public function __destruct()
+  // {
+  //   $this->db->close();
+  // }
+
+  
 
 }
 

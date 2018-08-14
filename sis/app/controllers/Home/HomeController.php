@@ -27,7 +27,7 @@ class HomeController extends Controller
     if($this->model->verificar($request_params['u_username'],$request_params['u_password'])){
       if ($this->model->u_tipo ="administrador") {
           echo '<script>alert("administrador log") </script>';
-          //header('location: /sis/administrador');
+         // header('location: /sis/Admin');
       }
      
     }

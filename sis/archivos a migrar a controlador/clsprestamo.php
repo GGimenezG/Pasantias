@@ -1,0 +1,6 @@
+<?
+	class clsprestamo
+{
+
+}//fin clsprestamo()
+?>	

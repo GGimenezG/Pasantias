@@ -1,0 +1,6 @@
+<?
+	class clscertificado
+{
+
+}//fin clscertificado()
+?>	

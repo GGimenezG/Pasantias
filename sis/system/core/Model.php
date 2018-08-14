@@ -28,18 +28,16 @@ class Model
 
    function conectar()
   {   
-      $db=$this->db;
-            
-      $db= new MySQLi(HOST,USER,PASSWORD,DB_NAME);
+                  
+      $this->db = new MySQLi(HOST,USER,PASSWORD,DB_NAME);
 
-    if ($db -> connect_errno) {
-      die( "Fallo la conexión a MySQL: (" . $db -> mysqli_connect_errno() 
-        . ") " . $db -> mysqli_connect_error());
+    if ($this->db -> connect_errno) {
+      die( "Fallo la conexión a MySQL: (" . $this->db -> mysqli_connect_errno() 
+        . ") " . $this->db -> mysqli_connect_error());
     }
-    else{
-      return $this->db = $db;
-    }
-
+    // else{
+    //   return $db;
+    // }
       
   }
   //--------------------------------------------------------

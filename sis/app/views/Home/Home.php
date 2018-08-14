@@ -137,7 +137,7 @@
               <div class="panel-body" style="background-color:deepskyblue">
 							 <div id="mensajesError"></div>
                
-                <form class="form" accept-charset="UTF-8" id="login-nav" name="login" action="<?= FOLDER_PATH . '/Home/login' ?>" method="POST">
+                <form class="form" accept-charset="UTF-8" id="login-nav" name="login" action="<?= FOLDER_PATH . '/home/login' ?>" method="POST">
                   <legend id="leyenda">Inicia sesión</legend>
                     <div class="form-group">
                       <label class="control-label" for="u_username">

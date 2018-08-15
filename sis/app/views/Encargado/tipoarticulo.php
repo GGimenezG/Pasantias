@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="css/style1.css" >
     <link rel="stylesheet" href="css/style2.css" >
 
-    <title>Certificado</title>
+    <title>Tipo de Artículo</title>
 </head>
 
 <style media="screen">
@@ -28,7 +28,6 @@
    <nav id="collapse-2" class="navbar navbar-default no-margin">
     <!-- Cabecera Menu -->
       <div class="navbar-header fixed-brand">
-            <!-- Esta parte incluye la cabecera del encargado-->
             <?php
             include("menu/cabeceraencargado.php");
             ?>
@@ -42,7 +41,7 @@
             <!-- Lista Maestros del menu -->     
           <ul class="sidebar-nav nav-pills nav-stacked" id="menu">     
             <?php
-            include("menu/cabeceraencargado.php");
+            include("menu/menuencargado.php");
             ?>
 
           </ul>
@@ -56,7 +55,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4>Certificado</h4>
+                    <h4>Tipo de Artículo</h4>
                   </div>
                   <div class="modal-body">
                     <div id="mensajesError"></div>
@@ -66,7 +65,7 @@
                           <h3 class="panel-title">Datos</h3>
                         </div>
                         <div class="panel-body"><!--inicio del cuerpo del panel-->
-                          <legend>Datos del certificado</legend>
+                          <legend>Datos del Tipo de artículo</legend>
                           <div class="col-xs-12 col-sm-6 col-md-6" ><!--columna izquierda del formulario-->
                               <!-- primer campo a la izquierda -->
                               <div class="form-group has-info label-floating">
@@ -74,26 +73,26 @@
                                   <span class="glyphicon glyphicon-briefcase"></span> CODIGO
                                 </label>
                                 <input class="form-control" type="text" name="codigo" id="codigo" readonly value="1"/>
-                                <p class="help-block">Código del certificado</p>
+                                <p class="help-block">Código del tipo de artículo</p>
                                 <!--help-block es para que salga el texto debajo del input al hacer clic-->
                               </div>
                               
                               <div class="form-group has-info label-floating">
                                 <label class="control-label" for="nombre">
-                                  <span class="glyphicon glyphicon-briefcase"></span> EMISION
+                                  <span class="glyphicon glyphicon-briefcase"></span> NOMBRE
                                 </label>
-                                <input class="form-control" type="text" name="emision" id="emision" required/>
-                                <p class="help-block">Introduzca la fecha de emisión del certificado</p>
+                                <input class="form-control" type="text" name="nombre" id="nombre" required/>
+                                <p class="help-block">Introduzca el tipo de artículo</p>
                                 <!--help-block es para que salga el texto debajo del input al hacer clic-->
                               </div>
                           </div><!--fin de columna izquierda -->
                           <div class="col-xs-12 col-sm-4 col-md-4"> <!-- columna derecha -->
                             <div class="form-group has-info label-floating">
                               <label class="control-label" for="descripcion">
-                                <span class="glyphicon glyphicon-edit"></span> VENCIMIENTO
+                                <span class="glyphicon glyphicon-edit"></span> DESCRIPCION
                               </label>
-                              <textarea class="form-control" name="vencimiento" rows="4" cols="6" id="vencimiento" required></textarea>
-                              <p class="help-block">Introduzca la fecha de vencimiento del certificad</p>
+                              <textarea class="form-control" name="descripcion" rows="4" cols="6" id="descripcion" required></textarea>
+                              <p class="help-block">Introduzca la descripción del  tipo de artículo</p>
                             </div>
                           </div><!-- fin columna derecha -->
                         </div>
@@ -140,17 +139,16 @@
             <!--Inicio de la tabla-->
             <div class="panel panel-info">
               <div class="panel-heading">
-                <h3 class="panel-title"> Certificado </h3>
+                <h3 class="panel-title">Tipo de Artículo</h3>
               </div>
               <div class="panel panel-body">
                 <div class="table-responsive">
                   <table id="tabla" class="table table-striped table-bordered table-hover table-condensed">
                     <thead>
                       <tr>
-                        <th>Código</th>
-                        <th>Emisión</th>
-                        <th>Vencimiento</th>
-                        <th>Consultar</th>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Descripción</th>
                         <th>Modificar</th>
                         <th>Eliminar</th>
                       </tr>
@@ -161,10 +159,10 @@
                           <span id="codigo"></span>
                         </td>
                         <td>
-                          <span id="emision"></span>
+                          <span id="nombre"></span>
                         </td>
                         <td>
-                          <span id="vencimiento"></span>
+                          <span id="descripcion"></span>
                         </td>
                         <td>
                           <a class="btn btn-success btn-raised btn-sm" data-toggle="modal"
@@ -180,7 +178,7 @@
                         </td>
                         <td>
                           <a id="btnEliminar${cargo.idString}" class="btn btn-danger btn-raised btn-sm" 
-                              data-toggle=" confirmation" data-title="¿Está seguro?" data-singleton="true" 
+                              data-toggle=" confirmation" data-title="¿Estas seguro?" data-singleton="true" 
                               data-popout="true" data-href="javascript:onEliminar('${cargo.idString}');"
                               data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt" 
                               data-btn-ok-class="btn btn-success btn-raised btn-sm"                         data-btn-cancel-label="No" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn btn-danger btn-raised btn-sm">

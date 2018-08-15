@@ -23,6 +23,7 @@ $param = $router->getParam();
  */
 if(!CoreHelper::validateController($controller))
   $controller = 'ErrorPage';
+ 
 
 require PATH_CONTROLLERS . "{$controller}/{$controller}Controller.php";
 

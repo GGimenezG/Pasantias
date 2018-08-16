@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No se permite acceso directo');
 /**
  * 
  */
-class MenuadminModel extends Model
+class RegimenModel extends Model
 {
 	
 	function __construct()

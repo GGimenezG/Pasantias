@@ -21,6 +21,8 @@ define('PATH_VIEWS', FOLDER_PATH . '/app/views/');
 
 define('PATH_CONTROLLERS', 'app/controllers/');
 
+define('PATH_MODELS', 'app/models/');
+
 //////////////////////////////////////
 // Rutas menu y estilos cargan desde ubicacion del index
 /////////////////////////////////////

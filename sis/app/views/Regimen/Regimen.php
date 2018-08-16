@@ -1,3 +1,4 @@
+<?php defined('BASEPATH') or exit('No se permite acceso directo'); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,13 +8,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../lib/bs/bootstrap.min.css" >
-    <link rel="stylesheet" href="../lib/bs/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="../lib/css/font-awesome/css/font-awesome.min.css" >
-    <link rel="stylesheet" href="../lib/bs/bootstrap-material-design.min.css">
-    <link rel="stylesheet" href="../lib/bs/ripples.min.css">
-    <link rel="stylesheet" href="css/style1.css" >
-    <link rel="stylesheet" href="css/style2.css" >
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/bootstrap.min.css" >
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/font-awesome/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/ripples.min.css">
+    <link rel="stylesheet" href="<?php echo PATH_STYLE?>/style1.css" >
+    <link rel="stylesheet" href="<?php echo PATH_STYLE?>/style2.css" >
 
     <title> Régimen </title>
 </head>
@@ -30,7 +31,7 @@
       <div class="navbar-header fixed-brand">
             <!-- Esta parte incluye la cabecera del encargado-->
             <?php
-            include("menu/cabeceraencargado.php");
+                include (PATH_MENU . '/cabeceraadmin.php');
             ?>
       </div>
       <!--fin cabecera menu -->
@@ -42,7 +43,7 @@
             <!-- Lista Maestros del menu -->     
           <ul class="sidebar-nav nav-pills nav-stacked" id="menu">     
             <?php
-            include("menu/cabeceraencargado.php");
+                include(PATH_MENU . "/menuadmin.php");
             ?>
 
           </ul>
@@ -201,17 +202,17 @@
     </div>
     <!-- /#wrapper -->
     <!-- jQuery -->
-    <script src="../lib/js/jquery-3.1.1.min.js"></script>
-    <script src="../lib/js/bootstrap.min.js"></script>
-    <script src="../lib/js/menu.js"></script>
-    <script src="../lib/js/cargo.js"></script>
-    <script src="../lib/js/jquery.validate.min.js"></script>
-	  <script src="../lib/js/jquery.numeric.min.js"></script>
-    <script src="../lib/js/jquery.dataTables.min.js"></script>
-    <script src="../lib/js/dataTables.bootstrap.min.js"></script>
-    <script src="../lib/js/ripples.min.js"></script>
-    <script src="../lib/js/material.min.js"></script>
-    <script src="../lib/js/bootstrap-confirmation.js"></script>
+    <script src="<?php echo PATH_JS?>/jquery-3.1.1.min.js"></script>
+    <script src="<?php echo PATH_JS?>/bootstrap.min.js"></script>
+    <script src="<?php echo PATH_JS?>/menu.js"></script>
+    <script src="<?php echo PATH_JS?>/cargo.js"></script>
+    <script src="<?php echo PATH_JS?>/jquery.validate.min.js"></script>
+	  <script src="<?php echo PATH_JS?>/jquery.numeric.min.js"></script>
+    <script src="<?php echo PATH_JS?>/jquery.dataTables.min.js"></script>
+    <script src="<?php echo PATH_JS?>/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo PATH_JS?>/ripples.min.js"></script>
+    <script src="<?php echo PATH_JS?>/material.min.js"></script>
+    <script src="<?php echo PATH_JS?>/bootstrap-confirmation.js"></script>
   	<script type="text/javascript" class="init">
   		$('[data-toggle="confirmation"]').confirmation('hide');
   	</script>

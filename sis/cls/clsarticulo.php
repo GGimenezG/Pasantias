@@ -1,6 +1,0 @@
-<?
-	class clsarticulo
-{
-
-}//fin clsarticulo
-?>	

@@ -31,7 +31,7 @@
       <div class="navbar-header fixed-brand">
             <!-- Esta parte incluye la cabecera del encargado-->
             <?php
-                include (PATH_MENU . '/cabeceraadmin.php');
+                include (PATH_MENU . '/cabeceraencargado.php');
             ?>
       </div>
       <!--fin cabecera menu -->
@@ -43,7 +43,7 @@
             <!-- Lista Maestros del menu -->     
           <ul class="sidebar-nav nav-pills nav-stacked" id="menu">     
             <?php
-                include(PATH_MENU . "/menuadmin.php");
+                include(PATH_MENU . "/menuencargado.php");
             ?>
 
           </ul>

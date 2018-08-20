@@ -1,7 +1,7 @@
 
       <!-- Pestaña de inicio del administrador -->
       <li class="active">
-        <a href="administrador">
+        <a href="<?= FOLDER_PATH . '/administrador/' ?>">
           <span class="fa-stack fa-lg pull-left">
             <i class="fa fa-dashboard fa-stack-1x "></i>
           </span> Inicio

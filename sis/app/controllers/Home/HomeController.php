@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No se permite acceso directo');
 require_once ROOT . '/sis/app/models/Home/HomeModel.php';
+require_once LIBS_ROUTE .'Session.php';
 /**
 * CONTROLADOR HOME - LOGIN 
 */
@@ -13,6 +14,7 @@ class HomeController extends Controller
   public function __construct()
   {
     $this->model = new HomeModel();
+    $this->session = new Session();
   }
 
   public function exec()
@@ -25,9 +27,20 @@ class HomeController extends Controller
   {
     
     if($this->model->verificar($request_params['u_username'],$request_params['u_password'])){
-      if ($this->model->u_tipo ="administrador") {
-       
-        header('location: /sis/menuadmin');
+      
+      $this->session->init();
+      $this->session->add('u_nombre', $this->model->u_nombre);
+      $this->session->add('u_cedula', $this->model->u_cedula);
+      $this->session->add('u_tipo', $this->model->u_tipo);
+      
+      if ($this->session->get('u_tipo') == "administrador") {       
+        header('location: /sis/administrador');
+      if ($this->session->get('u_tipo') == "encargado") {
+          header('location: /sis/encargado');
+        }
+      if ($this->session->get('u_tipo') == "secretaria") {
+            header('location: /sis/secretaria');
+          }  
       }
      
     }

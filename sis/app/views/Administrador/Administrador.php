@@ -1,12 +1,7 @@
+<?php
+defined('BASEPATH') or exit('No se permite acceso directo'); ?>
 <!DOCTYPE html>
-<!-- <?php
-session_start();
-if (@!$_SESSION['username']) {
-  header("Location:index.php");}
-// }elseif ($_SESSION['tipo']=="administrador") {
-//   header("Location:indexadmin.php");
-// }
-?> -->
+
 <html lang="es">
 
 <head>
@@ -14,12 +9,12 @@ if (@!$_SESSION['username']) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="../lib/bs/bootstrap.min.css" >
-    <link rel="stylesheet" href="../lib/css/font-awesome/css/font-awesome.min.css" >
-    <link rel="stylesheet" href="../bs/bootstrap-material-design.min.css">
-    <link rel="stylesheet" href="css/style1.css" >
-    <link rel="stylesheet" href="css/style2.css" >
+    
+    <link rel="stylesheet" href= "<?php echo PATH_BOOTSTRAP?>/bootstrap.min.css" >
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/font-awesome/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="<?php echo PATH_STYLE?>/style1.css" >
+    <link rel="stylesheet" href="<?php echo PATH_STYLE?>/style2.css" >
 
     <title>Administrador</title>
 </head>
@@ -33,11 +28,11 @@ if (@!$_SESSION['username']) {
   
    <nav id="collapse-2" class="navbar navbar-default no-margin">
     <!-- Cabecera Menu -->
-      <div>
+     
             <?php
-              include("../menu/cabeceraadmin.php");
+              include (PATH_MENU . '/cabeceraadmin.php');
             ?>
-      </div>
+     
       <!--fin cabecera menu -->
     </nav>
     <!-- Barra de manu lateral -->
@@ -47,7 +42,7 @@ if (@!$_SESSION['username']) {
             <!-- Lista Maestros del menu -->          
           <ul class="sidebar-nav nav-pills nav-stacked" id="menu">     
             <?php
-              include("../menu/menuadmin.php");
+              include(PATH_MENU . "/menuadmin.php");
             ?>
 
           </ul>
@@ -61,9 +56,9 @@ if (@!$_SESSION['username']) {
     </div>
     <!-- /#wrapper -->
     <!-- jQuery -->
-    <script src="../lib/js/jquery-3.1.1.min.js"></script>
-    <script src="../lib/js/bootstrap.min.js"></script>
-    <script src="../lib/js/menu.js"></script>
+    <script src="<?php echo PATH_JS?>/jquery-3.1.1.min.js"></script>
+    <script src="<?php echo PATH_JS?>/bootstrap.min.js"></script>
+    <script src="<?php echo PATH_JS?>/menu.js"></script>
     
 
 </body>

@@ -21,6 +21,20 @@ define('PATH_VIEWS', FOLDER_PATH . '/app/views/');
 
 define('PATH_CONTROLLERS', 'app/controllers/');
 
+define('PATH_MODELS', 'app/models/');
+
+//////////////////////////////////////
+// Rutas menu y estilos cargan desde ubicacion del index
+/////////////////////////////////////
+define('PATH_MENU', '/app/views/menu');
+/////////////////////////////////////
+define('PATH_BOOTSTRAP', '/../lib/bs');
+/////////////////////////////////////
+define('PATH_STYLE', FOLDER_PATH . '/css');
+/////////////////////////////////////
+define('PATH_JS', '/../lib/js');
+/////////////////////////////////////
+
 define('HELPER_PATH', 'system/helpers/');
 
 define('LIBS_ROUTE', ROOT . FOLDER_PATH . '/system/libs/');

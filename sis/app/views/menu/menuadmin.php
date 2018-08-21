@@ -1,7 +1,7 @@
 
       <!-- Pestaña de inicio del administrador -->
       <li class="active">
-        <a href="administrador">
+        <a href="<?= FOLDER_PATH . '/administrador/' ?>">
           <span class="fa-stack fa-lg pull-left">
             <i class="fa fa-dashboard fa-stack-1x "></i>
           </span> Inicio
@@ -38,7 +38,17 @@
             <i class="fa fa-address-card fa-stack-1x "></i>
           </span>Requerimiento de aula
         </a>
+      </li> 
+      <!-- Configurar regimen discapacidd -->
+      <li>
+        <a href="<?= FOLDER_PATH . '/regimen/' ?>">
+          <span class="fa-stack fa-lg pull-left">
+            <i class="fa fa-address-card fa-stack-1x "></i>
+          </span>Regimen discapacidad
+        </a>
       </li>      
+
+      
 
 
   

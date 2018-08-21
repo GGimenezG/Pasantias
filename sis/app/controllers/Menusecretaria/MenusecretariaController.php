@@ -1,18 +1,16 @@
 <?php
 defined('BASEPATH') or exit('No se permite acceso directo');
-require_once ROOT . '/sis/app/models/Admin/AdminModel.php';
+require_once ROOT . '/sis/app/models/Menusecretaria/MenusecretariaModel.php';
 /**
-* CONTROLADOR Menu administrador
+* CONTROLADOR Menu Encargado
 */
-class AdminController extends Controller
+class MenusecretariaController extends Controller
 {
   private $model;
 
-  private $session;
-
   public function __construct()
   {
-    $this->model = new AdminModel();
+    $this->model = new MenusecretariaModel();
   }
 
   public function exec()

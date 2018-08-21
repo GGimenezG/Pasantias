@@ -1,3 +1,5 @@
+<?php defined('BASEPATH') or exit('No se permite acceso directo'); ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -7,15 +9,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="../lib/bs/bootstrap.min.css" >
-    <link rel="stylesheet" href="../lib/bs/dataTables.bootstrap.min.css">
-    <link rel="stylesheet" href="../lib/css/font-awesome/css/font-awesome.min.css" >
-    <link rel="stylesheet" href="../lib/bs/bootstrap-material-design.min.css">
-    <link rel="stylesheet" href="../lib/bs/ripples.min.css">
-    <link rel="stylesheet" href="css/style1.css" >
-    <link rel="stylesheet" href="css/style2.css" >
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/bootstrap.min.css" >
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/font-awesome/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/ripples.min.css">
+    <link rel="stylesheet" href="<?php echo PATH_STYLE?>/style1.css" >
+    <link rel="stylesheet" href="<?php echo PATH_STYLE?>/style2.css" >
 
-    <title>Tipo de Artículo</title>
+    <title>Certificado</title>
 </head>
 
 <style media="screen">
@@ -26,12 +28,12 @@
 <body>
   
    <nav id="collapse-2" class="navbar navbar-default no-margin">
+
     <!-- Cabecera Menu -->
-      <div class="navbar-header fixed-brand">
+            <!-- Esta parte incluye la cabecera del certificado-->
             <?php
-            include("menu/cabeceraencargado.php");
+              include (PATH_MENU . '/cabeceraencargado.php');
             ?>
-      </div>
       <!--fin cabecera menu -->
     </nav>
     <!-- Barra de manu lateral -->
@@ -41,7 +43,7 @@
             <!-- Lista Maestros del menu -->     
           <ul class="sidebar-nav nav-pills nav-stacked" id="menu">     
             <?php
-            include("menu/menuencargado.php");
+              include(PATH_MENU . "/menuencargado.php");
             ?>
 
           </ul>
@@ -55,7 +57,7 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4>Tipo de Artículo</h4>
+                    <h4>Certificado</h4>
                   </div>
                   <div class="modal-body">
                     <div id="mensajesError"></div>
@@ -65,7 +67,7 @@
                           <h3 class="panel-title">Datos</h3>
                         </div>
                         <div class="panel-body"><!--inicio del cuerpo del panel-->
-                          <legend>Datos del Tipo de artículo</legend>
+                          <legend>Datos del certificado</legend>
                           <div class="col-xs-12 col-sm-6 col-md-6" ><!--columna izquierda del formulario-->
                               <!-- primer campo a la izquierda -->
                               <div class="form-group has-info label-floating">
@@ -73,26 +75,26 @@
                                   <span class="glyphicon glyphicon-briefcase"></span> CODIGO
                                 </label>
                                 <input class="form-control" type="text" name="codigo" id="codigo" readonly value="1"/>
-                                <p class="help-block">Código del tipo de artículo</p>
+                                <p class="help-block">Código del certificado</p>
                                 <!--help-block es para que salga el texto debajo del input al hacer clic-->
                               </div>
                               
                               <div class="form-group has-info label-floating">
                                 <label class="control-label" for="nombre">
-                                  <span class="glyphicon glyphicon-briefcase"></span> NOMBRE
+                                  <span class="glyphicon glyphicon-briefcase"></span> EMISION
                                 </label>
-                                <input class="form-control" type="text" name="nombre" id="nombre" required/>
-                                <p class="help-block">Introduzca el tipo de artículo</p>
+                                <input class="form-control" type="text" name="emision" id="emision" required/>
+                                <p class="help-block">Introduzca la fecha de emisión del certificado</p>
                                 <!--help-block es para que salga el texto debajo del input al hacer clic-->
                               </div>
                           </div><!--fin de columna izquierda -->
                           <div class="col-xs-12 col-sm-4 col-md-4"> <!-- columna derecha -->
                             <div class="form-group has-info label-floating">
                               <label class="control-label" for="descripcion">
-                                <span class="glyphicon glyphicon-edit"></span> DESCRIPCION
+                                <span class="glyphicon glyphicon-edit"></span> VENCIMIENTO
                               </label>
-                              <textarea class="form-control" name="descripcion" rows="4" cols="6" id="descripcion" required></textarea>
-                              <p class="help-block">Introduzca la descripción del  tipo de artículo</p>
+                              <textarea class="form-control" name="vencimiento" rows="4" cols="6" id="vencimiento" required></textarea>
+                              <p class="help-block">Introduzca la fecha de vencimiento del certificad</p>
                             </div>
                           </div><!-- fin columna derecha -->
                         </div>
@@ -139,16 +141,17 @@
             <!--Inicio de la tabla-->
             <div class="panel panel-info">
               <div class="panel-heading">
-                <h3 class="panel-title">Tipo de Artículo</h3>
+                <h3 class="panel-title"> Certificado </h3>
               </div>
               <div class="panel panel-body">
                 <div class="table-responsive">
                   <table id="tabla" class="table table-striped table-bordered table-hover table-condensed">
                     <thead>
                       <tr>
-                        <th>Codigo</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
+                        <th>Código</th>
+                        <th>Emisión</th>
+                        <th>Vencimiento</th>
+                        <th>Consultar</th>
                         <th>Modificar</th>
                         <th>Eliminar</th>
                       </tr>
@@ -159,10 +162,10 @@
                           <span id="codigo"></span>
                         </td>
                         <td>
-                          <span id="nombre"></span>
+                          <span id="emision"></span>
                         </td>
                         <td>
-                          <span id="descripcion"></span>
+                          <span id="vencimiento"></span>
                         </td>
                         <td>
                           <a class="btn btn-success btn-raised btn-sm" data-toggle="modal"
@@ -178,7 +181,7 @@
                         </td>
                         <td>
                           <a id="btnEliminar${cargo.idString}" class="btn btn-danger btn-raised btn-sm" 
-                              data-toggle=" confirmation" data-title="¿Estas seguro?" data-singleton="true" 
+                              data-toggle=" confirmation" data-title="¿Está seguro?" data-singleton="true" 
                               data-popout="true" data-href="javascript:onEliminar('${cargo.idString}');"
                               data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt" 
                               data-btn-ok-class="btn btn-success btn-raised btn-sm"                         data-btn-cancel-label="No" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn btn-danger btn-raised btn-sm">
@@ -199,20 +202,21 @@
     </div>
     <!-- /#wrapper -->
     <!-- jQuery -->
-    <script src="../lib/js/jquery-3.1.1.min.js"></script>
-    <script src="../lib/js/bootstrap.min.js"></script>
-    <script src="../lib/js/menu.js"></script>
-    <script src="../lib/js/cargo.js"></script>
-    <script src="../lib/js/jquery.validate.min.js"></script>
-	  <script src="../lib/js/jquery.numeric.min.js"></script>
-    <script src="../lib/js/jquery.dataTables.min.js"></script>
-    <script src="../lib/js/dataTables.bootstrap.min.js"></script>
-    <script src="../lib/js/ripples.min.js"></script>
-    <script src="../lib/js/material.min.js"></script>
-    <script src="../lib/js/bootstrap-confirmation.js"></script>
-  	<script type="text/javascript" class="init">
-  		$('[data-toggle="confirmation"]').confirmation('hide');
-  	</script>
+    <!-- jQuery -->
+    <script src="<?php echo PATH_JS?>/jquery-3.1.1.min.js"></script>
+    <script src="<?php echo PATH_JS?>/bootstrap.min.js"></script>
+    <script src="<?php echo PATH_JS?>/menu.js"></script>
+    <script src="<?php echo PATH_JS?>/cargo.js"></script>
+    <script src="<?php echo PATH_JS?>/jquery.validate.min.js"></script>
+    <script src="<?php echo PATH_JS?>/jquery.numeric.min.js"></script>
+    <script src="<?php echo PATH_JS?>/jquery.dataTables.min.js"></script>
+    <script src="<?php echo PATH_JS?>/dataTables.bootstrap.min.js"></script>
+    <script src="<?php echo PATH_JS?>/ripples.min.js"></script>
+    <script src="<?php echo PATH_JS?>/material.min.js"></script>
+    <script src="<?php echo PATH_JS?>/bootstrap-confirmation.js"></script>
+    <script type="text/javascript" class="init">
+      $('[data-toggle="confirmation"]').confirmation('hide');
+    </script>
 </body>
 
 </html>

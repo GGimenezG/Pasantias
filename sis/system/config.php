@@ -28,11 +28,11 @@ define('PATH_MODELS', 'app/models/');
 /////////////////////////////////////
 define('PATH_MENU', '/app/views/menu');
 /////////////////////////////////////
-define('PATH_BOOTSTRAP', '../lib/bs');
+define('PATH_BOOTSTRAP', '/../lib/bs');
 /////////////////////////////////////
-define('PATH_STYLE', 'css');
+define('PATH_STYLE', FOLDER_PATH . '/css');
 /////////////////////////////////////
-define('PATH_JS', '../lib/js');
+define('PATH_JS', '/../lib/js');
 /////////////////////////////////////
 
 define('HELPER_PATH', 'system/helpers/');

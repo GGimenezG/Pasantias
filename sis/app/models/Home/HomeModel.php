@@ -19,7 +19,7 @@ class HomeModel extends Model
 
 	public function verificar($u_username, $u_password)
 	{
-		 echo '<script>alert("entra verificar") </script>';
+		
 		$sql = "SELECT * FROM usuario WHERE u_username = '$u_username'";
  		$consulta = $this->select($sql);
  

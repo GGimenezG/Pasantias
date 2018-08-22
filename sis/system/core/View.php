@@ -51,9 +51,10 @@ class View
    */
   protected function getContentTemplate($file_name)
   {
+    $params = $this->params;
     $file_path = ROOT . '/' . PATH_VIEWS . "$file_name/$file_name" . '.php';
     if(is_file($file_path)){
-      extract($this->params);
+      $params;
       ob_start();
       require($file_path);
       $template = ob_get_contents();

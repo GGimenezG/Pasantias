@@ -44,6 +44,12 @@ class Model
     $row= mysqli_fetch_array($tb);
     return $row;
   }
+
+    protected function registros($tb)
+  {
+     return mysqli_fetch_array($tb);
+     
+  }
   //--------------------------------------------------------
   protected function cerrarselect($tb)
   {

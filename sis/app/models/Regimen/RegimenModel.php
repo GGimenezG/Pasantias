@@ -98,8 +98,10 @@ class RegimenModel extends Model
 	  	$sql= "INSERT into regimen (rg_nombre, 
 	  								rg_descrp, 
 	  								rg_status) 
-	  				values $this-,
-	  					   $rg_descrp";
+	  				values ($this->rg_nombre,
+	  						$this->rg_descrp,
+	  						'A');
+	  						";
 	  	$incluir=$this->ejecutar($sql);
 	  	return $incluir;
 	}

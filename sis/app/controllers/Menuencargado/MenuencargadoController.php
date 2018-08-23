@@ -7,18 +7,20 @@ require_once ROOT . '/sis/app/models/Menuencargado/MenuencargadoModel.php';
 class MenuencargadoController extends Controller
 {
   private $model;
+  private $registros;
 
   public function __construct()
   {
     $this->model = new MenuencargadoModel();
+
+    $this->registros = $this->registros->consultar_todos();
   }
 
   public function exec()
   {
-    $this->render(__CLASS__);
+  	$params = $this->registros;
+    $this->render(__CLASS__,$params);
     
   }
 
-  
-  
 }

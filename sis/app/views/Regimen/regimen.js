@@ -23,8 +23,9 @@ $(document).ready(function() {
 function onIncluir() {
 	disableInputs(false);
 	labelFloating(true);
-	$('#idString').val("");
+	$('#codigo').val("");
 	$('#nombre').val("");
+	$('#descripcion').val("");
 	$('#btnGuardar').prop('disabled', false);
 	$('#limpiar').prop('disabled', false);
 	$('#cerrar').prop('disabled', false);
@@ -53,7 +54,7 @@ function onConsultar(id) {
 
 function onGuardar() {
 	if (validar()) {
-		if ($('#idString').val().length > 0 ) {
+		if ($('#codigo').val().length > 0 ) {
 			onEditar();
 		}
 		else {

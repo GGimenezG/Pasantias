@@ -288,6 +288,22 @@ INSERT INTO `usuarios` (`id`, `email`, `password`) VALUES
 --
 
 --
+-- Volcado de datos para la tabla `regimen`
+--
+
+INSERT INTO `regimen` (`rg_codigo`, `rg_nombre`,`rg_descrp`,`rg_status`)
+	VALUES (0001,'Discapacidad Visual','Régimen Semestral','A'),
+		   (0002,'Discapacidad Motora','Régimen Trimestral','A');
+           
+--
+-- Volcado de datos para la tabla `certificado`
+--
+
+INSERT INTO `certificado` (`c_codigo`, `c_emision`,`c_vencimiento`,`c_status`)
+	VALUES (0000,date_format('2018-08-22', '%d/%m/%Y'),date_format('2018-08-31', '%d/%m/%Y'),'A'),
+		   (0005,date_format('2018-08-21', '%d/%m/%Y'),date_format('2018-08-30', '%d/%m/%Y'),'A');        
+
+--
 -- Indices de la tabla `articulo`
 --
 ALTER TABLE `articulo`

@@ -20,11 +20,12 @@
     <title>Certificado</title>
 </head>
 
-<style media="screen">
+<!--<style media="screen">
   #modalTamano{
     width: 80%;
   }
-</style>
+</style>-->
+
 <body>
   
    <nav id="collapse-2" class="navbar navbar-default no-margin">
@@ -157,15 +158,23 @@
                       </tr>
                     </thead>
                     <tbody>
+                      <?php foreach ($params as $c) { ?>
+
                       <tr>
                         <td>
-                          <span id="codigo"></span>
+                          <span id="codigo">
+                            <?php echo $c['c_codigo']; ?>
+                          </span>
                         </td>
                         <td>
-                          <span id="emision"></span>
+                          <span id="emision">
+                            <?php echo $c['c_emision']; ?>
+                          </span>
                         </td>
                         <td>
-                          <span id="vencimiento"></span>
+                          <span id="vencimiento">
+                            <?php echo $c['c_vencimiento']; ?>
+                          </span>
                         </td>
                         <td>
                           <a class="btn btn-success btn-raised btn-sm" data-toggle="modal"
@@ -189,6 +198,7 @@
                           </a>
                         </td>
                       </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>

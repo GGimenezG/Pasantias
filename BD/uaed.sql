@@ -300,8 +300,8 @@ INSERT INTO `regimen` (`rg_codigo`, `rg_nombre`,`rg_descrp`,`rg_status`)
 --
 
 INSERT INTO `certificado` (`c_codigo`, `c_emision`,`c_vencimiento`,`c_status`)
-	VALUES (0000,date_format('2018-08-22', '%d/%m/%Y'),date_format('2018-08-31', '%d/%m/%Y'),'A'),
-		   (0005,date_format('2018-08-21', '%d/%m/%Y'),date_format('2018-08-30', '%d/%m/%Y'),'A');        
+	VALUES (0000,'2018-08-21','2018-08-31','A'),
+		   (0005,'2018-08-22','2018-08-30','A');        
 
 --
 -- Indices de la tabla `articulo`

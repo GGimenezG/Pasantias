@@ -4,7 +4,7 @@
 <html lang="es">
 
 <head>
-
+ 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -159,7 +159,6 @@
                     </thead>
                     <tbody>
                       <?php foreach ($params as $c) { ?>
-
                       <tr>
                         <td>
                           <span id="codigo">
@@ -168,12 +167,18 @@
                         </td>
                         <td>
                           <span id="emision">
-                            <?php echo $c['c_emision']; ?>
+                            <?php 
+                            $em = date_create($c['c_emision']);
+                            echo date_format($em,'d-m-Y'); 
+                            ?>
                           </span>
                         </td>
                         <td>
                           <span id="vencimiento">
-                            <?php echo $c['c_vencimiento']; ?>
+                            <?php 
+                            $venc = date_create($c['c_emision']);
+                            echo date_format($venc,'d-m-Y');
+                            ?>
                           </span>
                         </td>
                         <td>

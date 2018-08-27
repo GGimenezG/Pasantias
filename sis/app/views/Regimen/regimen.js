@@ -23,9 +23,8 @@ $(document).ready(function() {
 function onIncluir() {
 	disableInputs(false);
 	labelFloating(true);
-	$('#codigo').val("");
+	$('#idString').val("");
 	$('#nombre').val("");
-	$('#descripcion').val("");
 	$('#btnGuardar').prop('disabled', false);
 	$('#limpiar').prop('disabled', false);
 	$('#cerrar').prop('disabled', false);
@@ -35,8 +34,9 @@ function onIncluir() {
 function onModificar(id) {
 	disableInputs(false);
 	labelFloating(false);
-	$('#idString').val(id);
+	$('#codigo').val(id);
 	$('#nombre').val($("#nombre"+id).text());
+	$('#descrp').val($("#descrp"+id).text());
 	$('#btnGuardar').prop('disabled', false);
 	$('#limpiar').prop('disabled', true);
 	$('#cerrar').prop('disabled', false);
@@ -54,7 +54,7 @@ function onConsultar(id) {
 
 function onGuardar() {
 	if (validar()) {
-		if ($('#codigo').val().length > 0 ) {
+		if ($('#idString').val().length > 0 ) {
 			onEditar();
 		}
 		else {

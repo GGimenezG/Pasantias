@@ -65,7 +65,7 @@ class Model
   {
     
     
-      $sql="select MAX($this->tabla.$this->cod_tabla) as cod from $this->tabla ";
+      $sql="select MAX($tabla.$cod_tabla) as cod from $tabla ";
       $tb= $this->select($sql);
         
         if ($row=$this->hay_registro($tb))

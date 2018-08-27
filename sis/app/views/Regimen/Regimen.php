@@ -31,6 +31,7 @@
         <div class="navbar-header fixed-brand">
               <!-- Esta parte incluye la cabecera del encargado-->
               <?php
+              
                   include (PATH_MENU . '/cabeceraencargado.php');
               ?>
         </div>
@@ -57,11 +58,11 @@
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4>Régimen</h4>
+                      <h4>Certificado</h4>
                     </div>
                     <div class="modal-body">
                       <div id="mensajesError"></div>
-                      <form class="form-horizontal" id="formCargo" name="cargo">
+                      <form class="form-horizontal" id="formRegimen" name="formRegimen">
                         <div class="panel panel-info"><!--inicio del panel-->
                           <div class="panel-heading">
                             <h3 class="panel-title">Datos</h3>
@@ -70,11 +71,11 @@
                             <legend>Datos del régimen</legend>
                             <div class="col-xs-12 col-sm-6 col-md-6" ><!--columna izquierda del formulario-->
                                 <!-- primer campo a la izquierda -->
-                                <div class="form-group has-info label-floating">
+                                <div id='dcodigo' name="dcodigo" class="form-group has-info">
                                   <label class="control-label" for="codigo">
                                     <span class="glyphicon glyphicon-briefcase"></span> CODIGO
                                   </label>
-                                  <input class="form-control" type="text" name="codigo" id="codigo" readonly value="1"/>
+                                  <input class="form-control" type="text" name="codigo" id="codigo" readonly />
                                   <p class="help-block">Código del régimen</p>
                                   <!--help-block es para que salga el texto debajo del input al hacer clic-->
                                 </div>
@@ -90,10 +91,10 @@
                             </div><!--fin de columna izquierda -->
                             <div class="col-xs-12 col-sm-4 col-md-4"> <!-- columna derecha -->
                               <div class="form-group has-info label-floating">
-                                <label class="control-label" for="descripcion">
+                                <label class="control-label" for="descrp">
                                   <span class="glyphicon glyphicon-edit"></span> DESCRIPCION
                                 </label>
-                                <textarea class="form-control" name="descripcion" rows="4" cols="6" id="descripcion" required></textarea>
+                                <textarea class="form-control" name="descrp" rows="4" cols="6" id="descrp" required></textarea>
                                 <p class="help-block">Introduzca la descripción del régimen</p>
                               </div>
                             </div><!-- fin columna derecha -->
@@ -161,30 +162,30 @@
                         <tr>
                           <td>
                             
-                            <span id="codigo"><?php echo $r['rg_codigo']; ?></span>
+                            <span id="codigo<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_codigo']; ?></span>
                           </td>
                           <td>
-                            <span id="nombre"><?php echo $r['rg_nombre']; ?> </span>
+                            <span id="nombre<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_nombre']; ?> </span>
                           </td>
                           <td>
-                            <span id="descrip"><?php echo $r['rg_descrp']; ?> </span>
+                            <span id="descrp<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_descrp']; ?> </span>
                           </td>
                           <td>
                             <a class="btn btn-success btn-raised btn-sm" data-toggle="modal"
-                                data-target="#ventana" onclick="onConsultar('${cargo.idString}');">
-                              <i class="glyphicon glyphicon-eye-open"></i>
+                                data-target="#ventana" onclick="onConsultar(<?php echo $r['rg_codigo']; ?>);">
+                              <i class="fa fa-eye"></i>
                             </a>
                           </td>
                           <td>
                             <a class="btn btn-warning btn-raised btn-sm" data-toggle="modal"
-                               data-target="#ventana" onclick="onModificar('${cargo.idString}');">
+                               data-target="#ventana" onclick="onModificar(<?php echo $r['rg_codigo']; ?>);">
                               <i class="glyphicon glyphicon-edit"></i>
                             </a>
                           </td>
                           <td>
                             <a id="btnEliminar${cargo.idString}" class="btn btn-danger btn-raised btn-sm" 
                                 data-toggle=" confirmation" data-title="¿Está seguro?" data-singleton="true" 
-                                data-popout="true" data-href="javascript:onEliminar('${cargo.idString}');"
+                                data-popout="true" data-href="javascript:onEliminar(<?php echo $r['rg_codigo']; ?>);"
                                 data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt" 
                                 data-btn-ok-class="btn btn-success btn-raised btn-sm"                         data-btn-cancel-label="No" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn btn-danger btn-raised btn-sm">
                               <i class="glyphicon glyphicon-trash"></i>
@@ -208,7 +209,7 @@
       <script src="<?php echo PATH_JS?>/jquery-3.1.1.min.js"></script>
       <script src="<?php echo PATH_JS?>/bootstrap.min.js"></script>
       <script src="<?php echo PATH_JS?>/menu.js"></script>
-      <script src="<?php echo PATH_JS?>/cargo.js"></script>
+      <script src="<?php echo PATH_JS?>/regimen.js"></script>
       <script src="<?php echo PATH_JS?>/jquery.validate.min.js"></script>
   	  <script src="<?php echo PATH_JS?>/jquery.numeric.min.js"></script>
       <script src="<?php echo PATH_JS?>/jquery.dataTables.min.js"></script>

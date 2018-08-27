@@ -4,7 +4,7 @@
 <html lang="es">
 
 <head>
- 
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,12 +20,11 @@
     <title>Certificado</title>
 </head>
 
-<!--<style media="screen">
+<style media="screen">
   #modalTamano{
     width: 80%;
   }
-</style>-->
-
+</style>
 <body>
   
    <nav id="collapse-2" class="navbar navbar-default no-margin">
@@ -158,28 +157,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach ($params as $c) { ?>
                       <tr>
                         <td>
-                          <span id="codigo">
-                            <?php echo $c['c_codigo']; ?>
-                          </span>
+                          <span id="codigo"></span>
                         </td>
                         <td>
-                          <span id="emision">
-                            <?php 
-                            $em = date_create($c['c_emision']);
-                            echo date_format($em,'d-m-Y'); 
-                            ?>
-                          </span>
+                          <span id="emision"></span>
                         </td>
                         <td>
-                          <span id="vencimiento">
-                            <?php 
-                            $venc = date_create($c['c_emision']);
-                            echo date_format($venc,'d-m-Y');
-                            ?>
-                          </span>
+                          <span id="vencimiento"></span>
                         </td>
                         <td>
                           <a class="btn btn-success btn-raised btn-sm" data-toggle="modal"
@@ -203,7 +189,6 @@
                           </a>
                         </td>
                       </tr>
-                      <?php } ?>
                     </tbody>
                   </table>
                 </div>

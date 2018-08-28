@@ -26,7 +26,6 @@
 <body>
   
    <nav id="collapse-2" class="navbar navbar-default no-margin">
-    
     <!-- Cabecera Menu -->
      
             <?php

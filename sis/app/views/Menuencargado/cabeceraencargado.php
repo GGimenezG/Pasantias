@@ -23,7 +23,9 @@
     
     <div class="pull-right">
     
-      <a class="btn btn-danger" href="menu/desconectar.php">Salir</a></li>
+      <a class="btn btn-danger" href="menu/desconectar.php">Salir</a>
+    </li>
       
     </div>  
+
 

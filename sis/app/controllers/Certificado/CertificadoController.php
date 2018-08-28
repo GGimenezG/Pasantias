@@ -12,14 +12,13 @@ class CertificadoController extends Controller
   public function __construct()
   {
     $this->model = new CertificadoModel();
-
     $this->registros = $this->model->consultar_todos();
   }
 
   public function exec()
   {
-    $params = $this->registros;
-    $this->render(__CLASS__,$params);
+  	$params = $this->registros;
+    $this->render(__CLASS__, $params);
     
   }
 

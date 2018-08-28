@@ -62,26 +62,27 @@ class CertificadoModel extends Model
 
 	public function consultar_todos()
 	{
-		$sql = "SELECT * FROM certificado
-						WHERE c_status='a'";
-
-		$consulta = $this->select($sql);
-		$indice = 0;
-		while ($row = $this->registros($consulta))
-		{
-			$resultado[$indice] = array('c_codigo' => $row["c_codigo"], 
-										'c_emision' => $row["c_emision"],
-										'c_vencimiento' => $row["c_vencimiento"],
-										'c_status' => $row["c_status"]);
-			$indice = $indice + 1;
-		}
-		return $resultado;
+		
+		$sql = "SELECT * FROM certificado 
+						WHERE c_status = 'a'";
+ 		$consulta = $this->select($sql);
+ 		$indice = 0;
+ 		while($row = $this->registros($consulta))
+ 		{
+ 			$resultado[$indice] = array('c_codigo' => $row["c_codigo"], 
+ 										'c_emision' => $row["c_emision"],
+ 										'c_vencimiento' => $row["c_vencimiento"],
+ 										'c_status' => $row["c_status"]);
+ 			$indice = $indice + 1;
+ 		}
+ 		return $resultado;
+ 		
 	}
 
 	public function consultar_registro($c_codigo)
 	{
 		
-		$sql = "SELECT * FROM certificado 
+		$sql = "SELECT * FROM certificado
 						 WHERE c_codigo = '$c_codigo' and 
 							   c_status = 'a'";
  		$consulta = $this->select($sql);
@@ -103,8 +104,8 @@ class CertificadoModel extends Model
 	public function incluir()
 	{
 	  	$sql= "INSERT into certificado (c_codigo, 
-	  								c_emision, 
-	  								c_vencimiento,
+	  								c_emision,
+	  								c_vencimiento, 
 	  								c_status) 
 	  				values ($this->c_codigo,
 	  						$this->c_emision,
@@ -114,6 +115,7 @@ class CertificadoModel extends Model
 	  	$incluir=$this->ejecutar($sql);
 	  	return $incluir;
 	}
+
 
 	public function modificar($c_codigo,$c_emision,$c_vencimiento)
 	{
@@ -142,7 +144,3 @@ class CertificadoModel extends Model
 	}
 
 }
-
-
-
-	

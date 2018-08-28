@@ -15,7 +15,7 @@ class RegimenController extends Controller
 
     $this->registros=$this->model->consultar_todos();
 
-  }
+ }
 
   public function exec()
   {
@@ -26,4 +26,9 @@ class RegimenController extends Controller
 
     
   } 
+
+  public function codigo(){
+  	$codigo = $this->model->obtenerCodigo(); 
+  	echo $codigo;
+  }
 }

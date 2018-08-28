@@ -10,6 +10,8 @@ class RegimenModel extends Model
   	public $rg_descrp = "";
   	public $rg_status = "";
 
+
+
 	function __construct()
 	{
 		parent::__construct();
@@ -62,9 +64,9 @@ class RegimenModel extends Model
  		$indice = 0;
  		while($row = $this->registros($consulta)){
  			$resultado[$indice] = array('rg_codigo' => $row["rg_codigo"], 
- 												'rg_nombre' => $row["rg_nombre"],
- 												'rg_descrp' => $row["rg_descrp"],
- 												'rg_status' => $row["rg_status"]);
+ 										'rg_nombre' => $row["rg_nombre"],
+ 										'rg_descrp' => $row["rg_descrp"],
+ 										'rg_status' => $row["rg_status"]);
  			$indice = $indice + 1;
  		}
  		return $resultado;
@@ -93,15 +95,17 @@ class RegimenModel extends Model
  		}
 	}
 
+	public function obtenerCodigo(){
+		return $this->getcodigonuevo("regimen","rg_codigo");
+	}
+	
 	public function incluir()
 	{
 	  	$sql= "INSERT into regimen (rg_nombre, 
 	  								rg_descrp, 
 	  								rg_status) 
-	  				values ($this->rg_nombre,
-	  						$this->rg_descrp,
-	  						'A');
-	  						";
+	  				values $this-,
+	  					   $rg_descrp";
 	  	$incluir=$this->ejecutar($sql);
 	  	return $incluir;
 	}

@@ -102,13 +102,13 @@
                   <div class="modal-footer">
                     <div class="btn-group"> 
                       <button class="btn btn-success btn-raised" type="button" id="btnGuardar" onclick="onGuardar();"> Guardar 
-                        <span class="glyphicon glyphicon-floppy-disk"></span>
+                        <span class="fa fa-save fa-lg"></span>
                       </button>
                       <button class="btn btn-warning btn-raised" type="reset" name="button" id="limpiar"> Limpiar 
-                        <span class=" glyphicon glyphicon-erase"></span>
+                        <span class="fa fa-eraser fa-lg"></span>
                       </button>
                       <button type="button" class="btn btn-danger btn-raised" data-dismiss="modal" id="cerrar"> Cerrar 
-                        <span class=" glyphicon glyphicon-remove"></span>
+                        <span class="fa fa-window-close fa-lg"></span>
                       </button>
                     </div>
                   </div>
@@ -124,7 +124,7 @@
                   <tr>
                     <td>
                       <a class="navbar-btn btn btn-success btn-raised" data-toggle="modal" data-target="#ventana" onclick="onIncluir();"> Registrar&nbsp;
-                        <i class="glyphicon glyphicon-plus"></i>
+                        <span class="fa fa-plus fa-lg"></span>
                       </a>
                     </td>
                     <td>
@@ -167,13 +167,13 @@
                         <td>
                           <a class="btn btn-success btn-raised btn-sm" data-toggle="modal"
                               data-target="#ventana" onclick="onConsultar('${cargo.idString}');">
-                            <i class="glyphicon glyphicon-eye-open"></i>
+                            <span class="fa fa-eye fa-lg"></span>
                           </a>
                         </td>
                         <td>
                           <a class="btn btn-warning btn-raised btn-sm" data-toggle="modal"
                              data-target="#ventana" onclick="onModificar('${cargo.idString}');">
-                            <i class="glyphicon glyphicon-edit"></i>
+                            <span class="fa fa-edit fa-lg"></span>
                           </a>
                         </td>
                         <td>
@@ -182,7 +182,7 @@
                               data-popout="true" data-href="javascript:onEliminar('${cargo.idString}');"
                               data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt" 
                               data-btn-ok-class="btn btn-success btn-raised btn-sm"                         data-btn-cancel-label="No" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn btn-danger btn-raised btn-sm">
-                            <i class="glyphicon glyphicon-trash"></i>
+                            <span class="fa fa-trash fa-lg"></span>
                           </a>
                         </td>
                       </tr>

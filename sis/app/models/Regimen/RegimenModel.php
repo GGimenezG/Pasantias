@@ -98,16 +98,22 @@ class RegimenModel extends Model
 	public function obtenerCodigo(){
 		return $this->getcodigonuevo("regimen","rg_codigo");
 	}
-	
+
 	public function incluir()
 	{
 	  	$sql= "INSERT into regimen (rg_nombre, 
 	  								rg_descrp, 
 	  								rg_status) 
-	  				values $this-,
-	  					   $rg_descrp";
-	  	$incluir=$this->ejecutar($sql);
-	  	return $incluir;
+	  				values ('".$this->rg_nombre."',
+	  					   '".$this->rg_descrp."',
+	  					   'a')";
+	  	if($this->ejecutar($sql)){
+	  		return true;
+	  	}
+	  	else{
+	  		return false;
+	  	}
+	  	// return $incluir;
 	}
 
 	public function modificar($rg_codigo,$rg_nombre,$rg_descrp)

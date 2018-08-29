@@ -104,7 +104,7 @@
                     </div><!--fin  del cuerpo del panel-->
                     <div class="modal-footer">
                       <div class="btn-group"> 
-                        <button class="btn btn-success btn-raised" type="button" id="btnGuardar" onclick="onGuardar();"> Guardar 
+                        <button class="btn btn-success btn-raised" type="button" id="btnGuardar" onclick="onAgregar();"> Guardar 
                           <span class="fa fa-save fa-lg"></span>
                         </button>
                         <button class="btn btn-warning btn-raised" type="reset" name="button" id="limpiar"> Limpiar 
@@ -161,7 +161,6 @@
                           <?php foreach ($params as $r) { ?>              
                         <tr>
                           <td>
-                            
                             <span id="codigo<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_codigo']; ?></span>
                           </td>
                           <td>
@@ -183,7 +182,7 @@
                             </a>
                           </td>
                           <td>
-                            <a id="btnEliminar${cargo.idString}" class="btn btn-danger btn-raised btn-sm" 
+                            <a id="btnEliminar<?php echo $r['rg_codigo']; ?>" class="btn btn-danger btn-raised btn-sm" 
                                 data-toggle=" confirmation" data-title="¿Está seguro?" data-singleton="true" 
                                 data-popout="true" data-href="javascript:onEliminar(<?php echo $r['rg_codigo']; ?>);"
                                 data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt" 

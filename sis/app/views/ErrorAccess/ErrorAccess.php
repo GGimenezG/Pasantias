@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>ERROR 404 - Página de error</title>
+<title>ERROR 403 - Acceso denegado</title>
 <!-- Meta tag Keywords -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -30,9 +30,9 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 </div>
 <div class="w3-main">
 	<div class="agile-info">
-		<h2><strong>404</strong></h2>
+		<h2><strong>403</strong></h2>
 		<h3>oops!</h3>
-		<p><strong>¡Lo sentimos!</strong> página no encontrada.</p>
+		<p><strong>¡Lo sentimos!</strong> No tienes acceso a esta página.</p>
 		
 		<a href="javascript:history.back(-1);">Volver</a>
 	</div>

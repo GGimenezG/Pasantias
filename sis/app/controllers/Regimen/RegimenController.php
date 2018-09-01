@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or exit('No se permite acceso directo');
+defined('BASEPATH') or header('location: /sis/erroraccess');
 require_once ROOT . '/sis/app/models/Regimen/RegimenModel.php';
 require_once LIBS_ROUTE .'Session.php';
 /**
@@ -15,9 +15,9 @@ class RegimenController extends Controller
     $this->session = new Session();
     $this->session->init();
     if ($this->session->getStatus() === 1 || empty($this->session->get('u_tipo'))) {
-      exit('Debe iniciar session'); //hay que hacer pagina de redireccion al login
+      header('location: /sis/errorlogin'); //hay que hacer pagina de redireccion al login
     } elseif ($this->session->get('u_tipo')=="administrador") {
-      exit('usuario no permitido');
+      header('location: /sis/erroraccess');
     } else {
       
     $this->model = new RegimenModel();

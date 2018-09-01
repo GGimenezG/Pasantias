@@ -1,5 +1,4 @@
-<?php
-defined('BASEPATH') or exit('No se permite acceso directo'); ?>
+<?php defined('BASEPATH') or exit('No se permite acceso directo'); ?>
 <!DOCTYPE html>
 
 <html lang="es">
@@ -16,7 +15,7 @@ defined('BASEPATH') or exit('No se permite acceso directo'); ?>
     <link rel="stylesheet" href="<?php echo PATH_STYLE?>/style1.css" >
     <link rel="stylesheet" href="<?php echo PATH_STYLE?>/style2.css" >
 
-    <title>Administrador</title>
+    <title> Encargado </title>
 </head>
 
 <style media="screen">
@@ -30,7 +29,7 @@ defined('BASEPATH') or exit('No se permite acceso directo'); ?>
     <!-- Cabecera Menu -->
      
             <?php
-              include (PATH_MENU . '/cabeceraadmin.php');
+              include (PATH_MENU . '/cabeceraencargado.php');
             ?>
      
       <!--fin cabecera menu -->
@@ -42,7 +41,7 @@ defined('BASEPATH') or exit('No se permite acceso directo'); ?>
             <!-- Lista Maestros del menu -->          
           <ul class="sidebar-nav nav-pills nav-stacked" id="menu">     
             <?php
-              include(PATH_MENU . "/menuadmin.php");
+              include(PATH_MENU . "/menuencargado.php");
             ?>
 
           </ul>
@@ -50,7 +49,7 @@ defined('BASEPATH') or exit('No se permite acceso directo'); ?>
         <!-- Page Content -->
         <div id="page-content-wrapper">
           <!--inicio de la ventana modal  -->
-            <h1><b href="">Bienvenido <strong><?php echo $session['u_nombre']; ?></strong> </b></h1>
+            <h1><b href="">Bienvenido <strong><?php echo 'user';?></strong> </b></h1>
         </div>
         <!-- /#page-content-wrapper -->
     </div>
@@ -59,7 +58,6 @@ defined('BASEPATH') or exit('No se permite acceso directo'); ?>
     <script src="<?php echo PATH_JS?>/jquery-3.3.1.min.js"></script>
     <script src="<?php echo PATH_JS?>/bootstrap.min.js"></script>
     <script src="<?php echo PATH_JS?>/menu.js"></script>
-    <script src="<?php echo PATH_JS?>/administrador.js"></script>
     
 
 </body>

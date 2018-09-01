@@ -28,6 +28,7 @@ class HomeController extends Controller
     
     if($this->model->verificar($request_params['u_username'],$request_params['u_password'])){
       
+      //iniciamos sesion 
       $this->session->init();
       $this->session->add('u_nombre', $this->model->u_nombre);
       $this->session->add('u_cedula', $this->model->u_cedula);
@@ -35,14 +36,17 @@ class HomeController extends Controller
       
       if ($this->session->get('u_tipo') == "administrador") {       
         header('location: /sis/administrador');
-      if ($this->session->get('u_tipo') == "encargado") {
-          header('location: /sis/encargado');
-        }
-      if ($this->session->get('u_tipo') == "secretaria") {
-            header('location: /sis/secretaria');
-          }  
-      }
+      }elseif ($this->session->get('u_tipo') == "encargado") {
+        header('location: /sis/encargado');
+      }elseif ($this->session->get('u_tipo') == "secretaria") {
+        header('location: /sis/secretaria');
+      }  
+      
      
+    }else{
+      header('location: /sis/');
     }
   }
+
+
 }

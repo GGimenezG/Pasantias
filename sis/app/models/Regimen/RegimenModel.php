@@ -73,12 +73,33 @@ class RegimenModel extends Model
  		
 	}
 
-	public function consultar_registro($rg_codigo)
+	public function consultar_registro()
 	{
 		
 		$sql = "SELECT * FROM regimen 
-						 WHERE rg_codigo = '$rg_codigo' and 
+						 WHERE rg_codigo = '".$this->rg_codigo."' and 
 							   rg_status = 'a'";
+ 		$consulta = $this->select($sql);
+ 
+ 		if($row = $this->hay_registro($consulta))
+ 		{
+			 $this->setCodigo($row['rg_codigo']);
+			 $this->setNombre($row['rg_nombre']);
+			 $this->setDescrp($row['rg_descrp']);
+			 $this->setStatus($row['rg_status']);
+ 			return true;	
+ 		}
+ 		else
+ 		{
+			return false;
+ 		}
+	}
+
+	public function consultar_nombre()
+	{
+		
+		$sql = "SELECT * FROM regimen 
+						 WHERE rg_nombre = '".$this->rg_nombre."'";
  		$consulta = $this->select($sql);
  
  		if($row = $this->hay_registro($consulta))
@@ -100,7 +121,8 @@ class RegimenModel extends Model
 	}
 
 	public function incluir()
-	{
+	{	
+
 	  	$sql= "INSERT into regimen (rg_nombre, 
 	  								rg_descrp, 
 	  								rg_status) 
@@ -116,29 +138,49 @@ class RegimenModel extends Model
 	  	// return $incluir;
 	}
 
-	public function modificar($rg_codigo,$rg_nombre,$rg_descrp)
+	public function modificar()
 	{
-		$this->consultar_registro($rg_codigo);
-		if ($rg_nombre==$this->getNombre() and $rg_descrp==$this->getDescrp()){
+		$codigo = $this->getCodigo();
+		$nombre = $this->getNombre();
+		$descrp = $this->getDescrp();
+		if($this->consultar_registro()){
+			if($nombre == $this->getNombre() && $descrp = $this->getDescrp()){
+				return false;
+			}else{
+				$sql= "UPDATE regimen set rg_nombre='".$nombre."',
+										  rg_descrp='".$descrp."' 
+									where rg_codigo='".$codigo."'";
+		  		if($this->ejecutar($sql)){
+		  			$this->consultar_registro();
+		  			return true;
+		  		}else{
+		  			return false;
+		  		}		  						
+			}
+		}
+	}
+
+	public function eliminar(){
+
+		$sql= "UPDATE regimen set rg_status='i'
+							where rg_codigo='".$this->rg_codigo."'";
+	  	if($this->ejecutar($sql)){
+	  		return true;
+	  		
+		}else{
 			return false;
 		}
-		else{
-			$sql= "UPDATE regimen set rg_nombre='$rg_nombre',
-									  rg_descrp='$rg_descrp' 
-								where rg_codigo='$rg_codigo'";
-	  		$modificar=$this->ejecutar($sql);
-	  		return $modificar;
-		}
-
 	}
-
-		public function eliminar($rg_codigo)
-	{
-		$sql= "UPDATE regimen set rg_status='i',
-							where rg_codigo='$rg_codigo'";
-	  	$eliminar=$this->ejecutar($sql);
-	  	return $elimiar;
-	}
-
 	
+		public function activar(){
+
+		$sql= "UPDATE regimen set rg_status='a'
+							where rg_codigo='".$this->rg_codigo."'";
+	  	if($this->ejecutar($sql)){
+	  		return true;
+	  		
+		}else{
+			return false;
+		}
+	}
 }

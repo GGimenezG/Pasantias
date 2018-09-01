@@ -217,7 +217,7 @@
     <!-- /#wrapper -->
     <!-- jQuery -->
     <!-- jQuery -->
-    <script src="<?php echo PATH_JS?>/jquery-3.1.1.min.js"></script>
+    <script src="<?php echo PATH_JS?>/jquery-3.3.1.min.js"></script>
     <script src="<?php echo PATH_JS?>/bootstrap.min.js"></script>
     <script src="<?php echo PATH_JS?>/menu.js"></script>
     <script src="<?php echo PATH_JS?>/cargo.js"></script>

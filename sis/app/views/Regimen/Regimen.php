@@ -8,9 +8,9 @@
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/bootstrap.min.css" >
+      <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/bootstrap.min.css">
       <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/dataTables.bootstrap.min.css">
-      <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/font-awesome/css/font-awesome.min.css" >
+      <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/font-awesome/css/font-awesome.min.css">
       <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/bootstrap-material-design.min.css">
       <link rel="stylesheet" href="<?php echo PATH_BOOTSTRAP?>/ripples.min.css">
       <link rel="stylesheet" href="<?php echo PATH_STYLE?>/style1.css" >
@@ -31,8 +31,11 @@
         <div class="navbar-header fixed-brand">
               <!-- Esta parte incluye la cabecera del encargado-->
               <?php
-              
+                if ($session['u_tipo']=="encargado"){
                   include (PATH_MENU . '/cabeceraencargado.php');
+                }elseif ($session['u_tipo']=="secretaria") {
+                  include (PATH_MENU . '/cabecerasecretaria.php');
+                }
               ?>
         </div>
         <!--fin cabecera menu -->
@@ -44,7 +47,11 @@
               <!-- Lista Maestros del menu -->     
             <ul class="sidebar-nav nav-pills nav-stacked" id="menu">     
               <?php
-                  include(PATH_MENU . "/menuencargado.php");
+                if ($session['u_tipo']=="encargado"){
+                  include (PATH_MENU . '/menuencargado.php');
+                }elseif ($session['u_tipo']=="secretaria") {
+                  include (PATH_MENU . '/menusecretaria.php');
+                }
               ?>
 
             </ul>
@@ -104,7 +111,7 @@
                     </div><!--fin  del cuerpo del panel-->
                     <div class="modal-footer">
                       <div class="btn-group"> 
-                        <button class="btn btn-success btn-raised" type="button" id="btnGuardar" onclick="onAgregar();"> Guardar 
+                        <button class="btn btn-success btn-raised" type="button" id="btnGuardar" onclick="onGuardar();"> Guardar 
                           <span class="fa fa-save fa-lg"></span>
                         </button>
                         <button class="btn btn-warning btn-raised" type="reset" name="button" id="limpiar"> Limpiar 
@@ -182,11 +189,19 @@
                             </a>
                           </td>
                           <td>
-                            <a id="btnEliminar<?php echo $r['rg_codigo']; ?>" class="btn btn-danger btn-raised btn-sm" 
-                                data-toggle=" confirmation" data-title="¿Está seguro?" data-singleton="true" 
-                                data-popout="true" data-href="javascript:onEliminar(<?php echo $r['rg_codigo']; ?>);"
-                                data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt" 
-                                data-btn-ok-class="btn btn-success btn-raised btn-sm"                         data-btn-cancel-label="No" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn btn-danger btn-raised btn-sm">
+                            <a id="btnEliminar<?php echo $r['rg_codigo']; ?>" 
+                               class="btn btn-danger btn-raised btn-sm" 
+                               data-toggle="confirmation" 
+                               data-title="¿Está seguro?" 
+                               data-singleton="true" 
+                               data-popout="true" 
+                               data-href="javascript:onEliminar(<?php echo $r['rg_codigo']; ?>);"
+                               data-btn-ok-label="Si" 
+                               data-btn-ok-icon="fa fa-check" 
+                               data-btn-ok-class="btn btn-success btn-raised btn-sm"
+                               data-btn-cancel-label="No" 
+                               data-btn-cancel-icon="fa fa-ban" 
+                               data-btn-cancel-class="btn btn-danger btn-raised btn-sm">
                               <span class="fa fa-trash fa-lg"></span>
                             </a>
                           </td>
@@ -205,20 +220,24 @@
       </div>
       <!-- /#wrapper -->
       <!-- jQuery -->
-      <script src="<?php echo PATH_JS?>/jquery-3.1.1.min.js"></script>
+      <script src="<?php echo PATH_JS?>/jquery-3.3.1.min.js"></script>
       <script src="<?php echo PATH_JS?>/bootstrap.min.js"></script>
+      <script src="<?php echo PATH_JS?>/jquery.validate.min.js"></script>
+      
       <script src="<?php echo PATH_JS?>/menu.js"></script>
       <script src="<?php echo PATH_JS?>/regimen.js"></script>
-      <script src="<?php echo PATH_JS?>/jquery.validate.min.js"></script>
+      
   	  <script src="<?php echo PATH_JS?>/jquery.numeric.min.js"></script>
       <script src="<?php echo PATH_JS?>/jquery.dataTables.min.js"></script>
       <script src="<?php echo PATH_JS?>/dataTables.bootstrap.min.js"></script>
+      <script src="<?php echo PATH_JS?>/bootstrap-confirmation.js"></script>
       <script src="<?php echo PATH_JS?>/ripples.min.js"></script>
       <script src="<?php echo PATH_JS?>/material.min.js"></script>
-      <script src="<?php echo PATH_JS?>/bootstrap-confirmation.js"></script>
+      
     	<script type="text/javascript" class="init">
     		$('[data-toggle="confirmation"]').confirmation('hide');
     	</script>
+
   </body>
 
 </html>

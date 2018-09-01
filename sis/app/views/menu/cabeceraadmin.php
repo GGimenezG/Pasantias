@@ -23,7 +23,7 @@
     
     <div class="pull-right">
     
-      <a class="btn btn-danger" href="menu/desconectar.php">Salir</a></li>
+      <a class="btn btn-danger" href="<?= FOLDER_PATH . '/administrador/logout' ?>">Salir</a></li>
       
     </div>  
 

@@ -19,7 +19,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- Meta tag Keywords -->
 <!-- css files -->
 
-<link href="<?php echo PATH_STYLE?>/style.css" rel="stylesheet" type="text/css" media="all">
+<link href="<?php echo PATH_STYLE?>/error.css" rel="stylesheet" type="text/css" media="all">
 <link href="<?php echo PATH_STYLE?>/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
 <!-- online-fonts -->
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">

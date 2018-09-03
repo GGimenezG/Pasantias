@@ -50,15 +50,16 @@ defined('BASEPATH') or exit('No se permite acceso directo'); ?>
         <!-- Page Content -->
         <div id="page-content-wrapper">
           <!--inicio de la ventana modal  -->
-            <h1><b href="">Bienvenido <strong><?php echo 'user';?></strong> </b></h1>
+            <h1><b href="">Bienvenido <strong><?php echo $session['u_nombre']; ?></strong> </b></h1>
         </div>
         <!-- /#page-content-wrapper -->
     </div>
     <!-- /#wrapper -->
     <!-- jQuery -->
-    <script src="<?php echo PATH_JS?>/jquery-3.1.1.min.js"></script>
+    <script src="<?php echo PATH_JS?>/jquery-3.3.1.min.js"></script>
     <script src="<?php echo PATH_JS?>/bootstrap.min.js"></script>
     <script src="<?php echo PATH_JS?>/menu.js"></script>
+    <script src="<?php echo PATH_JS?>/administrador.js"></script>
     
 
 </body>

@@ -58,7 +58,11 @@ class Model
   //--------------------------------------------------------
   protected function ejecutar($sql)
   {
-    mysqli_query($this->db,$sql);
+    if(mysqli_query($this->db,$sql)){
+      return true;
+    }else{
+      return false;
+    }
   }
   //--------------------------------------------------------
  protected function getcodigonuevo($tabla,$cod_tabla)

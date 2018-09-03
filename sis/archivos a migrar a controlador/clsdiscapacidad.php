@@ -1,6 +1,0 @@
-<?
-	class clsdiscapacidad
-{
-
-}//fin clsdiscapacidad()
-?>	

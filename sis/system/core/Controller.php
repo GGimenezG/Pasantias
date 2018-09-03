@@ -13,9 +13,9 @@ abstract class Controller
   /**
    * Inicializa la vista
    */
-  public function render($controller_name = '', $params = array())
+  public function render($controller_name = '', $params = array(), $session = array())
   {
-    $this->view = new View($controller_name, $params);
+    $this->view = new View($controller_name, $params, $session);
   }
 
   /**

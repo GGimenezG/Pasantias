@@ -1,6 +1,0 @@
-<?
-	class clsgrado
-{
-
-}//fin clsgrado
-?>	

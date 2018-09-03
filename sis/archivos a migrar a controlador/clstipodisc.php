@@ -1,5 +1,0 @@
-<?
-	class clstipodisc
-{
-}//fin clstipodisc()
-?>	

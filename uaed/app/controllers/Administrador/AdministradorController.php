@@ -28,10 +28,10 @@ class AdministradorController extends Controller
 
   public function exec()
   {
-    $session = array('u_nombre' => $this->session->get('u_nombre'),
+    $sesion = array('u_nombre' => $this->session->get('u_nombre'),
                      'u_tipo' => $this->session->get('u_tipo'));
-    $this->render(__CLASS__,array(),$session);
-    var_dump($session);
+    $this->render(__CLASS__,array(),$sesion);
+    var_dump($sesion);
     
   }
 

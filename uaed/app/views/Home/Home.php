@@ -111,31 +111,12 @@
                                         <span class="form-bar"></span>
                                         <label id="usuario" class="float-label" for="u_username"> Usuario </label>
                                     </div>
-                                    <div id="ced" class="form-group form-primary">
-                                      <input type="text" name="cedula" class="form-control" required="">
-                                      <span class="form-bar"></span>
-                                      <label id="cedula" class="float-label" for="u_cedula"> Cédula </label>
-                                    </div>
-                                    <div id="email" class="form-group form-primary">
-                                        <input type="email" name="email" class="form-control" required="">
-                                        <span class="form-bar"></span>
-                                        <label id="correo" class="float-label" for="u_email"> Correo Electrónico </label>
-                                    </div>
-                                    <div id="confirme" class="form-group form-primary">
-                                        <input type="email" name="email" class="form-control" required="">
-                                        <span class="form-bar"></span>
-                                        <label class="float-label" for="u_email"> Confirme Correo </label>
-                                    </div>
                                     <div id="pass" class="form-group form-primary">
                                         <input type="password" name="u_password" id="u_password" class="form-control" required="on">
                                         <span class="form-bar"></span>
                                         <label id="contraseña" class="float-label" for="u_password"> Contraseña </label>
                                     </div>
-                                    <div id="confirmp" class="form-group form-primary">
-                                        <input type="password" name="password" class="form-control" required="">
-                                        <span class="form-bar"></span>
-                                        <label class="float-label" for="u_password"> Confirme Contraseña </label>
-                                    </div>
+
                                     <div id="forgot" class="row m-t-25 text-left">
                                         <div class="col-12">
                                             <div class="forgot-phone ">

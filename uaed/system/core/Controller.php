@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess');
+defined('BASEPATH') or exit('No se permite acceso directo');
 /**
 * Controlador base
 */
@@ -13,9 +13,9 @@ abstract class Controller
   /**
    * Inicializa la vista
    */
-  public function render($controller_name = '', $params = array())
+  public function render($controller_name = '', $params = array(), $session = array())
   {
-    $this->view = new View($controller_name, $params);
+    $this->view = new View($controller_name, $params, $session);
   }
 
   /**

@@ -32,7 +32,7 @@ body p,h1,h2,h3,h4,h5,h6{
 	font-family: 'Open Sans', sans-serif;
 }
 body {
-    background: #696969;
+    background: #ffd280;
 	text-align:center;
 }
 /*--header--*/
@@ -51,9 +51,9 @@ body {
     background:#d3d3d3;
     width: 53%;
 	margin: 2em auto;
-	-webkit-box-shadow: -2px 11px 32px -13px rgba(0,0,0,0.45);
-	-moz-box-shadow: -2px 11px 32px -13px rgba(0,0,0,0.45);
-	box-shadow: -2px 11px 32px -13px rgba(0,0,0,0.45);
+	-webkit-box-shadow: -2px 15px 32px -2px rgba(0,0,0,1);
+	-moz-box-shadow: -2px 15px 32px -13px rgba(0,0,0,1);
+	box-shadow: -2px 15px 32px -13px rgba(0,0,0,1);
 } 
 .agile-info {
     padding: 60px 0px;
@@ -85,13 +85,13 @@ body {
     font-size: 15px;
     text-transform: uppercase;
     color: white;
-    border: 1px solid #3b5998;
+    border: 1px solid #ff8f66;
     padding: 10px 40px;
     border-radius: 20px;
     letter-spacing: 1px;
     display: inline-block;
     margin-top: 8px;
-    background: #3b5998;
+    background: #ff8f66;
     font-family: 'Open Sans', sans-serif;
 	transition:0.5s all;
 	-webkit-transition:0.5s all;
@@ -100,7 +100,7 @@ body {
 	-ms-transition:0.5s all;
 }
 .agile-info a:hover {
-    background: #1f3c7b;
+    background: #ff6933;
 	transition:0.5s all;
 	-webkit-transition:0.5s all;
 	-o-transition:0.5s all;

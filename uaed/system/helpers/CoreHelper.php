@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess');
+defined('BASEPATH') or exit('No se permite acceso directo');
 
 /**
 * 

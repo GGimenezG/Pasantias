@@ -1,5 +1,4 @@
 <?php
-defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess');
 /**
  * Clase básica para adminsitrar sesiones
  */

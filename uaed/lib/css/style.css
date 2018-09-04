@@ -118,21 +118,7 @@ div .imagen {
   display: none;
 }
 
-#alerta{
-  width: 75%;
-  margin-left: 12.5%;
-  text-align: center;
-}
-
 /**======  Fin de las modificaciones del Login ======**/
-
-/**======  Inicio del card del Registro ======**/
-
-#card-2{
-  display: none;
-}
-
-/**======  Fin del card del Registro ======**/
 
 
 /**  =====================

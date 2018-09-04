@@ -27,10 +27,15 @@ class SecretariaController extends Controller
 
   public function exec()
   {
-    $this->render(__CLASS__);
-    
+    $sesion = array('u_nombre' => $this->session->get('u_nombre'),
+                     'u_tipo' => $this->session->get('u_tipo'));
+    $this->render(__CLASS__,array(),$sesion);
+       
   }
-
+  public function logout(){
+    $this->session->close();
+     header('location: '.FOLDER_PATH.'/home');
+  }
   
   
 }

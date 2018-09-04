@@ -18,19 +18,21 @@ class EncargadoController extends Controller
     } elseif ($this->session->get('u_tipo')!="encargado") {
       exit('usuario no permitido');
     } else {
-      // $params = array('u_nombre' => $this->session->get('u_nombre'),
-      //                 'u_cedula' => $this->session->get('u_cedula'),
-      //                 'u_tipo' => $this->session->get('u_tipo'));
       $this->model = new EncargadoModel();
     }
   }
 
   public function exec()
   {
-    $this->render(__CLASS__);
-    
+    $sesion = array('u_nombre' => $this->session->get('u_nombre'),
+                     'u_tipo' => $this->session->get('u_tipo'));
+    $this->render(__CLASS__,array(),$sesion);
+       
   }
-
+  public function logout(){
+    $this->session->close();
+     header('location: '.FOLDER_PATH.'/home');
+  }
   
   
 }

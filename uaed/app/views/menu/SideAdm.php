@@ -15,7 +15,7 @@
                 
                   <li class="more-details">
                       <a href="user-profile.html"><i class="ti-user"></i>Perfil</a>
-                      <a href="auth-normal-sign-in.html"><i class="ti-layout-sidebar-left"></i>Desconectar</a>
+                      <a href="<?= FOLDER_PATH . '/'.$tipo.'/logout' ?>"><i class="ti-layout-sidebar-left"></i>Desconectar</a>
                   </li>
               </ul>
           </div>

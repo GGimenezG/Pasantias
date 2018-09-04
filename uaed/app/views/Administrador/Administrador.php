@@ -1,5 +1,7 @@
 <?php
-defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess'); ?>
+defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess'); 
+$tipo = $session['u_tipo'];
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -18,6 +20,8 @@ defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess'); ?>
       <meta name="description" content="Mega Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
       <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
       <meta name="author" content="codedthemes" />
+
+      <link rel="stylesheet" type="text/css" href="<?php echo PATH_STYLE?>/datatables.css">
       <!-- Favicon icon -->
       <link rel="icon" href="<?php echo PATH_IMG?>/favicon.ico" type="image/x-icon">
     <!-- Google font-->
@@ -36,6 +40,8 @@ defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess'); ?>
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_STYLE?>/jquery.mCustomScrollbar.css">
         <!-- am chart export.css -->
         <link rel="stylesheet" href="<?php echo PATH_STYLE?>/export.css" type="text/css" media="all" />
+
+
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_STYLE?>/style.css">
   </head>
@@ -100,7 +106,7 @@ defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess'); ?>
       <div class="pcoded-container navbar-wrapper">
               <!-- navbar -->
               <?php
-                  include (PATH_MENU . '/CabeceraAdm.php');
+                  include (PATH_MENU . '/Cabecera.php');
               ?>
          
           <div class="pcoded-main-container">
@@ -148,9 +154,7 @@ defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess'); ?>
                                     <div class="page-body">
                                         <div class="row">
                                             <!-- task, page, download counter  start -->
-                                           
 
-                                              Contenido pagina
 
 
                                             <!--  project and team member end -->
@@ -166,50 +170,6 @@ defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess'); ?>
             </div>
         </div>
     </div>
-    <!-- Warning Section Starts -->
-    <!-- Older IE warning message -->
-    <!--[if lt IE 10]>
-    <div class="ie-warning">
-        <h1>Warning!!</h1>
-        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-        <div class="iew-container">
-            <ul class="iew-download">
-                <li>
-                    <a href="http://www.google.com/chrome/">
-                        <img src="assets/images/browser/chrome.png" alt="Chrome">
-                        <div>Chrome</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.mozilla.org/en-US/firefox/new/">
-                        <img src="assets/images/browser/firefox.png" alt="Firefox">
-                        <div>Firefox</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://www.opera.com">
-                        <img src="assets/images/browser/opera.png" alt="Opera">
-                        <div>Opera</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.apple.com/safari/">
-                        <img src="assets/images/browser/safari.png" alt="Safari">
-                        <div>Safari</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                        <img src="assets/images/browser/ie.png" alt="">
-                        <div>IE (9 & above)</div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <p>Sorry for the inconvenience!</p>
-    </div>
-    <![endif]-->
-    <!-- Warning Section Ends -->
     
     <!-- Required Jquery -->
     <script type="text/javascript" src="<?php echo PATH_JS?>/jquery.min.js"></script>
@@ -233,6 +193,7 @@ defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess'); ?>
     <script src="<?php echo PATH_JS?>/gauge.js"></script>
     <script src="<?php echo PATH_JS?>/serial.js"></script>
     <script src="<?php echo PATH_JS?>/light.js"></script>
+    <script src="<?php echo PATH_JS?>/regimen.js"></script>
     <script src="<?php echo PATH_JS?>/pie.min.js"></script>
     <script src="<?php echo PATH_JS?>/export.min.js"></script>
     <!-- menu js -->
@@ -241,6 +202,8 @@ defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess'); ?>
     <!-- custom js -->
     <script type="text/javascript" src="<?php echo PATH_JS?>/custom-dashboard.js"></script>
     <script type="text/javascript" src="<?php echo PATH_JS?>/script.js "></script>
+
+    <script type="text/javascript" charset="utf8" src="<?php echo PATH_JS?>/datatables.js"></script>
 </body>
 
 </html>

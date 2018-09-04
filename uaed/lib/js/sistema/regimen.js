@@ -1,4 +1,5 @@
 var tabla;
+var operacion = 0;
 $(document).ready(function() {
 	tabla =
 	$('#tabla').DataTable({
@@ -17,13 +18,17 @@ $(document).ready(function() {
         	}
         }
 	});
-	$('#formCargo').validate();
+	$('#formRegimen').validate();
 });
 
 function onIncluir() {
+	operacion=0;
 	disableInputs(false);
 	labelFloating(true);
-	$('#idString').val("");
+	$('#dcodigo').removeClass('label-floating');
+	codigo();
+	//<?php header('location: /sis/regimen/codigo'); ?>
+	$('#descrp').val("");
 	$('#nombre').val("");
 	$('#btnGuardar').prop('disabled', false);
 	$('#limpiar').prop('disabled', false);
@@ -32,6 +37,7 @@ function onIncluir() {
 }
 
 function onModificar(id) {
+	operacion=1;
 	disableInputs(false);
 	labelFloating(false);
 	$('#codigo').val(id);
@@ -54,7 +60,7 @@ function onConsultar(id) {
 
 function onGuardar() {
 	if (validar()) {
-		if ($('#idString').val().length > 0 ) {
+		if (operacion==1) {
 			onEditar();
 		}
 		else {
@@ -80,21 +86,98 @@ function validar() {
 	return true;
 }
 
-function onAgregar() {
+/****/
+
+function codigo() 
+    { 
+        //Almacenamos la petición ajax en la variable request
+        var request = $.ajax
+            ({
+                url: "/sis/Regimen/codigo", //¿Ese archivo se llama así realmente?
+                method: "POST"
+                
+            });
+	        //Usamos request y evaluamos usando done y fail, es lo recomendado por jQuery
+            //done se lanzará cuando la petición Ajax tenga éxito
+            request.done(function( datos ) 
+            {
+            		console.log(datos);
+                // Creamos una variable y evaluamos datos
+                var txtHTML="";
+                if (!datos.error)
+                {
+                    
+                    txtHTML=datos;
+
+                 }else{
+
+                    txtHTML=datos.error;
+                    
+                 }
+                 
+                 $('#codigo').val(txtHTML);
+            });
+
+            //fail se lanzará cuando la petición Ajax falle      
+            request.fail(function( jqXHR, textStatus ) 
+            {
+                alert( "Falló la petición Ajax: " + textStatus );
+                //Paramos el timer
+               
+            });
+
+    }
+
+function activar(datos){
 	$.ajax({
-		url: "ControladorCargos",
+		url: "/sis/Regimen/activar",
 		type: "POST",
-		data: $("#formCargo").serialize(),
-		success: function(response) {
-			if (response.indexOf("error:") != 0) {
-				var cargo = JSON.parse(response);
-				agregarFila(cargo);
-				mostrarMensajeExito("Cargo incluido satisfactoriamente!!!");
+		data: datos,
+		success: function(data) {
+			if (data.indexOf("codigo:") != 0){
+				console.log(data, "activar");
+				var fila = JSON.parse(data);
+				agregarFila(fila);
+				mostrarMensajeExito("Régimen activado satisfactoriamente!!!");
+			}else if (data.indexOf("error:") != 0){
+				mostrarMensajeError(data["error"]);
 			}
-			else {
-				mostrarMensajeError(response.substring(6));
- 			}
+			
+			},
+		error: function(jqXHR, estado, error) {
+			mostrarMensajeError(error);
 		},
+		complete: function(jqXHR, estado) {
+			$('#ventana').modal('hide');
+		},
+		timeout: 10000
+	});
+}
+
+
+function onAgregar() {
+	var datos = $('#formRegimen').serialize();
+	console.log(datos, "agregar");
+	$.ajax({
+		url: "/sis/Regimen/registrar",
+		type: "POST",
+		data: datos,
+		success: function(data) {
+			if (data.indexOf("activar:") != 0){
+				console.log("activar:", data);
+				var fila = JSON.parse(data);
+				agregarFila(fila);
+				mostrarMensajeExito("Régimen activado satisfactoriamente!!!");
+			}else if(data.indexOf("activar:") == 0){
+				console.log("agregar", data);
+				var fila = JSON.parse(data);
+				agregarFila(fila);
+				mostrarMensajeExito("Régimen incluido satisfactoriamente!!!");
+			}else if (data.indexOf("error:") != 0){
+				mostrarMensajeError(data["error"]);
+			}
+			
+			},
 		error: function(jqXHR, estado, error) {
 			mostrarMensajeError(error);
 		},
@@ -106,16 +189,19 @@ function onAgregar() {
 }
 
 function onEditar() {
+	var datos = $("#formRegimen").serialize();
+	console.log(datos);
 	$.ajax({
-		url: "ControladorCargos",
-		type: "PUT",
-		data: $("#formCargo").serialize(),
-		success: function(response) {
-			if (response.indexOf("error:") != 0) {
-				var cargo = JSON.parse(response);
+		url: "/sis/Regimen/editar",
+		type: "POST",
+		data: datos,
+		success: function(data) {
+			if (data.indexOf("error:") != 0) {
+				console.log(data);
+				var cargo = JSON.parse(data);
 				eliminarFila(cargo.codigo);
 				agregarFila(cargo);
-				mostrarMensajeExito("Cargo modificado satisfactoriamente!!!");
+				mostrarMensajeExito("Regimen modificado satisfactoriamente!!!");
 			}
 			else {
 				mostrarMensajeError(response.substring(6));
@@ -132,14 +218,17 @@ function onEditar() {
 }
 
 function onEliminar(id) {
+	
 	$.ajax({
-		url: "ControladorCargos",
-		type: "DELETE",
-		data: {"id":id},
-		success: function(response) {
-			if (response == "ok") {
-				eliminarFila(id);
-				mostrarMensajeExito('Cargo eliminado satisfactoriamente!!!');
+		url: "/sis/Regimen/borrar",
+		type: "POST",
+		data: {"codigo" : id},
+		success: function(data) {
+			console.log(data);
+			if (data.indexOf("codigo:") != 0) {
+				var codigo = JSON.parse(data);
+				eliminarFila(codigo.codigo);
+				mostrarMensajeExito('Regimen eliminado satisfactoriamente!!!');
 			}
 			else {
 				mostrarMensajeError(response);
@@ -153,13 +242,14 @@ function onEliminar(id) {
 
 }
 
-function agregarFila(cargo) {
+function agregarFila(fila) {
 	tabla.row.add( [
-        '<td>'+cargo.codigo+'</td>',
-        '<td><span id="nombre'+cargo.idString+'">'+cargo.nombre+'</span></td>',
-        '<td><a class="btn btn-success btn-raised btn-sm" data-toggle="modal" data-target="#ventana" onclick="onConsultar(\''+cargo.idString+'\');"><i class="glyphicon glyphicon-eye-open"></i></a></td>',
-        '<td><a class="btn btn-warning btn-raised btn-sm" data-toggle="modal" data-target="#ventana" onclick="onModificar(\''+cargo.idString+'\');"><i class="glyphicon glyphicon-edit"></i></a></td>',
-        '<td><a id="btnEliminar'+cargo.idString+'" class="btn btn-danger btn-raised btn-sm" data-toggle="confirmation" data-title="¿Estas seguro?" data-singleton="true" data-popout="true" data-href="javascript:onEliminar(\''+cargo.idString+'\');" data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt" data-btn-ok-class="btn btn-success btn-raised btn-sm" data-btn-cancel-label="No" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn btn-danger btn-raised btn-sm"> <i class="glyphicon glyphicon-trash"></i></a></td>'
+        '<td><span id="codigo'+fila.codigo+'">'+fila.codigo+'</span></td>',
+        '<td><span id="nombre'+fila.codigo+'">'+fila.nombre+'</span></td>',
+        '<td><span id="descrp'+fila.codigo+'">'+fila.descrp+'</span></td>',
+        '<td><a class="btn btn-success btn-raised btn-sm" data-toggle="modal" data-target="#ventana" onclick="onConsultar(\''+fila.codigo+'\');"><i class="fa fa-eye fa-lg"></i></a></td>',
+        '<td><a class="btn btn-warning btn-raised btn-sm" data-toggle="modal" data-target="#ventana" onclick="onModificar(\''+fila.codigo+'\');"><i class="fa fa-edit fa-lg"></i></a></td>',
+        '<td><a id="btnEliminar'+fila.codigo+'" class="btn btn-danger btn-raised btn-sm" data-toggle="confirmation" data-title="¿Estas seguro?" data-singleton="true" data-popout="true" data-href="javascript:onEliminar(\''+fila.codigo+'\');" data-btn-ok-label="Si" data-btn-ok-icon="fa fa-check" data-btn-ok-class="btn btn-success btn-raised btn-sm" data-btn-cancel-label="No" data-btn-cancel-icon="fa fa-ban" data-btn-cancel-class="btn btn-danger btn-raised btn-sm"> <i class="fa fa-trash fa-lg"></i></a></td>'
     ] ).draw();
 	$('[data-toggle="confirmation"]').confirmation('hide');
 }
@@ -199,8 +289,7 @@ function disableInputs(value) {
 }
 
 function mostrarMensajeExito(mensaje) {
-	$('#mensajes').
-	append('<div class="navbar-btn alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Exito:&nbsp;</strong>'+mensaje+'</div>').fadeOut(3000);
+	$('#mensajes').append('<div class="navbar-btn alert alert-success fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Exito:&nbsp;</strong>'+mensaje+'</div>').fadeOut(6000);
 }
 
 function labelFloating(value){
@@ -220,5 +309,5 @@ function labelFloating(value){
 
 function mostrarMensajeError(mensaje) {
 	$('#mensajes').
-	append('<div class="navbar-btn alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Error:&nbsp;</strong>'+mensaje+'</div>').fadeOut(3000);
+	append('<div class="navbar-btn alert alert-danger fade in"><a href="#" class="close" data-dismiss="alert">&times;</a><strong>Error:&nbsp;</strong>'+mensaje+'</div>').fadeOut(6000);
 }

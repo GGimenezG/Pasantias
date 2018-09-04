@@ -31,13 +31,12 @@ class AdministradorController extends Controller
     $sesion = array('u_nombre' => $this->session->get('u_nombre'),
                      'u_tipo' => $this->session->get('u_tipo'));
     $this->render(__CLASS__,array(),$sesion);
-    var_dump($sesion);
-    
+       
   }
 
   public function logout(){
     $this->session->close();
-     header('location: /sis/home');
+     header('location: '.FOLDER_PATH.'/home');
   }
     public function usuario(){
     $usuario = array('usuario' => $this->session->get('u_nombre'));

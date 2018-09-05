@@ -3,11 +3,48 @@ var operacion = 0;
 $(document).ready(function() {
 	tabla =
 	$('#tabla').DataTable({
-    dom: 'B<"clear">lfrtip',
-    buttons: {
-        name: 'primary',
-        buttons: [ 'copy', 'csv', 'pdf' ]
-    },
+		dom: 'Blfrtip',
+        buttons:
+        [
+            {
+                extend: 'pdf',                   
+                className: 'green glyphicon glyphicon-file',
+                title: 'Listado datos maestros de los regimen de discapacidad activos',
+                filename: 'Listado regimen',
+                exportOptions:
+                    {
+                        columns: [0, 1, 2]
+                    }
+            },
+            {
+                extend: 'excel',
+                className: 'green glyphicon glyphicon-list-alt',
+                title: 'Listado datos maestros de los regimen de discapacidad activos',
+                filename: 'Listado regimen',
+                exportOptions:
+                    {
+                        columns: [0, 1, 2]
+                    }
+            },
+            {
+                extend: 'copy',
+                className: 'green glyphicon glyphicon-duplicate',
+                exportOptions:
+                    {
+                        columns: [0, 1, 2]
+                    }
+            },
+            {
+                extend: 'print',
+                className: 'green glyphicon glyphicon-print',
+                title: 'Listado datos maestros de los regimen de discapacidad activos',
+                text: 'Listado regimen',
+                exportOptions:
+                    {
+                       columns: [0, 1, 2]
+                    }
+            }
+        ],
      responsive: true,	
 		"language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
@@ -23,10 +60,14 @@ $(document).ready(function() {
         		"previous": "Anterior"
         	}
         },
-		  "columnDefs": [
-		    { "targets": 2,
-		      "width": "40px"  }
-		  ]
+        columnDefs: [
+            { "font-size": "1.2em","width": "5%", "targets": 0 },
+            { "width": "15%", "targets": 1 },
+            {  "width": "30%", "targets": 2 },
+            {  "width": "15%", "targets": 3 },
+            {  "width": "15%", "targets": 4 },
+            {  "width": "15%", "targets": 5 }
+        ],
 	});
 
 

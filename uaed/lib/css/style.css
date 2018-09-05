@@ -3014,7 +3014,7 @@ a[data-toggle="lightbox"] .img-fluid {
 
 .invoice-total td,
 .invoice-total th {
-  text-align: right; }
+  text-align: center; }
 
 .invoice-total td {
   padding-left: 30px; }
@@ -6070,7 +6070,7 @@ table tbody .border-bottom-info td {
         font-size: 14px;
         text-transform: capitalize; }
         .main-menu .main-menu-header .user-details span i {
-          font-size: 10px;
+          font-size: 13px;
           margin-left: 10px; }
     .main-menu .main-menu-header:before {
       content: "";

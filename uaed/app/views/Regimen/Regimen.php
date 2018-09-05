@@ -7,45 +7,33 @@ $tipo = $session['u_tipo'];
 
 <head>
     <title>Encargado</title>
-    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 10]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-      <!-- Meta -->
+    
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="description" content="Mega Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
       <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
       <meta name="author" content="codedthemes" />
-
-      
       <!-- Favicon icon -->
-      <link rel="icon" href="<?php echo PATH_IMG?>/favicon.ico" type="image/x-icon">
-    <!-- Google font-->
-    <link href="<?php echo PATH_FONTS?>/Roboto.woff2" rel="stylesheet">
-    <!-- waves.css -->
-    <link rel="stylesheet" href="<?php echo PATH_STYLE?>/waves.min.css" type="text/css" media="all">
-      <!-- Required Fremwork -->
-      <link rel="stylesheet" type="text/css" href="<?php echo PATH_STYLE?>/bootstrap.min.css">
+      <link rel="icon" href="<?php echo PATH_ASSETS?>/images/favicon.ico" type="image/x-icon">
+      <!-- Google font-->
+      <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
       <!-- waves.css -->
-      <link rel="stylesheet" href="<?php echo PATH_STYLE?>/waves.min.css" type="text/css" media="all">
+      <link rel="stylesheet" href="<?php echo PATH_ASSETS?>/pages/waves/css/waves.min.css" type="text/css" media="all">
+      <!-- Required Fremwork -->
+      <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/css/bootstrap/css/bootstrap.min.css">
       <!-- themify icon -->
-      <link rel="stylesheet" type="text/css" href="<?php echo PATH_STYLE?>/themify-icons.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/icon/themify-icons/themify-icons.css">
       <!-- Font Awesome -->
-      <link rel="stylesheet" type="text/css" href="<?php echo PATH_STYLE?>/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/icon/font-awesome/css/font-awesome.min.css">
       <!-- scrollbar.css -->
-      <link rel="stylesheet" type="text/css" href="<?php echo PATH_STYLE?>/jquery.mCustomScrollbar.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/css/jquery.mCustomScrollbar.css">
         <!-- am chart export.css -->
-      <link rel="stylesheet" href="<?php echo PATH_STYLE?>/export.css" type="text/css" media="all" />
-
-    <script type="text/javascript" src="<?php echo PATH_JS?>/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo PATH_JS?>/jquery-ui.min.js "></script>
-
+        <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
       <!-- Style.css -->
-      <link rel="stylesheet" type="text/css" href="<?php echo PATH_STYLE?>/style.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/css/style.css">
+      
+ 
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_DT?>/datatables.min.css"/>
   </head>
   <style media="screen">
@@ -135,8 +123,8 @@ $tipo = $session['u_tipo'];
                               <div class="row align-items-center">
                                   <div class="col-md-8">
                                       <div class="page-header-title">
-                                          <h5 class="m-b-10">Dashboard</h5>
-                                          <p class="m-b-0">Welcome to Mega Able</p>
+                                          <h5 class="m-b-10">Encargado</h5>
+                                          <p class="m-b-0">Bienvenido</p>
                                       </div>
                                   </div>
                                   <div class="col-md-4">
@@ -255,8 +243,8 @@ $tipo = $session['u_tipo'];
                                                 <h3 class="panel-title"> Régimen </h3>
                                               </div>
                                               <div class="panel panel-body">
-                                                <div class="table-responsive">
-                                                  <table id="tabla" class="table table-striped table-bordered table-hover table-condensed">
+                                                
+                                                  <table id="tabla" class="table table-striped table-bordered table-hover">
                                                     <thead>
                                                       <tr>
                                                         <th>Código</th>
@@ -272,13 +260,13 @@ $tipo = $session['u_tipo'];
 
                                                       <tr>
                                                         <td>
-                                                          <span font-size="12px" id="codigo<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_codigo']; ?></span>
+                                                          <span class="f-12" id="codigo<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_codigo']; ?></span>
                                                         </td>
                                                         <td>
-                                                          <span id="nombre<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_nombre']; ?> </span>
+                                                          <span class="f-12" id="nombre<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_nombre']; ?> </span>
                                                         </td>
                                                         <td>
-                                                          <span id="descrp<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_descrp']; ?> </span>
+                                                          <span class="f-12" id="descrp<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_descrp']; ?> </span>
                                                         </td>
                                                         <td>
                                                           <a class="btn btn-success btn-raised btn-sm" data-toggle="modal"
@@ -313,7 +301,7 @@ $tipo = $session['u_tipo'];
                                                       <?php } ?>
                                                     </tbody>
                                                   </table>
-                                                </div>
+                                               
                                               </div>
                                             </div>
                                             <!--fin de la tabla-->
@@ -333,36 +321,37 @@ $tipo = $session['u_tipo'];
             </div>
         </div>
     </div>
-    
-    <!-- Required Jquery -->
-    <script type="text/javascript" src="<?php echo PATH_DT?>/datatables.min.js"></script>
-    <script type="text/javascript" src="<?php echo PATH_JS?>/popper.min.js"></script>
-    <script type="text/javascript" src="<?php echo PATH_JS?>/bootstrap.min.js "></script>
-    <script type="text/javascript" src="<?php echo PATH_JS?>/excanvas.js "></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/jquery-ui/jquery-ui.min.js "></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/bootstrap/js/bootstrap.min.js "></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/pages/widget/excanvas.js "></script>
     <!-- waves js -->
-    <script src="<?php echo PATH_JS?>/waves.min.js"></script>
+    <script src="<?php echo PATH_ASSETS?>/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="<?php echo PATH_JS?>/jquery.slimscroll.js "></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/jquery-slimscroll/jquery.slimscroll.js "></script>
     <!-- modernizr js -->
-    <script type="text/javascript" src="<?php echo PATH_JS?>/modernizr.js "></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/modernizr/modernizr.js "></script>
     <!-- slimscroll js -->
-    <script type="text/javascript" src="<?php echo PATH_JS?>/SmoothScroll.js"></script>
-    <script src="<?php echo PATH_JS?>/jquery.mCustomScrollbar.concat.min.js "></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/SmoothScroll.js"></script>
+    <script src="<?php echo PATH_ASSETS?>/js/jquery.mCustomScrollbar.concat.min.js "></script>
     <!-- Chart js -->
-    <script type="text/javascript" src="<?php echo PATH_JS?>/Chart.js"></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/chart.js/Chart.js"></script>
     <!-- amchart js -->
-    <script src="<?php echo PATH_JS?>/amcharts.js"></script>
-    <script src="<?php echo PATH_JS?>/gauge.js"></script>
-    <script src="<?php echo PATH_JS?>/serial.js"></script>
-    <script src="<?php echo PATH_JS?>/light.js"></script>
-    <script src="<?php echo PATH_JS?>/pie.min.js"></script>
-    <script src="<?php echo PATH_JS?>/export.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script src="<?php echo PATH_ASSETS?>/pages/widget/amchart/gauge.js"></script>
+    <script src="<?php echo PATH_ASSETS?>/pages/widget/amchart/serial.js"></script>
+    <script src="<?php echo PATH_ASSETS?>/pages/widget/amchart/light.js"></script>
+    <script src="<?php echo PATH_ASSETS?>/pages/widget/amchart/pie.min.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
     <!-- menu js -->
-    <script src="<?php echo PATH_JS?>/pcoded.min.js"></script>
-    <script src="<?php echo PATH_JS?>/vertical-layout.min.js "></script>
+    <script src="<?php echo PATH_ASSETS?>/js/pcoded.min.js"></script>
+    <script src="<?php echo PATH_ASSETS?>/js/vertical-layout.min.js "></script>
     <!-- custom js -->
-    <script type="text/javascript" src="<?php echo PATH_JS?>/custom-dashboard.js"></script>
-    <script type="text/javascript" src="<?php echo PATH_JS?>/script.js "></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/pages/dashboard/custom-dashboard.js"></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/script.js "></script>
+
+    <script type="text/javascript" src="<?php echo PATH_DT?>/datatables.min.js"></script>
     <script type="text/javascript" src="<?php echo PATH_JS?>/sistema/regimen.js "></script>    
     <script type="text/javascript" src="<?php echo PATH_JS?>/sistema/Side.js "></script>
 

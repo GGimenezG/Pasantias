@@ -3,6 +3,12 @@ var operacion = 0;
 $(document).ready(function() {
 	tabla =
 	$('#tabla').DataTable({
+    dom: 'B<"clear">lfrtip',
+    buttons: {
+        name: 'primary',
+        buttons: [ 'copy', 'csv', 'pdf' ]
+    },
+     responsive: true,	
 		"language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
             "zeroRecords": "No se encontraron registros",
@@ -16,8 +22,14 @@ $(document).ready(function() {
         		"next":     "Siguiente",
         		"previous": "Anterior"
         	}
-        }
+        },
+		  "columnDefs": [
+		    { "targets": 2,
+		      "width": "40px"  }
+		  ]
 	});
+
+
 	$('#formRegimen').validate();
 });
 

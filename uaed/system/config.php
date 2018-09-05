@@ -33,6 +33,8 @@ define('PATH_STYLE', FOLDER_PATH . '/lib/css');
 /////////////////////////////////////
 define('PATH_JS', FOLDER_PATH . '/lib/js');
 /////////////////////////////////////
+define('PATH_DT', FOLDER_PATH . '/lib/DataTables');
+/////////////////////////////////////
 define('PATH_IMG', FOLDER_PATH . '/lib/img');
 /////////////////////////////////////
 define('PATH_FONT', FOLDER_PATH . '/lib/fonts');

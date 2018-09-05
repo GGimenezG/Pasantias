@@ -46,6 +46,7 @@ $tipo = $session['u_tipo'];
 
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_STYLE?>/style.css">
+      <link rel="stylesheet" type="text/css" href="<?php echo PATH_DT?>/datatables.min.css"/>
   </head>
   <style media="screen">
     #modalTamano{
@@ -271,7 +272,7 @@ $tipo = $session['u_tipo'];
 
                                                       <tr>
                                                         <td>
-                                                          <span id="codigo<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_codigo']; ?></span>
+                                                          <span font-size="12px" id="codigo<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_codigo']; ?></span>
                                                         </td>
                                                         <td>
                                                           <span id="nombre<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_nombre']; ?> </span>
@@ -334,7 +335,7 @@ $tipo = $session['u_tipo'];
     </div>
     
     <!-- Required Jquery -->
-
+    <script type="text/javascript" src="<?php echo PATH_DT?>/datatables.min.js"></script>
     <script type="text/javascript" src="<?php echo PATH_JS?>/popper.min.js"></script>
     <script type="text/javascript" src="<?php echo PATH_JS?>/bootstrap.min.js "></script>
     <script type="text/javascript" src="<?php echo PATH_JS?>/excanvas.js "></script>

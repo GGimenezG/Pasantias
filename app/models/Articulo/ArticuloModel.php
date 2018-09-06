@@ -6,10 +6,11 @@ defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess');
 class ArticuloModel extends Model
 {
 	
-	public $c_codigo = "";
-	public $c_emision = "";
-	public $c_vencimiento = "";
-	public $c_status = "";
+	public $a_codigo = "";
+	public $a_nombre = "";
+	public $a_descrp = "";
+	public $a_cantidad = "";
+	public $a_status = "";
 
 	function __construct()
 	{
@@ -18,44 +19,54 @@ class ArticuloModel extends Model
 
 	public function getCodigo()
 	{
-		return $this->c_codigo;
+		return $this->a_codigo;
 	}
 
-	public function getEmision()
+	public function getEmNombre()
 	{
-		return $this->c_emision;
+		return $this->a_nombre;
 	}
 
-	public function getVencimiento()
+	public function getDescrip()
 	{
-		return $this->c_vencimiento;
+		return $this->a_descrp;
+	}
+
+	public function getCant()
+	{
+		return $this->a_cantidad;
 	}
 
 	public function getStatus()
 	{
-		return $this->c_status;
+		return $this->a_status;
 	}
 
 	//Setters:
 
-	public function setCodigo ($c_codigo)
+	public function setCodigo ($a_codigo)
 	{
-		$this->c_codigo = $c_codigo;
+		$this->a_codigo = $a_codigo;
 	}
 
-	public function setEmision ($c_emision)
+	public function setNombre ($a_nombre)
 	{
-		$this->c_emision = $c_emision;
+		$this->a_nombre = $a_nombre;
 	}
 
-	public function setVencimiento ($c_vencimiento)
+	public function setDescrip ($a_descrp)
 	{
-		$this->c_vencimiento = $c_vencimiento;
+		$this->a_descrp = $a_descrp;
 	}
 
-	public function setStatus ($c_status)
+	public function setCant($a_cantidad)
 	{
-		$this->c_status = $c_status;
+		$this->a_cantidad = $a_cantidad;
+	}
+
+	public function setStatus ($a_status)
+	{
+		$this->a_status = $a_status;
 	}
 
 	//Métodos:
@@ -63,36 +74,38 @@ class ArticuloModel extends Model
 	public function consultar_todos()
 	{
 		
-		$sql = "SELECT * FROM certificado 
-						WHERE c_status = 'a'";
+		$sql = "SELECT * FROM articulo 
+						WHERE a_status = 'a'";
  		$consulta = $this->select($sql);
  		$indice = 0;
  		while($row = $this->registros($consulta))
  		{
- 			$resultado[$indice] = array('c_codigo' => $row["c_codigo"], 
- 										'c_emision' => $row["c_emision"],
- 										'c_vencimiento' => $row["c_vencimiento"],
- 										'c_status' => $row["c_status"]);
+ 			$resultado[$indice] = array('a_codigo' => $row["a_codigo"], 
+ 										'a_nombre' => $row["a_nombre"],
+ 										'a_descrp' => $row["a_descrp"],
+ 										'a_cantidad' => $row["a_cantidad"],
+ 										'a_status' => $row["a_status"]);
  			$indice = $indice + 1;
  		}
  		return $resultado;
  		
 	}
 
-	public function consultar_registro($c_codigo)
+	public function consultar_registro($a_codigo)
 	{
 		
-		$sql = "SELECT * FROM certificado
-						 WHERE c_codigo = '$c_codigo' and 
-							   c_status = 'a'";
+		$sql = "SELECT * FROM articulo
+						 WHERE a_codigo = '$a_codigo' and 
+							   a_status = 'a'";
  		$consulta = $this->select($sql);
  
  		if($row = $this->hay_registro($consulta))
  		{
-			 $this->setCodigo($row['c_codigo']);
-			 $this->setEmision($row['c_emision']);
-			 $this->setVencimiento($row['c_vencimiento']);
-			 $this->setStatus($row['c_status']);
+			 $this->setCodigo($row['a_codigo']);
+			 $this->setNombre($row['a_nombre']);
+			 $this->setDescrip($row['a_descrp']);
+			 $this->setCant($row['a_cantidad']);
+			 $this->setStatus($row['a_status']);
  			return true;	
  		}
  		else
@@ -103,13 +116,14 @@ class ArticuloModel extends Model
 
 	public function incluir()
 	{
-	  	$sql= "INSERT into certificado (c_codigo, 
-	  								c_emision,
-	  								c_vencimiento, 
+	  	$sql= "INSERT into articulo (a_codigo, 
+	  								a_nombre,
+	  								a_descrp, 
 	  								c_status) 
-	  				values ($this->c_codigo,
-	  						$this->c_emision,
-	  						$this->c_vencimiento,
+	  				values ($this->a_codigo,
+	  						$this->a_nombre,
+	  						$this->a_descrp,
+	  						$this->a_cantidad,
 	  						'A');
 	  						";
 	  	$incluir=$this->ejecutar($sql);
@@ -117,28 +131,29 @@ class ArticuloModel extends Model
 	}
 
 
-	public function modificar($c_codigo,$c_emision,$c_vencimiento)
+	public function modificar($a_codigo,$a_nombre,$a_descrp, $a_cantidad)
 	{
-		$this->consultar_registro($c_codigo);
-		if ($c_emision==$this->getEmision() and $c_vencimiento==$this->getVencimiento())
+		$this->consultar_registro($a_codigo);
+		if ($a_nombre==$this->getNombre() and $a_descrp==$this->getDescrip() and $a_cantidad==$this->getCant())
 		{
 			return false;
 		}
 		else
 		{
-			$sql= "UPDATE certificado set c_emision='$c_emision',
-									  c_vencimiento='$c_vencimiento' 
-								where c_codigo='$c_codigo'";
+			$sql= "UPDATE articulo set a_nombre='$a_nombre',
+									  a_descrp='$a_descrp',
+									  a_cantidad='$a_cantidad' 
+								where a_codigo='$a_codigo'";
 	  		$modificar=$this->ejecutar($sql);
 	  		return $modificar;
 		}
 
 	}
 
-	public function eliminar($c_codigo)
+	public function eliminar($a_codigo)
 	{
-		$sql= "UPDATE certificado set c_status='i',
-							where c_codigo='$c_codigo'";
+		$sql= "UPDATE articulo set a_status='i',
+							where a_codigo='$a_codigo'";
 	  	$eliminar=$this->ejecutar($sql);
 	  	return $elimiar;
 	}

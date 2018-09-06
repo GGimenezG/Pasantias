@@ -156,7 +156,7 @@ $tipo = $session['u_tipo'];
                                                 <div class="modal-content">
                                                   <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4>Certificado</h4>
+                                                    <h4>Artículo</h4>
                                                   </div>
                                                   <div class="modal-body">
                                                     <div id="mensajesError"></div>
@@ -166,7 +166,7 @@ $tipo = $session['u_tipo'];
                                                           <h3 class="panel-title">Datos</h3>
                                                         </div>
                                                         <div class="panel-body"><!--inicio del cuerpo del panel-->
-                                                          <legend>Datos del régimen</legend>
+                                                          <legend>Datos del artículo</legend>
                                                           <div class="col-xs-12 col-sm-6 col-md-6" ><!--columna izquierda del formulario-->
                                                               <!-- primer campo a la izquierda -->
                                                               <div id='dcodigo' name="dcodigo" class="form-group has-info">
@@ -174,7 +174,7 @@ $tipo = $session['u_tipo'];
                                                                   <span class="glyphicon glyphicon-briefcase"></span> CODIGO
                                                                 </label>
                                                                 <input class="form-control" type="text" name="codigo" id="codigo" readonly />
-                                                                <p class="help-block">Código del régimen</p>
+                                                                <p class="help-block">Código del artículo</p>
                                                                 <!--help-block es para que salga el texto debajo del input al hacer clic-->
                                                               </div>
                                                               
@@ -183,7 +183,7 @@ $tipo = $session['u_tipo'];
                                                                   <span class="glyphicon glyphicon-briefcase"></span> NOMBRE
                                                                 </label>
                                                                 <input class="form-control" type="text" name="nombre" id="nombre" required/>
-                                                                <p class="help-block">Introduzca el nombre del régimen</p>
+                                                                <p class="help-block">Introduzca el nombre del artículo</p>
                                                                 <!--help-block es para que salga el texto debajo del input al hacer clic-->
                                                               </div>
                                                           </div><!--fin de columna izquierda -->
@@ -193,7 +193,7 @@ $tipo = $session['u_tipo'];
                                                                 <span class="glyphicon glyphicon-edit"></span> DESCRIPCION
                                                               </label>
                                                               <textarea class="form-control" name="descrp" rows="4" cols="6" id="descrp" required></textarea>
-                                                              <p class="help-block">Introduzca la descripción del régimen</p>
+                                                              <p class="help-block">Introduzca la descripción del artículo</p>
                                                             </div>
                                                           </div><!-- fin columna derecha -->
                                                         </div>
@@ -240,7 +240,7 @@ $tipo = $session['u_tipo'];
                                             <!--Inicio de la tabla-->
                                             <div class="panel panel-info">
                                               <div class="panel-heading">
-                                                <h3 class="panel-title"> Régimen </h3>
+                                                <h3 class="panel-title"> Artículo </h3>
                                               </div>
                                               <div class="panel panel-body">
                                                 
@@ -250,44 +250,48 @@ $tipo = $session['u_tipo'];
                                                         <th>Código</th>
                                                         <th>Nombre</th>
                                                         <th>Descripción</th>
+                                                        <th>Cantidad</th>
                                                         <th>Consultar</th>
                                                         <th>Modificar</th>
                                                         <th>Eliminar</th>
                                                       </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <?php foreach ($params as $r) { ?>      
+                                                        <?php foreach ($params as $a) { ?>      
 
                                                       <tr>
                                                         <td>
-                                                          <span class="f-12" id="codigo<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_codigo']; ?></span>
+                                                          <span class="f-12" id="codigo<?php echo $a['a_codigo']; ?>"><?php echo $a['a_codigo']; ?></span>
                                                         </td>
                                                         <td>
-                                                          <span class="f-12" id="nombre<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_nombre']; ?> </span>
+                                                          <span class="f-12" id="nombre<?php echo $a['a_nombre']; ?>"><?php echo $a['a_nombre']; ?> </span>
                                                         </td>
                                                         <td>
-                                                          <span class="f-12" id="descrp<?php echo $r['rg_codigo']; ?>"><?php echo $r['rg_descrp']; ?> </span>
+                                                          <span class="f-12" id="descrp<?php echo $a['a_descrp']; ?>"><?php echo $a['a_descrp']; ?> </span>
+                                                        </td>
+                                                        <td>
+                                                          <span class="f-12" id="cantidad<?php echo $a['a_cantidad']; ?>"><?php echo $a['a_cantidad']; ?> </span>
                                                         </td>
                                                         <td>
                                                           <a class="btn btn-success btn-raised btn-sm" data-toggle="modal"
-                                                              data-target="#ventana" onclick="onConsultar(<?php echo $r['rg_codigo']; ?>);">
+                                                              data-target="#ventana" onclick="onConsultar(<?php echo $a['a_codigo']; ?>);">
                                                             <span class="fa fa-eye fa-lg"></span>
                                                           </a>
                                                         </td>
                                                         <td>
                                                           <a class="btn btn-warning btn-raised btn-sm" data-toggle="modal"
-                                                             data-target="#ventana" onclick="onModificar(<?php echo $r['rg_codigo']; ?>);">
+                                                             data-target="#ventana" onclick="onModificar(<?php echo $a['a_codigo']; ?>);">
                                                             <span class="fa fa-edit fa-lg"></span>
                                                           </a>
                                                         </td>
                                                         <td>
-                                                          <a id="btnEliminar<?php echo $r['rg_codigo']; ?>" 
+                                                          <a id="btnEliminar<?php echo $a['a_codigo']; ?>" 
                                                              class="btn btn-danger btn-raised btn-sm" 
                                                              data-toggle="confirmation" 
                                                              data-title="¿Está seguro?" 
                                                              data-singleton="true" 
                                                              data-popout="true" 
-                                                             data-href="javascript:onEliminar(<?php echo $r['rg_codigo']; ?>);"
+                                                             data-href="javascript:onEliminar(<?php echo $a['a_codigo']; ?>);"
                                                              data-btn-ok-label="Si" 
                                                              data-btn-ok-icon="fa fa-check" 
                                                              data-btn-ok-class="btn btn-success btn-raised btn-sm"

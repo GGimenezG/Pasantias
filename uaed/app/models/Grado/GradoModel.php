@@ -1,0 +1,184 @@
+<?php
+defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess');
+
+class GradoModel extends Model
+{
+	public $g_codigo = "";
+  	public $g_nombre = "";
+  	public $g_descrp = "";
+  	public $g_status = "";
+
+
+
+	function __construct()
+	{
+		parent::__construct();
+	}
+
+	///////
+	// obtener atributo
+	///////
+	public function getCodigo(){
+		return $this->g_codigo;
+	}
+
+	public function getNombre(){
+		return $this->g_nombre;
+	}
+
+	public function getDescrp(){
+		return $this->g_descrp;
+	}
+	public function getStatus(){
+		return $this->g_status;
+	}
+
+	//////
+	// asignar atributo
+	//////
+	public function setCodigo($g_codigo){
+		$this->g_codigo = $g_codigo;
+	}
+	public function setNombre($g_nombre){
+		$this->g_nombre = $g_nombre;
+	}
+	public function setDescrp($g_descrp){
+		$this->g_descrp = $g_descrp;
+	}
+	public function setStatus($g_status){
+		$this->g_status = $g_status;
+	}
+
+	///////
+	// Métodos de la clase
+	//////
+
+	public function consultar_todos()
+	{
+		
+		$sql = "SELECT * FROM grado 
+						WHERE g_status = 'a'";
+ 		$consulta = $this->select($sql);
+ 		$indice = 0;
+ 		while($row = $this->registros($consulta)){
+ 			$gesultado[$indice] = array('g_codigo' => $row["g_codigo"], 
+ 										'g_nombre' => $row["g_nombre"],
+ 										'g_descrp' => $row["g_descrp"],
+ 										'g_status' => $row["g_status"]);
+ 			$indice = $indice + 1;
+ 		}
+ 		return $gesultado;
+ 		
+	}
+
+	public function consultar_registro()
+	{
+		
+		$sql = "SELECT * FROM grado 
+						 WHERE g_codigo = '".$this->g_codigo."' and 
+							   g_status = 'a'";
+ 		$consulta = $this->select($sql);
+ 
+ 		if($row = $this->hay_registro($consulta))
+ 		{
+			 $this->setCodigo($row['g_codigo']);
+			 $this->setNombre($row['g_nombre']);
+			 $this->setDescrp($row['g_descrp']);
+			 $this->setStatus($row['g_status']);
+ 			return true;	
+ 		}
+ 		else
+ 		{
+			return false;
+ 		}
+	}
+
+	public function consultar_nombre()
+	{
+		
+		$sql = "SELECT * FROM grado 
+						 WHERE g_nombre = '".$this->g_nombre."'";
+ 		$consulta = $this->select($sql);
+ 
+ 		if($row = $this->hay_registro($consulta))
+ 		{
+			 $this->setCodigo($row['g_codigo']);
+			 $this->setNombre($row['g_nombre']);
+			 $this->setDescrp($row['g_descrp']);
+			 $this->setStatus($row['g_status']);
+ 			return true;	
+ 		}
+ 		else
+ 		{
+			return false;
+ 		}
+	}
+
+	public function obtenerCodigo(){
+		return $this->getcodigonuevo("grado","g_codigo");
+	}
+
+	public function incluir()
+	{	
+
+	  	$sql= "INSERT into grado (g_nombre, 
+	  								g_descrp, 
+	  								g_status) 
+	  				values ('".$this->g_nombre."',
+	  					   '".$this->g_descrp."',
+	  					   'a')";
+	  	if($this->ejecutar($sql)){
+	  		return true;
+	  	}
+	  	else{
+	  		return false;
+	  	}
+	  	// return $incluir;
+	}
+
+	public function modificar()
+	{
+		$codigo = $this->getCodigo();
+		$nombre = $this->getNombre();
+		$descrp = $this->getDescrp();
+		if($this->consultar_registro()){
+			if($nombre == $this->getNombre() && $descrp = $this->getDescrp()){
+				return false;
+			}else{
+				$sql= "UPDATE grado set g_nombre='".$nombre."',
+										  g_descrp='".$descrp."' 
+									where g_codigo='".$codigo."'";
+		  		if($this->ejecutar($sql)){
+		  			$this->consultar_registro();
+		  			return true;
+		  		}else{
+		  			return false;
+		  		}		  						
+			}
+		}
+	}
+
+	public function eliminar(){
+
+		$sql= "UPDATE grado set g_status='i'
+							where g_codigo='".$this->g_codigo."'";
+	  	if($this->ejecutar($sql)){
+	  		return true;
+	  		
+		}else{
+			return false;
+		}
+	}
+	
+		public function activar(){
+
+		$sql= "UPDATE grado set g_status='a'
+							where g_codigo='".$this->g_codigo."'";
+	  	if($this->ejecutar($sql)){
+	  		return true;
+	  		
+		}else{
+			return false;
+		}
+	}
+}

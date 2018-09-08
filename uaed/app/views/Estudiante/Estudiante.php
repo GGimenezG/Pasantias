@@ -151,7 +151,7 @@ extract($params);
         <div class="card-header">
           <h4 class="card-header-text">DATOS</h4>
         </div>
-        <form class="form-material">
+        <form class="form-material" id="estudiante" name="estudiante" method="POST">
         <div class="card-block accordion-block color-accordion-block">
           <div class="color-accordion" id="color-accordion">
           <!-- DATOS PERSONALES -->
@@ -165,7 +165,7 @@ extract($params);
                     <label class="float-label">Cédula</label>
                   </div>
                   <div class="col-1">
-                    <button type="button" class=" btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top">
+                    <button type="button" class=" btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" onclick="b_estudiante();">
                       <i class="fa fa-search"></i>
                     </button>
                   </div>
@@ -236,7 +236,7 @@ extract($params);
                 </div>
                 <div class="form-group row">
                   <div class="col-3">
-                    <select id="discapacidad" name="discapacidad" class="form-control-round custom-select d-block w-100">
+                    <select id="td_codigo" name="td_codigo" class="form-control-round custom-select d-block w-100">
                       <option value="-1">Seleccione</option>
                       <?php if(isset($discapacidad)){ foreach ($discapacidad as $d ) { ?>
                       <option value="<?php echo $d['td_codigo']; ?>"><?php echo $d['td_nombre']; ?></option>
@@ -244,7 +244,7 @@ extract($params);
                     </select>
                   </div>
                   <div class="col-3">
-                    <select id="grado" name="grado" class="form-control-round custom-select d-block w-100">
+                    <select id="g_codigo" name="g_codigo" class="form-control-round custom-select d-block w-100">
                       <option value="-1">Seleccione</option>
                       <?php if(isset($grado)){ foreach ($grado as $g ) { ?>
                       <option value="<?php echo $g['g_codigo']; ?>"><?php echo $g['g_nombre']; ?></option>
@@ -252,7 +252,7 @@ extract($params);
                     </select>
                   </div>
                   <div class="col-3">
-                    <select id="regimen" name="regimen" class="form-control-round custom-select d-block w-100">
+                    <select id="rg_codigo" name="rg_codigo" class="form-control-round custom-select d-block w-100">
                       <option value="-1">Seleccione</option>
                       <?php if(isset($regimen)){ foreach ($regimen as $rg ) { ?>
                       <option value="<?php echo $rg['rg_codigo']; ?>"><?php echo $rg['rg_nombre']; ?></option>
@@ -309,7 +309,7 @@ extract($params);
                 </div>
                 <div class="form-group row">
                   <div class="col-3">
-                    <select id="requerimiento" name="requerimiento" class="form-control-round custom-select d-block w-100">
+                    <select id="r_codigo" name="r_codigo" class="form-control-round custom-select d-block w-100">
                       <option value="-1">Seleccione</option>
                       <?php if(isset($requerimiento)){ foreach ($requerimiento as $r ) { ?>
                       <option value="<?php echo $r['r_codigo']; ?>"><?php echo $r['r_nombre']; ?></option>

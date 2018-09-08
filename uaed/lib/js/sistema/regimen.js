@@ -69,9 +69,6 @@ $(document).ready(function() {
             {  "width": "15%", "targets": 5 }
         ],
 	});
-
-
-	$('#formRegimen').validate();
 });
 
 function onIncluir() {

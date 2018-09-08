@@ -1,24 +1,19 @@
-<?php defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess'); ?>
-
+<?php
+defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess');
+$tipo = $session['u_tipo'];
+?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 10]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
-      <!-- Meta -->
+    <title>Tipo de Artículo</title>
+    
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="description" content="Mega Able Bootstrap admin template made using Bootstrap 4 and it has huge amount of ready made feature, UI components, pages which completely fulfills any dashboard needs." />
       <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
       <meta name="author" content="codedthemes" />
-
-      
       <!-- Favicon icon -->
       <link rel="icon" href="<?php echo PATH_ASSETS?>/images/favicon.ico" type="image/x-icon">
       <!-- Google font-->
@@ -37,188 +32,267 @@
       <link rel="stylesheet" href="<?php echo PATH_ASSETS?>/pages/widget/amchart/css/export.css" type="text/css" media="all" />
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/css/style.css">
+      <link rel="stylesheet" type="text/css" href="/uaed2/lib/confirm/jquery-confirm.min.css">
+      
+ 
+      <link rel="stylesheet" type="text/css" href="<?php echo PATH_DT?>/datatables.min.css"/>
+  </head>
 
-    <!-- Required Jquery -->
-    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/jquery-ui/jquery-ui.min.js "></script>
-    <title>Tipo de Artículo</title>
+  <body>
+  <!-- Pre-loader start -->
+  <div class="theme-loader">
+    <div class="loader-track">
+      <div class="preloader-wrapper">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Pre-loader end -->
 
-</head>
-<body>
-  
-   <nav id="collapse-2" class="navbar navbar-default no-margin">
-    <!-- Cabecera Menu -->
+    <div id="pcoded" class="pcoded">
+      <div class="pcoded-overlay-box"></div>
+      <div class="pcoded-container navbar-wrapper">
+        <!-- navbar -->
+        <?php
+        include (PATH_MENU . '/Cabecera.php');
+        ?>
+         
+        <div class="pcoded-main-container">
+          <div class="pcoded-wrapper">
+            <!-- inicio de sideBar -->
             <?php
-              include (PATH_MENU . '/cabeceraencargado.php');
+            include (PATH_MENU . '/SideEnc.php');
             ?>
-      <!--fin cabecera menu -->
-    </nav>
-    <!-- Barra de manu lateral -->
-    <div id="wrapper">
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <!-- Lista Maestros del menu -->     
-          <ul class="sidebar-nav nav-pills nav-stacked" id="menu">     
-            <?php
-              include(PATH_MENU . "/menuencargado.php");
-            ?>
-
-          </ul>
-        </div><!-- fin barra de menu  -->
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-          <!--inicio de la ventana modal  -->
-          <div class="col-lg-12">
-            <div class="modal fade" id="ventana" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog" id="modalTamano">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4>Tipo de Artículo</h4>
-                  </div>
-                  <div class="modal-body">
-                    <div id="mensajesError"></div>
-                    <form class="form-horizontal" id="formCargo" name="cargo">
-                      <div class="panel panel-info"><!--inicio del panel-->
-                        <div class="panel-heading">
-                          <h3 class="panel-title">Datos</h3>
-                        </div>
-                        <div class="panel-body"><!--inicio del cuerpo del panel-->
-                          <legend>Datos del Tipo de artículo</legend>
-                          <div class="col-xs-12 col-sm-6 col-md-6" ><!--columna izquierda del formulario-->
-                              <!-- primer campo a la izquierda -->
-                              <div class="form-group has-info label-floating">
-                                <label class="control-label" for="codigo">
-                                  <span class="glyphicon glyphicon-briefcase"></span> CODIGO
-                                </label>
-                                <input class="form-control" type="text" name="codigo" id="codigo" readonly value="1"/>
-                                <p class="help-block">Código del tipo de artículo</p>
-                                <!--help-block es para que salga el texto debajo del input al hacer clic-->
-                              </div>
-                              
-                              <div class="form-group has-info label-floating">
-                                <label class="control-label" for="nombre">
-                                  <span class="glyphicon glyphicon-briefcase"></span> NOMBRE
-                                </label>
-                                <input class="form-control" type="text" name="nombre" id="nombre" required/>
-                                <p class="help-block">Introduzca el tipo de artículo</p>
-                                <!--help-block es para que salga el texto debajo del input al hacer clic-->
-                              </div>
-                          </div><!--fin de columna izquierda -->
-                          <div class="col-xs-12 col-sm-4 col-md-4"> <!-- columna derecha -->
-                            <div class="form-group has-info label-floating">
-                              <label class="control-label" for="descripcion">
-                                <span class="glyphicon glyphicon-edit"></span> DESCRIPCION
-                              </label>
-                              <textarea class="form-control" name="descripcion" rows="4" cols="6" id="descripcion" required></textarea>
-                              <p class="help-block">Introduzca la descripción del  tipo de artículo</p>
-                            </div>
-                          </div><!-- fin columna derecha -->
-                        </div>
-                      </div><!--fin del panel-->
-                    </form>
-                  </div><!--fin  del cuerpo del panel-->
-                  <div class="modal-footer">
-                    <div class="btn-group"> 
-                      <button class="btn btn-success btn-raised" type="button" id="btnGuardar" onclick="onGuardar();"> Guardar 
-                        <span class="fa fa-save fa-lg"></span>
-                      </button>
-                      <button class="btn btn-warning btn-raised" type="reset" name="button" id="limpiar"> Limpiar 
-                        <span class="fa fa-eraser fa-lg"></span>
-                      </button>
-                      <button type="button" class="btn btn-danger btn-raised" data-dismiss="modal" id="cerrar"> Cerrar 
-                        <span class="fa fa-window-close fa-lg"></span>
-                      </button>
+            <div class="pcoded-content">
+              <div class="page-header">
+                <div class="page-block">
+                  <div class="row align-items-center">
+                    <div class="col-md-8">
+                      <div class="page-header-title">
+                        <h5 class="m-b-10">Tipo de Artículo</h5>
+                        <p class="m-b-0">Bienvenido</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <ul class="breadcrumb-title">
+                        <li class="breadcrumb-item">
+                          <a href="index.html"> <i class="fa fa-home"></i> </a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#!">Dashboard</a>
+                        </li>
+                      </ul>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>  <!--fin  de la ventana modal  -->
-          <div class="col-lg-12">
-            <!-- barra del boton incluir -->
-            <div class="navbar navbar-info">
-              <div class="container">
-                <table class="col-md-10">
-                  <tr>
-                    <td>
-                      <a class="navbar-btn btn btn-success btn-raised" data-toggle="modal" data-target="#ventana" onclick="onIncluir();"> Registrar&nbsp;
-                        <span class="fa fa-plus fa-lg"></span>
-                      </a>
-                    </td>
-                    <td>
-                      <div id="mensajes" class="col-md-offset-1"></div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-            <!-- fin barra del boton incluir  -->
+              <!-- Page-header end -->
+              <div class="pcoded-inner-content">
+                <!-- Main-body start -->
+                <div class="main-body">
+                  <div class="page-wrapper">
+                    <!-- Page-body start -->
+                    <div class="page-body">
+                      <div class="row">
+                        <!-- task, page, download counter  start -->
+                        <div class="col-lg-12">
+                          <div class="modal fade" id="ModalRegistro" tabindex="-1" role="dialog" aria-labelledby="registro-modal" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                  <h5 class="modal-title" id="registro-modal">Registrar Tipo de Artículo</h5>
+                                </div>
+                                <div class="modal-body">
+                                  <div id="mensajesError"></div>
+                                    <form class="form-horizontal" id="formTart" name="formArticulo">
+                                      <div class="panel panel-info">
+                                        <!--inicio del panel-->
+                                        <div class="panel-heading">
+                                          <h3 class="panel-title">Tipo de Artículo</h3>
+                                        </div>
+                                        <div class="panel-body">
+                                          <!--inicio del cuerpo del panel-->
+                                          <div class="col-md-6">
+                                          <!--columna izquierda del formulario-->
+                                            <!-- primer campo a la izquierda -->
+                                            <div id='acodigo' name="acodigo" class="form-group has-info">
+                                              <label class="float-label" for="codigo"><span class="fa fa-briefcase fa-lg"></span> Código: </label>
+                                              <input type="text" name="codigo" class="form-control" required="" id="codigo"/>
+                                              <!--help-block es para que salga el texto debajo del input al hacer clic-->
+                                            </div>       
+                                            <div class="form-group has-info label-floating">
+                                              <label class="float-label" for="nombre"><span class="fa fa-briefcase fa-lg"></span> Nombre: </label>
+                                              <input type="text" name="nombre" class="form-control" required="" id="nombre"/>
+                                              <!--help-block es para que salga el texto debajo del input al hacer clic-->
+                                            </div>
+                                          </div><!--fin de columna izquierda -->
+                                          <div class="col-md-6"> <!-- columna derecha -->
+                                            <div class="form-group has-info">
+                                              <label class="float-label" for="descrp"><span class="fa fa-edit fa-lg"></span> Descripción: </label>
+                                              <textarea class="form-control" name="descrp" rows="4" cols="6" id="descrp" required=""></textarea>
+                                            </div>                                      
+                                          </div><!-- fin columna derecha -->
+                                        </div>
+                                      </div><!--fin del panel-->
+                                    </form>
+                                  </div><!--fin  del cuerpo del panel-->
+                                  <div class="modal-footer">
+                                    <div class="btn-group"> 
+                                      <button class="btn btn-success btn-raised" type="button" id="btnGuardar" onclick="onGuardar();"> Guardar 
+                                        <span class="fa fa-save fa-lg"></span>
+                                      </button>
+                                      <button class="btn btn-warning btn-raised" type="reset" name="button" id="limpiar"> Limpiar 
+                                        <span class="fa fa-eraser fa-lg"></span>
+                                      </button>
+                                      <button type="button" class="btn btn-danger btn-raised" data-dismiss="modal" id="cerrar"> Cerrar 
+                                        <span class="fa fa-window-close fa-lg"></span>
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>  <!--fin  de la ventana modal  -->
+                                          
+                          <div class="col-12">
+                            <div class="card o-visible">
+                              <div class="card-header">
+                                <h5>Artículo</h5>
+                              </div>
+                              <div class="card-block tooltip-pop">
+                                <!-- barra del boton incluir -->
+                                <div class="navbar navbar-info"">
+                                  <div class="container">
+                                    <table class="col-md-10">
+                                      <tr>
+                                        <td>
+                                          <a class="navbar-btn btn btn-success btn-raised" data-toggle="modal" data-target="#ModalRegistro" onclick="onIncluir();"> Registrar&nbsp;
+                                            <span class="fa fa-plus fa-lg"></span>
+                                          </a>
+                                        </td>
+                                      <td>
+                                        <div id="mensajes" class="col-md-offset-1"></div>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </div>
+                              </div>
+                              <!-- fin barra del boton incluir  -->
 
-            <!--Inicio de la tabla-->
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h3 class="panel-title">Tipo de Artículo</h3>
-              </div>
-              <div class="panel panel-body">
-                <div class="table-responsive">
-                  <table id="tabla" class="table table-striped table-bordered table-hover table-condensed">
-                    <thead>
-                      <tr>
-                        <th>Codigo</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Modificar</th>
-                        <th>Eliminar</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>
-                          <span id="codigo"></span>
-                        </td>
-                        <td>
-                          <span id="nombre"></span>
-                        </td>
-                        <td>
-                          <span id="descripcion"></span>
-                        </td>
-                        <td>
-                          <a class="btn btn-success btn-raised btn-sm" data-toggle="modal"
-                              data-target="#ventana" onclick="onConsultar('${cargo.idString}');">
-                            <span class="fa fa-eye fa-lg"></span>
-                          </a>
-                        </td>
-                        <td>
-                          <a class="btn btn-warning btn-raised btn-sm" data-toggle="modal"
-                             data-target="#ventana" onclick="onModificar('${cargo.idString}');">
-                            <span class="fa fa-edit fa-lg"></span>
-                          </a>
-                        </td>
-                        <td>
-                          <a id="btnEliminar${cargo.idString}" class="btn btn-danger btn-raised btn-sm" 
-                              data-toggle=" confirmation" data-title="¿Estas seguro?" data-singleton="true" 
-                              data-popout="true" data-href="javascript:onEliminar('${cargo.idString}');"
-                              data-btn-ok-label="Si" data-btn-ok-icon="glyphicon glyphicon-share-alt" 
-                              data-btn-ok-class="btn btn-success btn-raised btn-sm"                         data-btn-cancel-label="No" data-btn-cancel-icon="glyphicon glyphicon-ban-circle" data-btn-cancel-class="btn btn-danger btn-raised btn-sm">
-                            <span class="fa fa-trash fa-lg"></span>
-                          </a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                              <!--Inicio de la tabla-->
+                              <div>
+                                <table id="tabla" class="table table-striped table-bordered table-hover">
+                                  <thead>
+                                    <tr>
+                                      <th>Código</th>
+                                      <th>Nombre</th>
+                                      <th>Descripción</th>
+                                      <th>Consultar</th>
+                                      <th>Modificar</th>
+                                      <th>Eliminar</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                  <?php foreach ($params as $ta) { ?>      
+
+                                    <tr>
+                                      <td>
+                                        <span class="f-12" id="codigo<?php echo $ta['ta_codigo']; ?>"><?php echo $ta['ta_codigo']; ?></span>
+                                      </td>
+                                      <td>
+                                        <span class="f-12" id="nombre<?php echo $ta['ta_nombre']; ?>"><?php echo $ta['ta_nombre']; ?> </span>
+                                      </td>
+                                      <td>
+                                        <span class="f-12" id="descrp<?php echo $ta['ta_descrp']; ?>"><?php echo $ta['ta_descrp']; ?> </span>
+                                      </td>
+                                      <td>
+                                        <a class="btn btn-success btn-raised btn-sm" data-toggle="modal"
+                                                                  data-target="#ModalRegistro" onclick="onConsultar(<?php echo $ta['ta_codigo']; ?>);">
+                                          <span class="fa fa-eye fa-lg"></span>
+                                        </a>
+                                      </td>
+                                      <td>
+                                        <a class="btn btn-warning btn-raised btn-sm" data-toggle="modal"
+                                                                 data-target="#ModalRegistro" onclick="onModificar(<?php echo $ta['ta_codigo']; ?>);">
+                                          <span class="fa fa-edit fa-lg"></span>
+                                        </a>
+                                      </td>
+                                      <td>
+                                        <a id="btnEliminar<?php echo $ta['ta_codigo']; ?>" 
+                                                                 class="btn btn-danger btn-raised btn-sm btn-red">
+                                          <span class="fa fa-trash fa-lg"></span>
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  <?php } ?>
+                                </tbody>
+                              </table>
+                            </div>
+                            <!--fin de la tabla-->                                                                                            
+                          </div>
+                                              
+                        </div>
+                      </div>  
+                      <!--  project and team member end -->
+                    </div>
+                  </div>
+                  <!-- Page-body end -->
                 </div>
+                <div id="styleSelector"> </div>
               </div>
             </div>
-            <!--fin de la tabla-->
-
           </div>
         </div>
-        <!-- /#page-content-wrapper -->
+      </div>
     </div>
-    
-    <!-- Required Jquery -->
-
+  </div>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/jquery-ui/jquery-ui.min.js "></script>
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/popper.js/popper.min.js"></script>
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/bootstrap/js/bootstrap.min.js "></script>
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/pages/widget/excanvas.js "></script>
@@ -234,7 +308,7 @@
     <!-- Chart js -->
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/chart.js/Chart.js"></script>
     <!-- amchart js -->
-    <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/amcharts.js "></script>
     <script src="<?php echo PATH_ASSETS?>/pages/widget/amchart/gauge.js"></script>
     <script src="<?php echo PATH_ASSETS?>/pages/widget/amchart/serial.js"></script>
     <script src="<?php echo PATH_ASSETS?>/pages/widget/amchart/light.js"></script>
@@ -246,11 +320,24 @@
     <!-- custom js -->
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/pages/dashboard/custom-dashboard.js"></script>
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/script.js "></script>
-    
-    <script type="text/javascript" src="<?php echo PATH_JS?>/sistema/Side.js "></script>
-    <script type="text/javascript" class="init">
-      $('[data-toggle="confirmation"]').confirmation('hide');
-    </script>
-</body>
 
+    <script type="text/javascript" src="<?php echo PATH_DT?>/datatables.min.js"></script>
+    <script type="text/javascript" src="<?php echo PATH_JS?>/sistema/tipoart.js "></script>    
+    <script type="text/javascript" src="<?php echo PATH_JS?>/sistema/Side.js "></script>
+    <script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    
+    $(document).ready(function() {
+        $('[data-toggle="popover"]').popover({
+            html: true,
+            content: function() {
+                return $('#primary-popover-content').html();
+            }
+        });
+    });
+
+</script>
+  </body>
 </html>

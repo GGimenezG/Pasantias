@@ -92,6 +92,8 @@ class EstudianteController extends Controller
     }
   }
 
+
+
   public function registrar_discapacidad(){
     $discapacidad = $this->discapacidad;
     $tdiscapacidad = $this->tdiscapacidad;
@@ -101,10 +103,19 @@ class EstudianteController extends Controller
 
     if(isset($_POST['td_codigo']) && isset($_POST['g_codigo']) && isset($_POST['rg_codigo']) && isset($_POST['e_cedula'])){
       //hacemos el registro del nuevo tipo de discapacidad asociado a un estudiante
+      $discapacidad->setCedula($_POST['e_cedula']);
       $discapacidad->setRegimen($_POST['rg_codigo']);
       $discapacidad->setGrado($_POST['g_codigo']);
       $discapacidad->setTipo($_POST['td_codigo']);
-      $discapacidad->setDuracion($_POST['d_duracion']);
+      
+      if($_POST['d_duracion']=="" || $_POST['d_duracion']==NULL){
+        $discapacidad->setDuracion(null);
+      }else{
+        $discapacidad->setDuracion(date("Y-m-d", strtotime($_POST['d_duracion'])));  
+      }
+      
+      #$discapacidad->setDuracion(date("Y-m-d",$_POST['d_duracion']));
+
       if ($discapacidad->incluir()) {
         //retornamos el array con los datos necesarios para insertarlos en la tabla
         $regimen->setCodigo($_POST['rg_codigo']);
@@ -112,11 +123,17 @@ class EstudianteController extends Controller
         $tdiscapacidad->setCodigo($_POST['td_codigo']);
         if ($regimen->consultar_registro() && $grado->consultar_registro() && $tdiscapacidad->consultar_registro()) {
           //constuimos el array
+          $duracion = "";
+          if(date("d-m-Y", strtotime($discapacidad->getDuracion()))=='01-01-1970'){
+            $duracion=null;
+          }else{
+            $duracion = date("d-m-Y", strtotime($discapacidad->getDuracion()));
+          }
           $response = array('td_nombre' => $tdiscapacidad->getNombre(),
                             'g_nombre' => $grado->getNombre(),
                             'rg_nombre' => $regimen->getNombre(),
-                            'd_duracion' => $discapacidad->getDuracion());
-          echo json_encode($response);
+                            'd_duracion' => $duracion);
+          echo json_encode($response, JSON_UNESCAPED_UNICODE);
         }
         else{
           $response = array('error' => 'Error al recibir datos');

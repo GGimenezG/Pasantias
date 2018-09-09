@@ -34,7 +34,11 @@ class DiscapacidadModel extends Model
 	}
 
 	public function getDuracion(){
-		return $this->d_duracion;
+		if(!$this->d_duracion==""){
+			return $this->d_duracion;
+		}else{
+			return NULL;
+		}
 	}
 	public function getStatus(){
 		return $this->d_status;
@@ -107,11 +111,11 @@ class DiscapacidadModel extends Model
 	  									 rg_codigo,
 	  									 d_duracion,
 	  									 d_status) 
-	  				values ($this->e_cedula,
+	  				values ('$this->e_cedula',
 	  						'$this->td_codigo',
 	  						'$this->g_codigo',
 	  						'$this->rg_codigo',
-							$this->d_duracion,
+							'".$this->getDuracion()."',
 	  					   'a')";
 	  	if($this->ejecutar($sql)){
 	  		return true;

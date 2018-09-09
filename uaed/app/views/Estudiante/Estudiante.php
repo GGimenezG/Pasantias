@@ -32,6 +32,8 @@ extract($params);
       <!-- am chart export.css -->
       <link rel="stylesheet" href="<?php echo PATH_ASSETS?>/pages/widget/amchart/css/export.css" type="text/css" media="all" />
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/css/bootstrap-datepicker.css">
+      <!-- notificaciones -->
+      <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/css/snarl.css">
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/css/style.css">
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_DT?>/datatables.min.css"/>
@@ -135,7 +137,7 @@ extract($params);
                               </div>
                           </div>
                       </div>
-
+                      <div class="snarl-wrapper-bottom"></div>
                     <!-- Page-header end -->
                       <div class="pcoded-inner-content">
                           <!-- Main-body start -->
@@ -203,18 +205,18 @@ extract($params);
               <div class="accordion-desc">
                 <div class="form-group row" id="certificado">
                   <div class="col-4">
-                    <input class="form-control" name="c_codigo" id="c_codigo" readonly="" type="text">
+                      <input class="form-control" name="c_codigo" id="c_codigo" readonly="" type="text">
                     <span class="form-bar"></span>
                     <label class="float-label">Código</label>
                   </div>
                  <div class="input-group date col-4">
-                      <input type='text' class="form-control" id="c_emision" />
+                      <input type='text' class="form-control" id="c_emision" name="c_emision" />
                       <span class="input-group-addon">
                           <span class="fa fa-calendar"></span>
                       </span>
                   </div>   
                   <div class="input-group date col-4">
-                      <input type='text' class="form-control" id="c_vencimiento" />
+                      <input type='text' class="form-control" id="c_vencimiento" name="c_vencimiento" />
                       <span class="input-group-addon">
                           <span class="fa fa-calendar"></span>
                       </span>
@@ -235,7 +237,7 @@ extract($params);
                   </div>
                 </div>
                 <div class="form-group row">
-                  <div class="col-3">
+                  <div class="col-3 col-push-0">
                     <select id="td_codigo" name="td_codigo" class="form-control-round custom-select d-block w-100">
                       <option value="-1">Seleccione</option>
                       <?php if(isset($discapacidad)){ foreach ($discapacidad as $d ) { ?>
@@ -243,7 +245,7 @@ extract($params);
                       <?php }} ?>  
                     </select>
                   </div>
-                  <div class="col-3">
+                  <div class="col-2 col-push-3">
                     <select id="g_codigo" name="g_codigo" class="form-control-round custom-select d-block w-100">
                       <option value="-1">Seleccione</option>
                       <?php if(isset($grado)){ foreach ($grado as $g ) { ?>
@@ -251,7 +253,7 @@ extract($params);
                       <?php }} ?>  
                     </select>
                   </div>
-                  <div class="col-3">
+                  <div class="col-3 col-push-5">
                     <select id="rg_codigo" name="rg_codigo" class="form-control-round custom-select d-block w-100">
                       <option value="-1">Seleccione</option>
                       <?php if(isset($regimen)){ foreach ($regimen as $rg ) { ?>
@@ -259,9 +261,15 @@ extract($params);
                       <?php }} ?>    
                     </select>
                   </div>
-                  <div class="col-1">
-                    <button type="button" class=" btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top">
-                      <i class="fa fa-add"></i>
+                  <div class="input-group date col-2 col-push-8">
+                      <input type='text' class="form-control" name="d_duracion" id="d_duracion" />
+                      <span class="input-group-addon">
+                          <span class="fa fa-calendar"></span>
+                      </span>
+                  </div>  
+                  <div class="col-1 col-push-10">
+                    <button type="button" class=" btn btn-warning btn-icon waves-effect waves-light" onclick="Agregar_D();">
+                      <i class="fa fa-plus"></i>
                     </button>
                   </div>                
                 </div>
@@ -269,29 +277,31 @@ extract($params);
                 <div class="card">
                   <div class="card-block table-border-style">
                     <div class="table-responsive">
-                      <table class="table">
+                      <table name="tablaD" id="tablaD" class="table">
                         <thead>
                           <tr>
-                              <th>N°</th>
                               <th>Tipo</th>
                               <th>Grado</th>
                               <th>Regimen</th>
+                              <th>Hasta</th>
                           </tr>
                         </thead>
 
                         <tbody>
                           <tr>
-                              <th scope="row">1</th>
-                              <td>Visual</td>
-                              <td>Leve</td>
-                              <td>Temporal</td>
+                              <td>
+                                <span class="f-12" id="t_tipo"></span>
+                              </td>
+                              <td>
+                                <span class="f-12" id="t_grado"></span>
+                              </td>
+                              <td>
+                                <span class="f-12" id="t_regimen"></span>
+                              </td>
+                              <td>
+                                <span class="f-12" id="t_duracion"></span>
+                              </td>
                           </tr>
-                          <tr>
-                              <th scope="row">2</th>
-                              <td>Auditiva</td>
-                              <td>Grave</td>
-                              <td>Temporal</td>
-                          </tr>   
                         </tbody>
                       </table>
                     </div>
@@ -376,7 +386,10 @@ extract($params);
     <script src="<?php echo PATH_ASSETS?>/js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/script.js"></script>   
     <script type="text/javascript" src="<?php echo PATH_JS?>/sistema/Side.js "></script>
-        <script type="text/javascript" src="<?php echo PATH_JS?>/estudiante.js "></script>
+    <script type="text/javascript" src="<?php echo PATH_JS?>/estudiante.js "></script>
+
+    <!-- notificaciones -->
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/snarl.js"></script>
     
 </body>
 

@@ -60,36 +60,18 @@ class CertificadoModel extends Model
 
 	//Métodos:
 
-	public function consultar_todos()
-	{
-		
-		$sql = "SELECT * FROM certificado 
-						WHERE c_status = 'a'";
- 		$consulta = $this->select($sql);
- 		$indice = 0;
- 		while($row = $this->registros($consulta))
- 		{
- 			$resultado[$indice] = array('c_codigo' => $row["c_codigo"], 
- 										'c_emision' => $row["c_emision"],
- 										'c_vencimiento' => $row["c_vencimiento"],
- 										'c_status' => $row["c_status"]);
- 			$indice = $indice + 1;
- 		}
- 		return $resultado;
- 		
-	}
 
-	public function consultar_registro($c_codigo)
+
+	public function consultar_registro()
 	{
 		
 		$sql = "SELECT * FROM certificado
-						 WHERE c_codigo = '$c_codigo' and 
+						 WHERE c_codigo = $this->c_codigo and 
 							   c_status = 'a'";
  		$consulta = $this->select($sql);
  
  		if($row = $this->hay_registro($consulta))
  		{
-			 $this->setCodigo($row['c_codigo']);
 			 $this->setEmision($row['c_emision']);
 			 $this->setVencimiento($row['c_vencimiento']);
 			 $this->setStatus($row['c_status']);

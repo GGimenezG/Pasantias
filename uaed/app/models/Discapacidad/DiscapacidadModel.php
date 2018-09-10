@@ -4,11 +4,12 @@ defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess');
  * 
  */
 class DiscapacidadModel extends Model
-{
-	var $e_cedula = 0;
-	var $td_codigo = 0;
-	var $g_codigo = 0;
-	var $rg_codigo = 0;
+{	
+	var $d_codigo = "";
+	var $e_cedula = "";
+	var $td_codigo = "";
+	var $g_codigo = "";
+	var $rg_codigo = "";
 	var $d_duracion = "" ;
 	var $d_status = "";
 	
@@ -20,6 +21,9 @@ class DiscapacidadModel extends Model
 	///////
 	// obtener atributo
 	///////
+	public function getCodigo(){
+		return $this->d_codigo;
+	}	
 	public function getCedula(){
 		return $this->e_cedula;
 	}
@@ -64,6 +68,9 @@ class DiscapacidadModel extends Model
 	public function setStatus($d_status){
 		$this->d_status = $d_status;
 	}
+	public function setCodigo($d_codigo){
+		$this->d_codigo = $d_codigo;
+	}	
 	
 	///////
 	// Métodos de la clase
@@ -76,7 +83,8 @@ class DiscapacidadModel extends Model
 	public function consultar_discapacidad()
 	{
 
-		$sql = "SELECT td_nombre, 
+		$sql = "SELECT d_codigo,
+					   td_nombre, 
 					   g_nombre, 
 					   rg_nombre, 
 					   d_duracion FROM discapacidad d 
@@ -86,15 +94,39 @@ class DiscapacidadModel extends Model
 										   			  ON d.g_codigo = g.g_codigo 
 										   			  INNER JOIN regimen rg 
 										   			  ON d.rg_codigo = rg.rg_codigo 
-					   			  WHERE d.e_cedula = $this->e_cedula,
+					   			  WHERE d.e_cedula = $this->e_cedula and
 							  			d.d_status = 'a'";
  		$consulta = $this->select($sql);
  		$indice = 0;
  		while($row = $this->registros($consulta)){
- 			$resultado[$indice] = array('td_nombre' => $row["td_nombre"], 
+ 			  if($row["d_duracion"] == "0000-00-00" || $row["d_duracion"] == "1970-01-01" || $row["d_duracion"] == NULL){
+                $fecha = "-";
+              }else{
+                $fecha = date("d-m-Y", strtotime($row["d_duracion"]));
+              }
+ 			$resultado[$indice] = array('d_codigo' => $row["d_codigo"],
+ 										'td_nombre' => $row["td_nombre"], 
  										'g_nombre' => $row["g_nombre"],
  										'rg_nombre' => $row["rg_nombre"],
- 										'd_duracion' => $row["d_duracion"]);
+ 										'd_duracion' => $fecha);
+ 			$indice = $indice + 1;
+ 		}
+ 		return $resultado;
+ 		
+	}
+
+	public function consultar_todos()
+	{
+		
+		$sql = "SELECT * FROM requerimiento 
+						WHERE r_status = 'a'";
+ 		$consulta = $this->select($sql);
+ 		$indice = 0;
+ 		while($row = $this->registros($consulta)){
+ 			$resultado[$indice] = array('r_codigo' => $row["r_codigo"], 
+ 										'r_nombre' => $row["r_nombre"],
+ 										'r_descrp' => $row["r_descrp"],
+ 										'r_status' => $row["r_status"]);
  			$indice = $indice + 1;
  		}
  		return $resultado;
@@ -125,5 +157,21 @@ class DiscapacidadModel extends Model
 	  	}
 	  	
 	}
+
+	public function obtenerCodigo(){
+		return $this->getcodigonuevo("discapacidad","d_codigo");
+	}
+
+	public function eliminar(){
+
+		$sql= "UPDATE discapacidad set d_status='i'
+							where d_codigo='".$this->d_codigo."'";
+	  	if($this->ejecutar($sql)){
+	  		return true;
+	  		
+		}else{
+			return false;
+		}
+	}	
 
 }

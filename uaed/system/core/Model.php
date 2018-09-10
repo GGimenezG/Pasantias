@@ -39,13 +39,13 @@ class Model
   //--------------------------------------------------------
   protected function select($sql)
   {
-    $tb= mysqli_query($this->db,$sql);
+    $tb = mysqli_query($this->db,$sql);
     return $tb;
   }
   //--------------------------------------------------------
   protected function hay_registro($tb)
   {
-    $row= mysqli_fetch_array($tb);
+    $row = mysqli_fetch_array($tb);
     return $row;
   }
 

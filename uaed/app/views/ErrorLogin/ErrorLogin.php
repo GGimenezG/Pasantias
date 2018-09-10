@@ -34,7 +34,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<h3>oops!</h3>
 		<p><strong>¡Lo sentimos!</strong> Debe iniciar sesión primero.</p>
 		
-		<a href="<?php  ?>">Volver</a>
+		<a href="<?= FOLDER_PATH . '/home' ?>">Volver</a>
 	</div>
 </div>
 <div class="footer-w3l">

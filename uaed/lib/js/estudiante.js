@@ -26,6 +26,13 @@
  	}
  }
 
+ function reiniciar_disc(){
+ 	$('#td_codigo').val(-1);
+ 	$('#g_codigo').val(-1);
+ 	$('#rg_codigo').val(-1);
+ 	$('#d_duracion').val("");
+ }
+
  function validar_e_cedula(){
  	var ced = $('#e_cedula').val();
  	if (ced=="") {
@@ -42,25 +49,38 @@
 function b_estudiante() {
 	if(!validar_e_cedula()){
 		var datos = $('#e_cedula').serialize();
-		
+		console.log(datos);
 		$.ajax({
 			url: "/uaed/estudiante/consultar_estudiante",
 			type: "POST",
 			data: datos,
 			success: function(response) {
-				if (response.indexOf("error:") != 0){
+				console.log(response);
+				if (response.error != ""){
 					var estudiante = JSON.parse(response);
 					$('#e_nombre').val(estudiante.e_nombre);
 					$('#e_decanato').val(estudiante.e_decanato);
 					$('#e_carrera').val(estudiante.e_carrera);
 					$('#e_semestre').val(estudiante.e_semestre);
+					$('#certificado').addClass('form-static-label');
+					$('#c_codigo').val(estudiante.c_codigo);
+					$('#c_emision').val(estudiante.c_emision);
+					$('#c_vencimiento').val(estudiante.c_vencimiento);
+					$('#tablaD > tbody > tr').remove();
+					var disc = estudiante.discapacidad;
+					for (var i = 0; i < disc.length; i+=1){
+						agregarFila(disc[i]);
+					}
 					
 				}else {
-					alert('error');
+					var error = JSON.parse(response);
+			 		 Snarl.addNotification({
+				        title: 'Aviso:',
+				        text: 'Estudiante no encontrado: '+error.error,
+				        icon: '<i class="fa fa-comment  fa-lg"></i>'
+				        
+				    });
 				}
-			},
-			error: function(jqXHR, estado, error) {
-				mostrarMensajeError(error);
 			},
 			timeout: 10000
 		});
@@ -77,18 +97,23 @@ function Agregar_D() {
 			data: datos,
 			success: function(data) {
 				console.log(data);
-				if (data.indexOf("error:") != 0){
-					var fila = JSON.parse(data);
+				var respuesta = JSON.parse(data);
+				if (!respuesta.error){
+					var fila = respuesta;
 					agregarFila(fila);
+					reiniciar_disc();					
 					
 				}else {
-					alert('error');
+			 		 Snarl.addNotification({
+				        title: 'ERROR:',
+				        text: 'No se ha podido añadir una nueva discapacidad: '+respuesta.error,
+				        icon: '<i class="fa fa-exclamation-triangle fa-lg"></i>'
+				        
+				    });					
 				}
 				
-				},
-			error: function(jqXHR, estado, error) {
-				mostrarMensajeError(error);
 			},
+
 			timeout: 10000
 		});
 
@@ -97,25 +122,57 @@ function Agregar_D() {
 }
 
 function agregarFila(fila) {
-	var duracion;
-	if(fila.d_duracion!=null){
-		$('#tablaD > tbody').append('<tr><td><span id="t_tipo">'+fila.td_nombre+'</span></td>'+
+
+		$('#tablaD > tbody').append('<tr id="cod'+fila.d_codigo+'" name="cod'+fila.d_codigo+'"><td><span id="t_tipo">'+fila.td_nombre+'</span></td>'+
 							        '<td><span id="t_grado">'+fila.g_nombre+'</span></td>'+
 							        '<td><span id="t_regimen">'+fila.rg_nombre+'</span></td>'+
-							        '<td><span id="t_duracion">'+fila.d_duracion+'</span></td></tr>');
-	}else{
-		$('#tablaD > tbody').append('<tr><td><span id="t_tipo">'+fila.td_nombre+'</span></td>'+
-							        '<td><span id="t_grado">'+fila.g_nombre+'</span></td>'+
-							        '<td><span id="t_regimen">'+fila.rg_nombre+'</span></td></tr>');	
-	}
-
-	
-
-	// tablaD.row.add( [
- //        '<td><span id="t_tipo">'+fila.td_nombre+'</span></td>',
- //        '<td><span id="t_grado">'+fila.g_nombre+'</span></td>',
- //        '<td><span id="t_regimen">'+fila.rg_nombre+'</span></td>',
- //        '<td><span id="t_duracion">'+fila.d_duracion+'</span></td>'
- //    ] ).draw();
-	// $('[data-toggle="confirmation"]').confirmation('hide');
+							        '<td><span id="t_duracion">'+fila.d_duracion+'</span></td>'+
+							        '<td><button type="button" '+
+							        			 'class="btn btn-danger waves-effect"'+
+												 'onclick="ConfirmDelete('+fila.d_codigo+');">Eliminar'+
+                                                 '</button></td></tr>');
 }
+
+function ConfirmDelete(id){
+$.confirm({
+    title: 'Confirmación',
+    content: '¿Está seguro que desea eliminar este registro?',
+    buttons: {
+        confirm: function () {
+        	var datos = {codigo: id};
+        	console.log(datos);
+			$.ajax({
+				url: "/uaed/estudiante/eliminar_discapacidad",
+				type: "POST",
+				data: datos,
+				success: function(data) {
+					console.log(data);					
+					var cod = JSON.parse(data);
+
+					if (data.error != ""){
+						console.log("elimina", cod.success);
+						$('#tablaD > tbody > tr#cod'+cod.success).remove();
+						$('#cod'+cod.success).remove();
+						
+					}else {
+				 		 Snarl.addNotification({
+					        title: 'ERROR:',
+					        text: datos,
+					        icon: '<i class="fa fa-exclamation-triangle fa-lg"></i>'
+					        
+					    });					
+					}
+					
+				},
+
+				timeout: 10000
+			});            
+        },
+        cancel: function () {
+           
+        }
+    }
+});
+
+}
+

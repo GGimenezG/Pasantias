@@ -32,10 +32,6 @@ $tipo = $session['u_tipo'];
       <link rel="stylesheet" href="<?php echo PATH_ASSETS?>/pages/widget/amchart/css/export.css" type="text/css" media="all" />
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/css/style.css">
-      <link rel="stylesheet" type="text/css" href="/uaed/lib/confirm/jquery-confirm.min.css">
-         
-
-
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_DT?>/datatables.min.css"/>
   </head>
   <style media="screen">
@@ -346,21 +342,7 @@ $tipo = $session['u_tipo'];
     <script type="text/javascript" src="<?php echo PATH_DT?>/datatables.min.js"></script>
     <script type="text/javascript" src="<?php echo PATH_JS?>/sistema/regimen.js "></script>    
     <script type="text/javascript" src="<?php echo PATH_JS?>/sistema/Side.js "></script>
-    <script>
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-    
-    $(document).ready(function() {
-        $('[data-toggle="popover"]').popover({
-            html: true,
-            content: function() {
-                return $('#primary-popover-content').html();
-            }
-        });
-    });
 
-</script>
 </body>
 
 </html>

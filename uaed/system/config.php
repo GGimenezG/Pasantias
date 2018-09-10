@@ -38,6 +38,7 @@ define('PATH_DT', FOLDER_PATH . '/lib/DataTables');
 define('PATH_IMG', FOLDER_PATH . '/lib/img');
 /////////////////////////////////////
 define('PATH_ASSETS', FOLDER_PATH . '/lib/assets');
+define('PATH_CONFIRM', FOLDER_PATH . '/lib/confirm');
 /////////////////////////////////////
 define('PATH_FONT', FOLDER_PATH . '/lib/fonts');
 /////////////////////////////////////

@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or header('location: '.FOLDER_PATH.'/erroraccess');
 require_once ROOT . FOLDER_PATH . '/app/models/Estudiante/EstudianteModel.php';
+require_once ROOT . FOLDER_PATH . '/app/models/EstudianteDiscapacidad/EstudianteDiscapacidadModel.php';
 require_once ROOT . FOLDER_PATH . '/app/models/Tipodiscapacidad/TipodiscapacidadModel.php';
 require_once ROOT . FOLDER_PATH . '/app/models/Discapacidad/DiscapacidadModel.php';
 require_once ROOT . FOLDER_PATH . '/app/models/Requerimiento/RequerimientoModel.php';
@@ -14,6 +15,7 @@ require_once LIBS_ROUTE .'Session.php';
 class EstudianteController extends Controller
 {
   private $estudiante;
+  private $estudiante_discapacidad;
   private $discapacidad;
   private $tdiscapacidad;
   private $requerimiento;
@@ -34,6 +36,7 @@ class EstudianteController extends Controller
     } else {
       
     $this->estudiante = new EstudianteModel();
+    $this->estudiante_discapacidad = new EstudianteDiscapacidadModel();
     $this->discapacidad = new DiscapacidadModel();
     $this->tdiscapacidad = new TipodiscapacidadModel();
     $this->requerimiento = new RequerimientoModel();
@@ -43,6 +46,8 @@ class EstudianteController extends Controller
     $this->registros=$this->getParams();
     }
  }
+
+  //metodo para llenar los select al cargar la vista
   public function getParams(){
   
   $tdiscapacidad = $this->tdiscapacidad->consultar_todos();
@@ -75,23 +80,56 @@ class EstudianteController extends Controller
   //muestra los datos del estudiante al hacer click en el acordion de estudiante
   public function consultar_estudiante(){
     $estudiante = $this->estudiante;
-    if (isset($_POST['e_cedula'])) {
-      $estudiante->setCedula($_POST['e_cedula']);
+    $estudiante_discapacidad = $this->estudiante_discapacidad;
+    $certificado = $this->certificado;
+    $discapacidad = $this->discapacidad;
 
+    //comprobamos que la cedula se pase como parametro POST
+    if (isset($_POST['e_cedula'])) {
+      // hacemos los set de cedula correspondiente en los modelos estudiante y estudiante_discapacidad
+      $estudiante->setCedula($_POST['e_cedula']);
+      $estudiante_discapacidad->setCedula($_POST['e_cedula']);
+      
+      // comprobamos que el estudiante exista en la BD
       if ($estudiante->consultar_registro()) {
-          $response = array('e_nombre' => $estudiante->getNombre(),
-                            'e_decanato' => $estudiante->getDecanato(),
-                            'e_carrera' => $estudiante->getCarrera(),
-                            'e_semestre' => $estudiante->getSemestre());
-          $arrayName = array('hola' => 'hola' );
-          echo json_encode($response, JSON_UNESCAPED_UNICODE);        
+          // consultamos si el estudiante ya esta registrado con alguna discapacidad
+          if($estudiante_discapacidad->consultar_estudiante()){
+            $certificado->setCodigo($estudiante_discapacidad->getCodigo());
+            // Consultamos los datos del certificado
+            if($certificado->consultar_registro()){
+              if($certificado->getCodigo() == 0){
+                $c_vencimiento = "-";
+                $c_emision = "-";
+              }else{
+                $c_emision = date("d-m-Y", strtotime($certificado->getEmision()));
+                $c_vencimiento = date("d-m-Y", strtotime($certificado->getVencimiento()));
+              }
+            }            
+            $discapacidad->setCedula($estudiante_discapacidad->getCedula());
+            $disc =  $discapacidad->consultar_discapacidad();
+          }
+
+
+            $response = array('e_nombre' => $estudiante->getNombre(),
+                              'e_decanato' => $estudiante->getDecanato(),
+                              'e_carrera' => $estudiante->getCarrera(),
+                              'e_semestre' => $estudiante->getSemestre(),
+                              'c_codigo' => $certificado->getCodigo(),
+                              'c_emision' => $c_emision,
+                              'c_vencimiento' => $c_vencimiento,
+                              'discapacidad' => $disc);
+            echo json_encode($response, JSON_UNESCAPED_UNICODE);              
+      
       }else{
-          $response = array('error' => 'Error al recibir datos');
-          echo json_encode($response);        
+          $response = array('error' => 'La cédula no corresponde a un estudiante.');
+          echo json_encode($response, JSON_UNESCAPED_UNICODE);        
       }
     }
   }
 
+  public function consultar_certificado(){
+    
+  }
 
 
   public function registrar_discapacidad(){
@@ -101,7 +139,7 @@ class EstudianteController extends Controller
     $regimen = $this->regimen;
     $grado = $this->grado;  
 
-    if(isset($_POST['td_codigo']) && isset($_POST['g_codigo']) && isset($_POST['rg_codigo']) && isset($_POST['e_cedula'])){
+    if((isset($_POST['td_codigo']) || $_POST['td_codigo'] != "") && (isset($_POST['g_codigo']) || $_POST['g_codigo'] != "") && (isset($_POST['rg_codigo']) || $_POST['rg_codigo'] != "") && (isset($_POST['e_cedula']) || $_POST['e_cedula'] != "")){
       //hacemos el registro del nuevo tipo de discapacidad asociado a un estudiante
       $discapacidad->setCedula($_POST['e_cedula']);
       $discapacidad->setRegimen($_POST['rg_codigo']);
@@ -129,7 +167,9 @@ class EstudianteController extends Controller
           }else{
             $duracion = date("d-m-Y", strtotime($discapacidad->getDuracion()));
           }
-          $response = array('td_nombre' => $tdiscapacidad->getNombre(),
+
+          $response = array('d_codigo' => $discapacidad->obtenerCodigo(),
+                            'td_nombre' => $tdiscapacidad->getNombre(),
                             'g_nombre' => $grado->getNombre(),
                             'rg_nombre' => $regimen->getNombre(),
                             'd_duracion' => $duracion);
@@ -145,6 +185,9 @@ class EstudianteController extends Controller
           echo json_encode($response);
       }
 
+    }else{
+          $response = array('error' => 'peticion incorrecta');
+          echo json_encode($response);      
     }
   }
 
@@ -167,17 +210,17 @@ class EstudianteController extends Controller
       }
   }  
   
-  public function borrar(){
-
-     if(isset($_POST["codigo"])){
-      $this->model->setCodigo($_POST['codigo']);
-      if($this->model->eliminar()){
-        $response = array('codigo' => $this->model->getCodigo());
+  public function eliminar_discapacidad(){
+    $discapacidad = $this->discapacidad;
+    if(isset($_POST["codigo"])){
+      $discapacidad->setCodigo($_POST['codigo']);
+      if($discapacidad->eliminar()){
+        $response = array('success' => $discapacidad->getCodigo());
         echo json_encode($response);
       }
       else{
 
-        $response = array('error' => 'Error al incluir');
+        $response = array('error' => 'No se ha podido eliminar el registro');
         echo json_encode($response);
       }
      }  

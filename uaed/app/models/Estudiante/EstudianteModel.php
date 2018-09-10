@@ -92,6 +92,7 @@ class EstudianteModel extends Model
  		}
 	}
 
+
 	public function incluir($c_codigo)
 	{	
 

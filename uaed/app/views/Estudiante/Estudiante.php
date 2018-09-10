@@ -37,6 +37,7 @@ extract($params);
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/css/style.css">
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_DT?>/datatables.min.css"/>
+      <link rel="stylesheet" type="text/css" href="<?php echo PATH_CONFIRM?>/jquery-confirm.css">
   </head>
 
   <body>
@@ -172,20 +173,20 @@ extract($params);
                     </button>
                   </div>
                 </div>    
-                <div class="form-group row">
+                <div class="form-group row form-static-label">
                   <div class="col-9">
                     <input class="form-control" name="e_nombre" id="e_nombre" readonly="" type="text">
                     <span class="form-bar"></span>
                     <label class="float-label">Nombre</label>
                   </div>
                   
-                  <div class="col-3">
+                  <div class="col-3" >
                     <input class="form-control" name="e_semestre" id="e_semestre" readonly="" type="text">
                     <span class="form-bar"></span>
                     <label class="float-label">Semestres</label>
                   </div>
                 </div>   
-                <div class="form-group row">
+                <div class="form-group row form-static-label">
                   <div class="col-7">
                     <input class="form-control" name="e_carrera" id="e_carrera" readonly="" type="text">
                     <span class="form-bar"></span>
@@ -203,25 +204,28 @@ extract($params);
               <!-- DATOS DE LA DISCAPACIDAD --> 
               <a class="accordion-msg bg-darkest-primary b-none waves-effect waves-light"> <i class="ti-arrow-circle-down"></i> Certificado de Discapacidad</a>
               <div class="accordion-desc">
-                <div class="form-group row" id="certificado">
+                <div class="form-group row" id="certificado" name="certificado">
                   <div class="col-4">
                       <input class="form-control" name="c_codigo" id="c_codigo" readonly="" type="text">
                     <span class="form-bar"></span>
                     <label class="float-label">Código</label>
                   </div>
                  <div class="input-group date col-4">
-                      <input type='text' class="form-control" id="c_emision" name="c_emision" />
+                      <input type='text' class="form-control" id="c_emision" name="c_emision" placeholder="Emisión" />
                       <span class="input-group-addon">
                           <span class="fa fa-calendar"></span>
                       </span>
                   </div>   
                   <div class="input-group date col-4">
-                      <input type='text' class="form-control" id="c_vencimiento" name="c_vencimiento" />
+                      <input type='text' class="form-control" id="c_vencimiento" name="c_vencimiento" placeholder="Vencimiento" />
                       <span class="input-group-addon">
                           <span class="fa fa-calendar"></span>
                       </span>
                   </div>                  
                 </div> 
+                  <div class="text-center">
+                    <button class="btn waves-effect waves-light btn-danger btn-round"><i class="ti-save"></i>Guardar</button>
+                  </div>
               </div>              
               <a class="accordion-msg bg-darkest-primary b-none waves-effect waves-light"> <i class="ti-arrow-circle-down"></i> Discapacidad</a>
               <div class="accordion-desc">
@@ -288,20 +292,7 @@ extract($params);
                         </thead>
 
                         <tbody>
-                          <tr>
-                              <td>
-                                <span class="f-12" id="t_tipo"></span>
-                              </td>
-                              <td>
-                                <span class="f-12" id="t_grado"></span>
-                              </td>
-                              <td>
-                                <span class="f-12" id="t_regimen"></span>
-                              </td>
-                              <td>
-                                <span class="f-12" id="t_duracion"></span>
-                              </td>
-                          </tr>
+
                         </tbody>
                       </table>
                     </div>
@@ -348,12 +339,7 @@ extract($params);
   </div> <!-- Fin col lg -->
 </div> <!-- Fin row -->
                               </div>
-                                <div class="text-center">
 
-                                <button class="btn waves-effect waves-light btn-round btn-danger center-block"><i class="ti-close"></i>Cancelar</button>
-                                <button class="btn waves-effect waves-light btn-danger btn-round"><i class="ti-save"></i>Guardar</button>
-
-                                </div>
                                     <!-- Page-body end -->
                             </div>
                                 <div id="styleSelector"> </div>
@@ -390,6 +376,9 @@ extract($params);
 
     <!-- notificaciones -->
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/snarl.js"></script>
+
+    <script type="text/javascript" src="<?php echo PATH_CONFIRM?>/jquery-confirm.js"></script>
+
     
 </body>
 

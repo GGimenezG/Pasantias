@@ -254,7 +254,7 @@ $tipo = $session['u_tipo'];
                                                           </tr>
                                                         </thead>
                                                         <tbody>
-                                                            <?php foreach ($params as $r) { ?>      
+                                                            <?php if (empty($params)) { foreach ($params as $r) { ?>      
 
                                                           <tr>
                                                             <td>
@@ -287,7 +287,7 @@ $tipo = $session['u_tipo'];
                                                               </a>
                                                             </td>
                                                           </tr>
-                                                          <?php } ?>
+                                                          <?php } } ?>
                                                         </tbody>
                                                       </table>
                                                 </div>

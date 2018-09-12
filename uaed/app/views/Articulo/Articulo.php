@@ -32,7 +32,7 @@ $tipo = $session['u_tipo'];
       <link rel="stylesheet" href="<?php echo PATH_ASSETS?>/pages/widget/amchart/css/export.css" type="text/css" media="all" />
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_ASSETS?>/css/style.css">
-      <link rel="stylesheet" type="text/css" href="/uaed2/lib/confirm/jquery-confirm.min.css">
+      <link rel="stylesheet" type="text/css" href="/uaed/lib/confirm/jquery-confirm.min.css">
       
  
       <link rel="stylesheet" type="text/css" href="<?php echo PATH_DT?>/datatables.min.css"/>
@@ -162,33 +162,24 @@ $tipo = $session['u_tipo'];
                                             <!-- primer campo a la izquierda -->
                                             <div id='acodigo' name="acodigo" class="form-group has-info">
                                               <label class="float-label" for="codigo"><span class="fa fa-briefcase fa-lg"></span> Código: </label>
-                                              <input type="text" name="codigo" class="form-control" required="" id="codigo"/>
+                                              <input class="form-control" data-toggle="tooltip" title="Ingresa un código" type="text" name="codigo" id="codigo"/>
                                               <!--help-block es para que salga el texto debajo del input al hacer clic-->
                                             </div>       
                                             <div class="form-group has-info label-floating">
                                               <label class="float-label" for="nombre"><span class="fa fa-briefcase fa-lg"></span> Nombre: </label>
-                                              <input type="text" name="nombre" class="form-control" required="" id="nombre"/>
+                                              <input class="form-control" data-toggle="tooltip" title="Ingresa un nombre" type="text" name="nombre" id="nombre"/>
                                               <!--help-block es para que salga el texto debajo del input al hacer clic-->
                                             </div>
                                           </div><!--fin de columna izquierda -->
                                           <div class="col-md-6"> <!-- columna derecha -->
                                             <div class="form-group has-info">
                                               <label class="float-label" for="descrp"><span class="fa fa-edit fa-lg"></span> Descripción: </label>
-                                              <textarea class="form-control" name="descrp" rows="4" cols="6" id="descrp" required=""></textarea>
+                                              <textarea class="form-control" data-toggle="tooltip" data-placement="bottom" title="Ingresa una descripción" name="descrp" rows="4" cols="6" id="descrp"></textarea>
                                             </div>
                                             <div class="form-group has-info">
                                               <label class="float-label" for="cantidad"><span class="fa fa-archive fa-lg"></span> Cantidad: </label>
-                                              <input type="text" name="cantidad" class="form-control col-md-4" required="" id="cant"/>
-                                            </div>
-                                            <div class="form-group has-info">
-                                              <label class="float-label" for="tdisc"><span class="fa fa-check-square fa-lg"></span> Tipo de Discapacidad: </label>
-                                              <select id="tdisc" name="tdisc" class="form-control-round custom-select d-block w-100">
-                                                <option value="0">Seleccione</option>
-                                                <option value="1">Motora</option>
-                                                <option value="2">Visual</option>
-                                                <option value="3">Auditiva</option>
-                                              </select> 
-                                            </div>                                             
+                                              <input class="form-control col-md-4" data-toggle="tooltip" title="Ingresa una descripción" type="text" name="cantidad" id="cant"/>
+                                            </div>                                            
                                           </div><!-- fin columna derecha -->
                                         </div>
                                       </div><!--fin del panel-->
@@ -246,14 +237,13 @@ $tipo = $session['u_tipo'];
                                       <th>Nombre</th>
                                       <th>Descripción</th>
                                       <th>Cantidad</th>
-                                      <th>Tipo</th>
                                       <th>Consultar</th>
                                       <th>Modificar</th>
                                       <th>Eliminar</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                  <?php foreach ($params as $a) { ?>      
+                                  <?php if (isset($params)) { foreach ($params as $a) { ?>      
 
                                     <tr>
                                       <td>
@@ -267,9 +257,6 @@ $tipo = $session['u_tipo'];
                                       </td>
                                       <td>
                                         <span class="f-12" id="cantidad<?php echo $a['a_cantidad']; ?>"><?php echo $a['a_cantidad']; ?> </span>
-                                      </td>
-                                      <td>
-                                        <span class="f-12" id="tipoart<?php echo $a['a_tipoart']; ?>"><?php echo $a['a_tipoart']; ?> </span>
                                       </td>
                                       <td>
                                         <a class="btn btn-success btn-raised btn-sm" data-toggle="modal"
@@ -290,7 +277,7 @@ $tipo = $session['u_tipo'];
                                         </a>
                                       </td>
                                     </tr>
-                                  <?php } ?>
+                                  <?php } } ?>
                                 </tbody>
                               </table>
                             </div>
@@ -315,6 +302,7 @@ $tipo = $session['u_tipo'];
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/jquery/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/jquery-ui/jquery-ui.min.js "></script>
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/popper.js/popper.min.js"></script>
+    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/bootstrap.bundle.js"></script>
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/bootstrap/js/bootstrap.min.js "></script>
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/pages/widget/excanvas.js "></script>
     <!-- waves js -->
@@ -339,26 +327,16 @@ $tipo = $session['u_tipo'];
     <script src="<?php echo PATH_ASSETS?>/js/pcoded.min.js"></script>
     <script src="<?php echo PATH_ASSETS?>/js/vertical-layout.min.js "></script>
     <!-- custom js -->
-    <script type="text/javascript" src="<?php echo PATH_ASSETS?>/pages/dashboard/custom-dashboard.js"></script>
+    <!--<script type="text/javascript" src="<?php echo PATH_ASSETS?>/pages/dashboard/custom-dashboard.js"></script>-->
     <script type="text/javascript" src="<?php echo PATH_ASSETS?>/js/script.js "></script>
 
     <script type="text/javascript" src="<?php echo PATH_DT?>/datatables.min.js"></script>
     <script type="text/javascript" src="<?php echo PATH_JS?>/sistema/articulo.js "></script>    
     <script type="text/javascript" src="<?php echo PATH_JS?>/sistema/Side.js "></script>
     <script>
-    $(document).ready(function() {
-        $('[data-toggle="tooltip"]').tooltip();
-    });
-    
-    $(document).ready(function() {
-        $('[data-toggle="popover"]').popover({
-            html: true,
-            content: function() {
-                return $('#primary-popover-content').html();
-            }
-        });
-    });
-
-</script>
+      $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();   
+      });
+    </script>
   </body>
 </html>

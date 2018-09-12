@@ -115,22 +115,23 @@ class DiscapacidadModel extends Model
  		
 	}
 
-	public function consultar_todos()
+	public function consultar_registro()
 	{
 		
-		$sql = "SELECT * FROM requerimiento 
-						WHERE r_status = 'a'";
+		$sql = "SELECT COUNT(e_cedula) FROM discapacidad
+						 WHERE e_cedula = $this->e_cedula and 
+							   d_status = 'a'";
  		$consulta = $this->select($sql);
- 		$indice = 0;
- 		while($row = $this->registros($consulta)){
- 			$resultado[$indice] = array('r_codigo' => $row["r_codigo"], 
- 										'r_nombre' => $row["r_nombre"],
- 										'r_descrp' => $row["r_descrp"],
- 										'r_status' => $row["r_status"]);
- 			$indice = $indice + 1;
+ 
+ 		if($row = $this->hay_registro($consulta))
+ 		{
+
+ 			return true;	
  		}
- 		return $resultado;
- 		
+ 		else
+ 		{
+			return false;
+ 		}
 	}
 
 

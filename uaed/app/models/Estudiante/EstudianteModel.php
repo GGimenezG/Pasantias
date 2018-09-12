@@ -7,6 +7,8 @@ class EstudianteModel extends Model
 {
 	var $e_cedula = "";
 	var $e_nombre = "";
+	var $e_apellido = "";
+	var $e_lapso = "";
 	var $e_decanato = "";
 	var $e_carrera = "";
 	var $e_semestre = "";
@@ -25,6 +27,12 @@ class EstudianteModel extends Model
 	}
 	public function getNombre(){
 		return $this->e_nombre;
+	}
+	public function getApellido(){
+		return $this->e_apellido;
+	}
+	public function getLapso(){
+		return $this->e_lapso;
 	}
 	public function getDecanato(){
 		return $this->e_decanato;
@@ -47,6 +55,12 @@ class EstudianteModel extends Model
 	}
 	public function setNombre($e_nombre){
 		$this->e_nombre = $e_nombre;
+	}
+	public function setApellido($e_apellido){
+		$this->e_apellido = $e_apellido;
+	}
+	public function setLapso($e_lapso){
+		$this->e_lapso = $e_lapso;
 	}
 	public function setDecanato($e_decanato){
 		$this->e_decanato = $e_decanato;
@@ -79,6 +93,8 @@ class EstudianteModel extends Model
  		if($row = $this->hay_registro($consulta))
  		{
  			 $this->setNombre($row['e_nombre']);
+ 			 $this->setApellido($row['e_apellido']);
+ 			 $this->setLapso($row['e_lapso']);
 			 $this->setDecanato($row['e_decanato']);
 			 $this->setCarrera($row['e_carrera']);
 			 $this->setSemestre($row['e_semestre']);

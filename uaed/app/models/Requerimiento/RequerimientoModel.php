@@ -71,23 +71,7 @@ class RequerimientoModel extends Model
  		
 	}
 
-	public function consultar_requerimiento_estudiante()
-	{
 
-		$sql = "SELECT r_nombre FROM estudiante_requerimiento er 
-													   			  INNER JOIN requerimiento r 
-													   			  ON er.r_codigo = r.r_codigo 
-					   			WHERE er.e_cedula = $this->e_cedula,
-							  	      d.d_status = 'a'";
- 		$consulta = $this->select($sql);
- 		$indice = 0;
- 		while($row = $this->registros($consulta)){
- 			$resultado[$indice] = array('r_nombre' => $row["r_nombre"]);
- 			$indice = $indice + 1;
- 		}
- 		return $resultado;
- 		
-	}
 
 	public function consultar_registro()
 	{

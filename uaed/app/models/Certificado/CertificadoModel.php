@@ -89,33 +89,27 @@ class CertificadoModel extends Model
 	  								c_emision,
 	  								c_vencimiento, 
 	  								c_status) 
-	  				values ($this->c_codigo,
-	  						$this->c_emision,
-	  						$this->c_vencimiento,
-	  						'A');
-	  						";
+	  				values ('$this->c_codigo',
+	  						'$this->c_emision',
+	  						'$this->c_vencimiento',
+	  						'a')";
 	  	$incluir=$this->ejecutar($sql);
 	  	return $incluir;
 	}
 
 
-	public function modificar($c_codigo,$c_emision,$c_vencimiento)
+	public function modificar()
 	{
-		$this->consultar_registro($c_codigo);
-		if ($c_emision==$this->getEmision() and $c_vencimiento==$this->getVencimiento())
-		{
-			return false;
-		}
-		else
-		{
-			$sql= "UPDATE certificado set c_emision='$c_emision',
-									  c_vencimiento='$c_vencimiento' 
-								where c_codigo='$c_codigo'";
-	  		$modificar=$this->ejecutar($sql);
-	  		return $modificar;
-		}
-
+		$sql= "UPDATE certificado set c_emision='$this->c_emision',
+									  c_vencimiento='$this->c_vencimiento' 
+								where c_codigo='$this->c_codigo'";
+	  	if($this->ejecutar($sql)){
+	  		return true;
+	  	}else{
+	  		return false;
+	  	}
 	}
+
 
 	public function eliminar($c_codigo)
 	{

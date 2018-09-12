@@ -69,9 +69,9 @@ class EstudianteDiscapacidadModel extends Model
 	public function consultar_certificado()
 	{
 
-		$sql = "SELECT * FROM estudiante_discapacidad 
-						 WHERE c_codigo = $this->c_codigo and 
-							   ed_status = 'a'";
+		$sql = "SELECT * FROM `estudiante_discapacidad` 
+						 WHERE `c_codigo` = $this->c_codigo and 
+							   `ed_status` = 'a'";
  		$consulta = $this->select($sql);
  
  		if($row = $this->hay_registro($consulta))
@@ -104,6 +104,16 @@ class EstudianteDiscapacidadModel extends Model
 	  		return false;
 	  	}
 	  	
+	}
+	public function modificar()
+	{
+		$sql= "UPDATE estudiante_discapacidad SET c_codigo = '$this->c_codigo'
+											WHERE e_cedula = '$this->e_cedula'";
+		 if($this->ejecutar($sql)){
+  			return true;
+  		}else{
+  			return false;
+  		}		  						
 	}
 
 }

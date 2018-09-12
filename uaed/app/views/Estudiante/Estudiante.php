@@ -154,185 +154,242 @@ extract($params);
         <div class="card-header">
           <h4 class="card-header-text">DATOS</h4>
         </div>
-        <form class="form-material" id="estudiante" name="estudiante" method="POST">
+        <form class="form-material" id="estudiante" name="estudiante" action="<?= FOLDER_PATH . '/EstudiantePDF/' ?>" target="_blank" method="POST">
         <div class="card-block accordion-block color-accordion-block">
           <div class="color-accordion" id="color-accordion">
+          
           <!-- DATOS PERSONALES -->
-            <a class="accordion-msg b-none waves-effect waves-light"> <i class="ti-arrow-circle-down"></i>Estudiante
-            </a>
-              <div class="accordion-desc">     
-                <div class="form-group row form-default">
-                  <div class="col-4">
+            <a class="accordion-msg b-none waves-effect waves-light"> <i class="ti-arrow-circle-down"></i> Datos del Estudiante</a>
+              <div class="accordion-desc">
+                <h3 class="sub-title">Datos Personales</h3>
+                <div class="form-group row">        
+                  <div class="col-sm-4">
                     <input class="form-control" name="e_cedula" id="e_cedula" required="" type="text">
                     <span class="form-bar"></span>
-                    <label class="float-label">Cédula</label>
+                    <label class="float-label col-sm-8">Cédula</label>
                   </div>
-                  <div class="col-1">
                     <button type="button" class=" btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" onclick="b_estudiante();">
                       <i class="fa fa-search"></i>
-                    </button>
-                  </div>
-                </div>    
+                    </button> 
+                </div>
+
                 <div class="form-group row form-static-label">
-                  <div class="col-9">
+                  <div class="col-8">
                     <input class="form-control" name="e_nombre" id="e_nombre" readonly="" type="text">
                     <span class="form-bar"></span>
-                    <label class="float-label">Nombre</label>
+                    <label class="float-label col-sm-10">Nombres</label>
                   </div>
-                  
-                  <div class="col-3" >
-                    <input class="form-control" name="e_semestre" id="e_semestre" readonly="" type="text">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Semestres</label>
-                  </div>
-                </div>   
+                </div>
+
                 <div class="form-group row form-static-label">
-                  <div class="col-7">
-                    <input class="form-control" name="e_carrera" id="e_carrera" readonly="" type="text">
+                  <div class="col-8">
+                    <input class="form-control" name="e_apellido" id="e_apellido" readonly="" type="text">
                     <span class="form-bar"></span>
-                    <label class="float-label">Carrera</label>
+                    <label class="float-label col-sm-10">Apellidos</label>
                   </div>
-                  
-                  <div class="col-5">
-                    <input class="form-control" name="e_decanato" id="e_decanato" readonly="" type="text">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Decanato</label>
+                </div>
+              
+               <!-- DATOS ACADÉMICOS -->
+              <h3 class="sub-title">Datos Académicos</h3>
+
+                  <div class="form-group row form-static-label"> 
+                    <div class="col-5">
+                      <input class="form-control" name="e_decanato" id="e_decanato" readonly="" type="text">
+                      <span class="form-bar"></span>
+                      <label class="float-label col-sm-6">Decanato</label>
+                    </div>
+                    <div class="col-5">
+                      <input class="form-control" name="e_lapso" id="e_lapso" readonly="" type="text">
+                      <span class="form-bar"></span>
+                      <label class="float-label col-sm-6">Lapso</label>
+                    </div>
                   </div>
-                </div>    
-              </div>
-                            
+
+                  <div class="form-group row form-static-label">
+                    <div class="col-5">
+                      <input class="form-control" name="e_carrera" id="e_carrera" readonly="" type="text">
+                      <span class="form-bar"></span>
+                      <label class="float-label col-sm-6">Carrera</label>
+                    </div>
+                    <div class="col-5" >
+                      <input class="form-control" name="e_semestre" id="e_semestre" readonly="" type="text">
+                      <span class="form-bar"></span>
+                      <label class="float-label col-sm-6">Semestre</label>
+                    </div>
+                  </div>              
+                </div>
+
+
               <!-- DATOS DE LA DISCAPACIDAD --> 
-              <a class="accordion-msg bg-darkest-primary b-none waves-effect waves-light"> <i class="ti-arrow-circle-down"></i> Certificado de Discapacidad</a>
-              <div class="accordion-desc">
-                <div class="form-group row" id="certificado" name="certificado">
-                  <div class="col-4">
-                      <input class="form-control" name="c_codigo" id="c_codigo" readonly="" type="text">
-                    <span class="form-bar"></span>
-                    <label class="float-label">Código</label>
+              
+                <a class="accordion-msg bg-darkest-primary b-none waves-effect waves-light"> <i class="ti-arrow-circle-down"></i> Certificado</a>
+                <div class="accordion-desc">
+                    
+                  <div class="form-group row">
+                    <div class="col-sm-4">
+                        <input class="form-control" name="c_codigo" id="c_codigo" type="text" required="">
+                        <span class="form-bar"></span>
+                        <label class="float-label col-sm-6">Código</label>
+                    </div>
+                    <button type="button" class=" btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" onclick="b_certificado();">
+                      <i class="fa fa-search"></i>
+                    </button>    
                   </div>
-                 <div class="input-group date col-4">
+
+                  <div class="form-group row">
+                   <div class="input-group date col-5">
                       <input type='text' class="form-control" id="c_emision" name="c_emision" placeholder="Emisión" />
                       <span class="input-group-addon">
                           <span class="fa fa-calendar"></span>
                       </span>
-                  </div>   
-                  <div class="input-group date col-4">
-                      <input type='text' class="form-control" id="c_vencimiento" name="c_vencimiento" placeholder="Vencimiento" />
-                      <span class="input-group-addon">
-                          <span class="fa fa-calendar"></span>
-                      </span>
-                  </div>                  
-                </div> 
+                    </div>   
+                    <div class="input-group date col-5">
+                        <input type='text' class="form-control" id="c_vencimiento" name="c_vencimiento" placeholder="Vencimiento" />
+                        <span class="input-group-addon">
+                            <span class="fa fa-calendar"></span>
+                        </span>
+                    </div>                  
+                  </div>
+                  
                   <div class="text-center">
-                    <button class="btn waves-effect waves-light btn-danger btn-round"><i class="ti-save"></i>Guardar</button>
+                    <a onclick="Certificado();" type="button" class="btn btn-danger btn-round waves-effect waves-ligth">
+                        <i class="ti-save"></i>Guardar
+                    </a>
+                    
                   </div>
-              </div>              
-              <a class="accordion-msg bg-darkest-primary b-none waves-effect waves-light"> <i class="ti-arrow-circle-down"></i> Discapacidad</a>
-              <div class="accordion-desc">
-                <div class="form-group row">
-                  <div class="col-3">
-                    <label class="col-form-label">Tipo</label>
+                </div>              
+                
+                <a class="accordion-msg bg-darkest-primary b-none waves-effect waves-light"> <i class="ti-arrow-circle-down"></i> Discapacidades</a>
+                <div class="accordion-desc">
+                  <div class="form-group row">
+                      <div class="col-2">
+                        <label class="col-form-label">Tipo</label>
+                      </div>
+                      <div class="col-2">
+                        <label class="col-form-label">Grado</label>
+                      </div>
+                      <div class="col-2">
+                        <label class="col-form-label">Régimen</label>
+                      </div>
+                      <div class="col-2">
+                        <label class="col-form-label">Duración</label>
+                      </div>
                   </div>
-                  <div class="col-3">
-                    <label class="col-form-label">Grado</label>
-                  </div>
-                  <div class="col-3">
-                    <label class="col-form-label">Régimen</label>
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-3 col-push-0">
-                    <select id="td_codigo" name="td_codigo" class="form-control-round custom-select d-block w-100">
-                      <option value="-1">Seleccione</option>
-                      <?php if(isset($discapacidad)){ foreach ($discapacidad as $d ) { ?>
-                      <option value="<?php echo $d['td_codigo']; ?>"><?php echo $d['td_nombre']; ?></option>
-                      <?php }} ?>  
-                    </select>
-                  </div>
-                  <div class="col-2 col-push-3">
-                    <select id="g_codigo" name="g_codigo" class="form-control-round custom-select d-block w-100">
-                      <option value="-1">Seleccione</option>
-                      <?php if(isset($grado)){ foreach ($grado as $g ) { ?>
-                      <option value="<?php echo $g['g_codigo']; ?>"><?php echo $g['g_nombre']; ?></option>
-                      <?php }} ?>  
-                    </select>
-                  </div>
-                  <div class="col-3 col-push-5">
-                    <select id="rg_codigo" name="rg_codigo" class="form-control-round custom-select d-block w-100">
-                      <option value="-1">Seleccione</option>
-                      <?php if(isset($regimen)){ foreach ($regimen as $rg ) { ?>
-                      <option value="<?php echo $rg['rg_codigo']; ?>"><?php echo $rg['rg_nombre']; ?></option>
-                      <?php }} ?>    
-                    </select>
-                  </div>
-                  <div class="input-group date col-2 col-push-8">
-                      <input type='text' class="form-control" name="d_duracion" id="d_duracion" />
-                      <span class="input-group-addon">
-                          <span class="fa fa-calendar"></span>
-                      </span>
-                  </div>  
-                  <div class="col-1 col-push-10">
-                    <button type="button" class=" btn btn-warning btn-icon waves-effect waves-light" onclick="Agregar_D();">
-                      <i class="fa fa-plus"></i>
-                    </button>
-                  </div>                
-                </div>
-                <!-- Table -->
-                <div class="card">
-                  <div class="card-block table-border-style">
-                    <div class="table-responsive">
-                      <table name="tablaD" id="tablaD" class="table">
-                        <thead>
-                          <tr>
-                              <th>Tipo</th>
-                              <th>Grado</th>
-                              <th>Regimen</th>
-                              <th>Hasta</th>
-                          </tr>
-                        </thead>
 
-                        <tbody>
+                  <div class="form-group row">
+                    <div class="col-2">
+                      <select id="td_codigo" name="td_codigo" class="form-control-round custom-select d-block w-100">
+                        <option value="-1">Seleccione</option>
+                        <?php if(isset($discapacidad)){ foreach ($discapacidad as $d ) { ?>
+                        <option value="<?php echo $d['td_codigo']; ?>"><?php echo $d['td_nombre']; ?></option>
+                        <?php }} ?>  
+                      </select>
+                    </div>
+                    <div class="col-2">
+                      <select id="g_codigo" name="g_codigo" class="form-control-round custom-select d-block w-100">
+                        <option value="-1">Seleccione</option>
+                        <?php if(isset($grado)){ foreach ($grado as $g ) { ?>
+                        <option value="<?php echo $g['g_codigo']; ?>"><?php echo $g['g_nombre']; ?></option>
+                        <?php }} ?>  
+                      </select>
+                    </div>
+                    <div class="col-2">
+                      <select id="rg_codigo" name="rg_codigo" class="form-control-round custom-select d-block w-100">
+                        <option value="-1">Seleccione</option>
+                        <?php if(isset($regimen)){ foreach ($regimen as $rg ) { ?>
+                        <option value="<?php echo $rg['rg_codigo']; ?>"><?php echo $rg['rg_nombre']; ?></option>
+                        <?php }} ?>    
+                      </select>
+                    </div>
+                    <div class="input-group date col-3">
+                        <input type='text' class="form-control-round" name="d_duracion" id="d_duracion" />
+                        <span class="input-group-addon">
+                            <span class="fa fa-calendar"></span>
+                        </span>
+                    </div>
+                     <button id="agregarD" name="agregarD" type="button" class=" btn btn-warning btn-icon waves-effect waves-light" onclick="Agregar_D();">
+                        <i class="fa fa-plus"></i>
+                      </button>  
+                                 
+                  </div>
 
-                        </tbody>
-                      </table>
+                  <!-- Table Discapacidad-->
+                  <div class="card">
+                    <div class="card-block table-border-style">
+                      <div class="table-responsive">
+                        <table name="tablaD" id="tablaD" class="table">
+                          <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Grado</th>
+                                <th>Regimen</th>
+                                <th>Hasta</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div> 
+                  <!-- Fin Table -->
+                </div>
+
+                <!-- DATOS DE REQUERIMIENTOS --> 
+                <a class="accordion-msg bg-darkest-primary b-none waves-effect waves-light"> <i class="ti-arrow-circle-down"></i> Requerimientos de Aula</a>
+                <div class="accordion-desc">
+                  <div class="form-group row">
+                    <div class="col-3">
+                      <label class="col-form-label">Requerimiento</label>
                     </div>
                   </div>
-                </div> 
-                <!-- Fin Table -->
-              </div>
-              <!-- DATOS DE REQUERIMIENTOS --> 
-              <a class="accordion-msg bg-darkest-primary b-none waves-effect waves-light"> <i class="ti-arrow-circle-down"></i> Requerimientos de Aula</a>
-              <div class="accordion-desc">
-                <div class="form-group row">
-                  <div class="col-3">
-                    <label class="col-form-label">Requerimiento</label>
+                  <div class="form-group row">
+                    <div class="col-3">
+                      <select id="r_codigo" name="r_codigo" class="form-control-round custom-select d-block w-100">
+                        <option value="-1">Seleccione</option>
+                        <?php if(isset($requerimiento)){ foreach ($requerimiento as $r ) { ?>
+                        <option value="<?php echo $r['r_codigo']; ?>"><?php echo $r['r_nombre']; ?></option>
+                        <?php }} ?>    
+                      </select>
+                    </div>
+                    <div class="col-3">
+                      <button id="agregarR" name="agregarR" type="button" class="btn btn-warning btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top" onclick="Agregar_R();">
+                        <i class="fa fa-plus"></i>
+                      </button>
+                    </div>                
                   </div>
-                </div>
-                <div class="form-group row">
-                  <div class="col-3">
-                    <select id="r_codigo" name="r_codigo" class="form-control-round custom-select d-block w-100">
-                      <option value="-1">Seleccione</option>
-                      <?php if(isset($requerimiento)){ foreach ($requerimiento as $r ) { ?>
-                      <option value="<?php echo $r['r_codigo']; ?>"><?php echo $r['r_nombre']; ?></option>
-                      <?php }} ?>    
-                    </select>
-                  </div>
-                  <div class="col-3">
-                    <button type="button" class="btn btn-danger btn-icon waves-effect waves-light" data-toggle="tooltip" data-placement="top">
-                      <i class="ti-plus"></i>
-                    </button>
-                  </div>                
-                </div>
-                <div class="form-group row">
-                  <label class="col-sm-2 col-form-label">Requerimientos</label>
-                  <div class="col-sm-5">
-                    <textarea rows="8" cols="5" class="form-control"></textarea>
-                  </div>
-                </div>
-              </div>
+                  <!-- Table -->
+                  <div class="card">
+                    <div class="card-block table-border-style">
+                      <div class="table-responsive">
+                        <table name="tablaR" id="tablaR" class="table">
+                          <thead>
+                            <tr>
+                                <th>Requerimiento</th>
+                            </tr>
+                          </thead>
 
+                          <tbody>
+
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div> 
+                  <!-- Fin Table -->
+                </div>
+            
+  
           </div> 
+          <div class="text-center">
+            <button type="submit" class="btn btn-dark  waves-effect waves-light" data-toggle="tooltip" data-placement="top">
+              <i class="fa fa-print"></i>Imprimir
+            </button>
+        </div>  
         </div>  <!-- Fin color accordion -->
+
         </form>
       </div> <!-- Fin card block -->  
     </div> <!-- Fin card -->
